@@ -1,0 +1,107 @@
+object Dep {
+
+    object GradlePlugin {
+        const val android = "com.android.tools.build:gradle:4.1.1"
+        const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Android.Navigation.version}"
+        const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Dagger.version}"
+        const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.version}"
+        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:${Kotlin.version}"
+    }
+
+    object Android {
+        const val core = "androidx.core:core-ktx:1.5.0-alpha05"
+        const val compat = "androidx.appcompat:appcompat:1.3.0-alpha02"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
+        const val emoji = "androidx.emoji:emoji-appcompat:1.2.0-alpha01"
+        const val material = "com.google.android.material:material:1.3.0-alpha03"
+        const val activity = "androidx.activity:activity-ktx:1.2.0-beta01"
+        const val fragment = "androidx.fragment:fragment-ktx:1.3.0-beta01"
+        const val recycler = "androidx.recyclerview:recyclerview:1.2.0-alpha06"
+
+        object LifeCycle {
+            private const val version = "2.3.0-beta01"
+            const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+            const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
+            const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:$version"
+        }
+
+        object Navigation {
+            const val version = "2.3.1"
+            const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
+            const val ui = "androidx.navigation:navigation-ui-ktx:$version"
+        }
+
+        object Room {
+            private const val version = "2.3.0-alpha03"
+            const val core = "androidx.room:room-ktx:$version"
+            const val compiler = "androidx.room:room-compiler:$version"
+        }
+    }
+
+    object Kotlin {
+        const val version = "1.4.10"
+        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib:$version"
+        const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
+
+        object Coroutines {
+            private const val version = "1.4.1"
+            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
+        }
+
+        object Serialization {
+            private const val version = "1.0.1"
+            const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
+        }
+    }
+
+    object Dagger {
+        const val version = "2.28-alpha"
+        const val hilt = "com.google.dagger:hilt-android:$version"
+        const val compiler = "com.google.dagger:hilt-android-compiler:$version"
+
+        object Android {
+            private const val version = "1.0.0-alpha02"
+            const val hilt = "androidx.hilt:hilt-common:$version"
+            const val viewModel = "androidx.hilt:hilt-lifecycle-viewmodel:$version"
+            const val compiler = "androidx.hilt:hilt-compiler:$version"
+        }
+    }
+
+    object Corbind {
+        private const val version = "1.4.0"
+        const val core = "ru.ldralighieri.corbind:corbind:$version"
+        const val appcompat = "ru.ldralighieri.corbind:corbind-appcompat:$version"
+        const val navigation = "ru.ldralighieri.corbind:corbind-navigation:$version"
+        const val recycler = "ru.ldralighieri.corbind:corbind-recyclerview:$version"
+        const val material = "ru.ldralighieri.corbind:corbind-material:$version"
+    }
+
+    object Ktor {
+        private const val version = "1.4.2"
+        const val client = "io.ktor:ktor-client-okhttp:$version"
+        const val serialization = "io.ktor:ktor-client-serialization-jvm:$version"
+    }
+
+    object OkHttp {
+        private const val version = "4.9.0"
+        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
+    }
+
+    object Groupie {
+        const val groupie = "com.xwray:groupie:2.8.0"
+        const val viewbinding = "com.xwray:groupie-viewbinding:2.8.0"
+    }
+
+    object Timber {
+        const val timber = "com.jakewharton.timber:timber:4.7.1"
+    }
+
+    object Test {
+        const val junit = "junit:junit:4.13.1"
+
+        object Android {
+            const val junit = "androidx.test.ext:junit:1.1.2"
+            const val espresso = "androidx.test.espresso:espresso-core:3.3.0"
+        }
+    }
+}
