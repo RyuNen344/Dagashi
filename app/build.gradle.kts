@@ -17,6 +17,18 @@ android {
         targetSdkVersion(Versions.androidTargetSdkVersion)
         versionCode = Versions.androidVersionCode
         versionName = Versions.androidVersionName
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments.putAll(
+                    mutableMapOf(
+                        "room.schemaLocation" to "$projectDir/schemas",
+                        "room.incremental" to "true",
+                        "room.expandProjection" to "true"
+                    )
+                )
+
+            }
+        }
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments["clearPackageData"] = "true"
     }
