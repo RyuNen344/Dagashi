@@ -43,7 +43,7 @@ class IssuesAdapter(
                             addView(
                                 Chip(root.context).apply {
                                     text = label.name
-                                    chipBackgroundColor = ColorStateList.valueOf("FF${label.color}".toLong(radix = 16).toInt())
+                                    chipBackgroundColor = ColorStateList.valueOf(label.colorInt)
                                     setDebouncingOnClickListener {
                                         onLabelClickListener(label)
                                     }
