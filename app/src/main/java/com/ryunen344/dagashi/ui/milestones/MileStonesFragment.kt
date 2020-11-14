@@ -2,6 +2,7 @@ package com.ryunen344.dagashi.ui.milestones
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.ryunen344.dagashi.R
@@ -24,6 +25,10 @@ class MileStonesFragment : Fragment(R.layout.fragment_mile_stones) {
 
         bind(viewModel.mileStones) {
             adapter.setData(it)
+        }
+
+        bind(viewModel.isUpdated) {
+            Toast.makeText(requireContext(), "更新されたで", Toast.LENGTH_SHORT).show()
         }
     }
 }

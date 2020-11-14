@@ -6,7 +6,7 @@ import com.ryunen344.dagashi.data.repository.mapper.MilestoneMapper
 import com.ryunen344.dagashi.model.MileStone
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -15,7 +15,11 @@ class MileStoneRepositoryImpl @Inject constructor(
     private val dispatcher: CoroutineDispatcher
 ) : MileStoneRepository {
 
-    override val mileStones: Flow<List<MileStone>> = emptyFlow()
+    override val mileStones: Flow<List<MileStone>> = flow {
+        withContext(dispatcher) {
+            emit(dagashiApi.milestones().milestones.nodes.map(MilestoneMapper::toModel))
+        }
+    }
 
     override suspend fun refresh() {
         // TODO: 2020/11/14

@@ -114,3 +114,11 @@ dependencies {
     testImplementation(Dep.Test.Android.junit)
     androidTestImplementation(Dep.Test.Android.espresso)
 }
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions.suppressWarnings = false
+    kotlinOptions.freeCompilerArgs = listOf(
+        "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        "-Xuse-experimental=kotlinx.coroutines.FlowPreview"
+    )
+}
