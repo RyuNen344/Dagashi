@@ -8,8 +8,8 @@ import com.ryunen344.dagashi.model.Issue
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 
 class IssuesViewModel @ViewModelInject constructor(private val issueRepository: IssueRepository) : ViewModel() {
@@ -19,7 +19,7 @@ class IssuesViewModel @ViewModelInject constructor(private val issueRepository: 
         get() = _issues.asFlow()
 
     val isUpdated: Flow<Boolean>
-        get() = combine(issues.drop(1), issues) { old, new -> old != new }
+        get() = issues.drop(1).zip(issues) { old, new -> old != new }
 
     fun refresh(path: String) {
         viewModelScope.launch {
