@@ -12,11 +12,11 @@ data class MileStonesRootResponse(
     @SerialName("url")
     val url: String,
     @SerialName("milestones")
-    val milestones: MilestonesResponse
+    val milestones: MileStonesResponse
 )
 
 @Serializable
-data class MilestonesResponse(
+data class MileStonesResponse(
     @SerialName("totalCount")
     val totalCount: Int,
     @SerialName("nodes")

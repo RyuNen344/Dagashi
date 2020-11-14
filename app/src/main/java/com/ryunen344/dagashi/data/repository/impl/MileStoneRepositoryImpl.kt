@@ -2,7 +2,7 @@ package com.ryunen344.dagashi.data.repository.impl
 
 import com.ryunen344.dagashi.data.api.DagashiApi
 import com.ryunen344.dagashi.data.repository.MileStoneRepository
-import com.ryunen344.dagashi.data.repository.mapper.MilestoneMapper
+import com.ryunen344.dagashi.data.repository.mapper.MileStoneMapper
 import com.ryunen344.dagashi.model.MileStone
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -17,7 +17,7 @@ class MileStoneRepositoryImpl @Inject constructor(
 
     override val mileStones: Flow<List<MileStone>> = flow {
         withContext(dispatcher) {
-            emit(dagashiApi.milestones().milestones.nodes.map(MilestoneMapper::toModel))
+            emit(dagashiApi.milestones().milestones.nodes.map(MileStoneMapper::toModel))
         }
     }
 
@@ -27,7 +27,7 @@ class MileStoneRepositoryImpl @Inject constructor(
 
     override suspend fun mileStones(): List<MileStone> {
         return withContext(dispatcher) {
-            dagashiApi.milestones().milestones.nodes.map(MilestoneMapper::toModel)
+            dagashiApi.milestones().milestones.nodes.map(MileStoneMapper::toModel)
         }
     }
 }

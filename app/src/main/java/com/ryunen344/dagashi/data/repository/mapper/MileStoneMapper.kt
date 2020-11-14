@@ -5,7 +5,7 @@ import com.ryunen344.dagashi.data.api.response.MileStoneNodeResponse
 import com.ryunen344.dagashi.model.MileStone
 import com.ryunen344.dagashi.model.SummaryIssue
 
-object MilestoneMapper {
+object MileStoneMapper {
     @JvmStatic
     fun toModel(node: MileStoneNodeResponse): MileStone {
         return MileStone(
@@ -15,7 +15,7 @@ object MilestoneMapper {
             title = node.title,
             description = node.description,
             closedAt = node.closedAt,
-            issues = node.issues.nodes.map(MilestoneMapper::toModel),
+            issues = node.issues.nodes.map(MileStoneMapper::toModel),
             path = node.path
         )
     }

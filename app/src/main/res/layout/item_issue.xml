@@ -28,16 +28,39 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="sample text title" />
 
-        <TextView
-            android:id="@+id/text_description"
+        <HorizontalScrollView
+            android:id="@+id/view_scroll_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="14dp"
-            android:layout_marginTop="12dp"
-            android:textSize="16sp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_title"
+            tools:layout_height="32dp">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/layout_label_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingHorizontal="14dp"
+                app:chipSpacing="4dp"
+                app:singleLine="true"
+                tools:ignore="ScrollViewSize"
+                tools:layout_height="32dp" />
+
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/text_body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="14dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_scroll_label"
             tools:text="sample text description" />
 
         <TextView
@@ -50,7 +73,7 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_description"
+            app:layout_constraintTop_toBottomOf="@id/text_body"
             tools:text="2020-10-11T10:23:39Z" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

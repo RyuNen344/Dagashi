@@ -14,6 +14,12 @@
 
     <fragment
         android:id="@+id/first"
-        android:name="com.ryunen344.dagashi.ui.first.FirstFragment" />
+        android:name="com.ryunen344.dagashi.ui.issues.IssuesFragment">
+
+        <argument
+            android:name="path"
+            app:argType="string" />
+
+    </fragment>
 
 </navigation>
