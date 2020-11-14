@@ -10,6 +10,7 @@ import com.ryunen344.dagashi.R
 import com.ryunen344.dagashi.databinding.FragmentIssuesBinding
 import com.ryunen344.dagashi.util.ext.bind
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class IssuesFragment : Fragment(R.layout.fragment_issues) {
@@ -20,7 +21,14 @@ class IssuesFragment : Fragment(R.layout.fragment_issues) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val binding = FragmentIssuesBinding.bind(view)
-        val adapter = IssuesAdapter()
+        val adapter = IssuesAdapter(
+            onLabelClickListener = { label ->
+                Timber.wtf(label.labelIssueUrl)
+            },
+            onIssueClickListener = { url ->
+                Timber.wtf(url)
+            }
+        )
 
         binding.viewRecycler.adapter = adapter
 

@@ -12,8 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/text_title"
@@ -63,18 +62,20 @@
             app:layout_constraintTop_toBottomOf="@id/view_scroll_label"
             tools:text="sample text description" />
 
-        <TextView
-            android:id="@+id/text_date"
-            android:layout_width="0dp"
+        <Button
+            android:id="@+id/button_github"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="14dp"
             android:layout_marginBottom="18dp"
+            android:text="@string/issue_button_github"
             android:textSize="12sp"
+            app:icon="@drawable/ic_open_in_new"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_body"
-            tools:text="2020-10-11T10:23:39Z" />
+            app:layout_constraintTop_toBottomOf="@id/text_body" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

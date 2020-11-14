@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Hello Dagashi</string>
+    <string name="issue_button_github">GitHubで見る</string>
 </resources>
