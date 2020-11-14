@@ -11,11 +11,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HelloDagger">
+        android:theme="@style/Theme.Dagashi">
 
-        <activity
-            android:name="com.ryunen344.dagashi.ui.main.MainActivity"
-            android:screenOrientation="fullSensor">
+        <activity android:name="com.ryunen344.dagashi.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

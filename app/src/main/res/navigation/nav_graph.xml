@@ -2,13 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/main">
+    app:startDestination="@id/mileStones">
 
     <fragment
-        android:id="@+id/main"
-        android:name="com.ryunen344.dagashi.ui.main.MainFragment">
+        android:id="@+id/mileStones"
+        android:name="com.ryunen344.dagashi.ui.milestones.MileStonesFragment">
         <action
-            android:id="@+id/action_main_to_first"
+            android:id="@+id/action_mileStones_to_first"
             app:destination="@id/first" />
     </fragment>
 

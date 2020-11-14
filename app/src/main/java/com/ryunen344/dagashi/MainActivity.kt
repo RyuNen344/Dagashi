@@ -1,7 +1,6 @@
-package com.ryunen344.dagashi.ui.main
+package com.ryunen344.dagashi
 
 import androidx.appcompat.app.AppCompatActivity
-import com.ryunen344.dagashi.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class IssueRepositoryImpl @Inject constructor(private val dagashiApi: DagashiApi, private val dispatcher: CoroutineDispatcher) : IssueRepository {
 
-    override val issues: Flow<Issue> = emptyFlow()
+    override val issues: Flow<List<Issue>> = emptyFlow()
 
     override suspend fun refresh() {
         // TODO: 2020/11/14

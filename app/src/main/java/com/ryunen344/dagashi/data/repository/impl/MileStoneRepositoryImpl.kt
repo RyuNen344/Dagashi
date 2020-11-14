@@ -15,7 +15,7 @@ class MileStoneRepositoryImpl @Inject constructor(
     private val dispatcher: CoroutineDispatcher
 ) : MileStoneRepository {
 
-    override val mileStones: Flow<MileStone> = emptyFlow()
+    override val mileStones: Flow<List<MileStone>> = emptyFlow()
 
     override suspend fun refresh() {
         // TODO: 2020/11/14
