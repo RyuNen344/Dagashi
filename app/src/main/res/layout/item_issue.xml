@@ -62,6 +62,28 @@
             app:layout_constraintTop_toBottomOf="@id/view_scroll_label"
             tools:text="sample text description" />
 
+        <View
+            android:id="@+id/view_comment_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="14dp"
+            android:layout_marginTop="8dp"
+            android:background="?attr/colorPrimaryVariant"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_body" />
+
+        <LinearLayout
+            android:id="@+id/layout_comment_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_comment_divider" />
+
         <Button
             android:id="@+id/button_github"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -75,7 +97,7 @@
             app:icon="@drawable/ic_open_in_new"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_body" />
+            app:layout_constraintTop_toBottomOf="@id/layout_comment_container" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

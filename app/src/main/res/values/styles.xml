@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Dagashi.Shape" />
+
+    <style name="Theme.Dagashi.Shape.Image" />
+
+    <style name="Theme.Dagashi.Shape.Image.Circle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>

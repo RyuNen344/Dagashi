@@ -86,6 +86,8 @@ dependencies {
     implementation(Dep.Groupie.groupie)
     implementation(Dep.Groupie.viewbinding)
 
+    implementation(Dep.Coil.coil)
+
     implementation(Dep.Corbind.core)
     implementation(Dep.Corbind.appcompat)
     implementation(Dep.Corbind.navigation)

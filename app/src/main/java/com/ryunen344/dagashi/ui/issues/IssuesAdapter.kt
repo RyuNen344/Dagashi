@@ -57,6 +57,24 @@ class IssuesAdapter(
 
                 textBody.text = model.body
 
+                layoutCommentContainer.apply {
+                    removeAllViews()
+                    if (model.comments.isNotEmpty()) {
+                        viewCommentDivider.isVisible = true
+                        isVisible = true
+                        model.comments.forEach { comment ->
+                            addView(
+                                CommentView(root.context).apply {
+                                    bind(comment)
+                                }
+                            )
+                        }
+                    } else {
+                        viewCommentDivider.isVisible = false
+                        isVisible = false
+                    }
+                }
+
                 buttonGithub.setDebouncingOnClickListener {
                     onIssueClickListener(model.url)
                 }

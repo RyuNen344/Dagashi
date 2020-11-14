@@ -93,6 +93,10 @@ object Dep {
         const val viewbinding = "com.xwray:groupie-viewbinding:2.8.0"
     }
 
+    object Coil {
+        const val coil = "io.coil-kt:coil:1.0.0"
+    }
+
     object Timber {
         const val timber = "com.jakewharton.timber:timber:4.7.1"
     }
