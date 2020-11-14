@@ -40,13 +40,15 @@ android {
     buildTypes {
         getByName("debug") {
             applicationIdSuffix = Packages.debugNameSuffix
+            buildConfigField("String", "API_ENDPOINT", "\"https://androiddagashi.github.io\"")
         }
         getByName("release") {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "API_ENDPOINT", "\"https://androiddagashi.github.io\"")
         }
     }
     compileOptions {
@@ -62,7 +64,8 @@ dependencies {
     implementation(Dep.Kotlin.stdlibCommon)
     implementation(Dep.Kotlin.stdlibJDK8)
     implementation(Dep.Kotlin.Coroutines.android)
-    implementation(Dep.Kotlin.Serialization.serialization)
+    implementation(Dep.Kotlin.Serialization.core)
+    implementation(Dep.Kotlin.Serialization.json)
 
     implementation(Dep.Android.compat)
     implementation(Dep.Android.core)
@@ -105,6 +108,7 @@ dependencies {
     implementation(Dep.Timber.timber)
 
     testImplementation(Dep.Test.junit)
+    testImplementation(Dep.Test.Kotlin.Coroutines.test)
     testImplementation(Dep.Test.Android.junit)
     androidTestImplementation(Dep.Test.Android.espresso)
 }

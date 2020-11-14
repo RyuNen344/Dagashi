@@ -1,4 +1,4 @@
-package com.ryunen344.dagashi.main
+package com.ryunen344.dagashi.ui.main
 
 import android.os.Bundle
 import android.view.View

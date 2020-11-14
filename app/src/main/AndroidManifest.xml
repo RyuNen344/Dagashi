@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ryunen344.dagashi">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".DagashiApplication"
         android:allowBackup="true"
@@ -12,8 +14,8 @@
         android:theme="@style/Theme.HelloDagger">
 
         <activity
-            android:name=".main.MainActivity"
-            android:screenOrientation="portrait">
+            android:name="com.ryunen344.dagashi.ui.main.MainActivity"
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

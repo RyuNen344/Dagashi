@@ -1,7 +1,7 @@
 package com.ryunen344.dagashi.di
 
-import com.ryunen344.dagashi.repository.FirstRepository
-import com.ryunen344.dagashi.repository.impl.FirstRepositoryImpl
+import com.ryunen344.dagashi.data.repository.FirstRepository
+import com.ryunen344.dagashi.data.repository.impl.FirstRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

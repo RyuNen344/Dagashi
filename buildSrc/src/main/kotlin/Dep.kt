@@ -44,13 +44,14 @@ object Dep {
         const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
 
         object Coroutines {
-            private const val version = "1.4.1"
+            const val version = "1.4.1"
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
         }
 
         object Serialization {
             private const val version = "1.0.1"
-            const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
+            const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:$version"
+            const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
         }
     }
 
@@ -102,6 +103,12 @@ object Dep {
         object Android {
             const val junit = "androidx.test.ext:junit:1.1.2"
             const val espresso = "androidx.test.espresso:espresso-core:3.3.0"
+        }
+
+        object Kotlin {
+            object Coroutines {
+                const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Dep.Kotlin.Coroutines.version}"
+            }
         }
     }
 }

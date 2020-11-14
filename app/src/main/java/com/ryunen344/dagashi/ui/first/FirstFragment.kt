@@ -1,4 +1,4 @@
-package com.ryunen344.dagashi.first
+package com.ryunen344.dagashi.ui.first
 
 import android.os.Bundle
 import android.view.View

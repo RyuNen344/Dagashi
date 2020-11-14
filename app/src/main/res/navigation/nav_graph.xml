@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/main"
-        android:name="com.ryunen344.dagashi.main.MainFragment">
+        android:name="com.ryunen344.dagashi.ui.main.MainFragment">
         <action
             android:id="@+id/action_main_to_first"
             app:destination="@id/first" />
@@ -14,6 +14,6 @@
 
     <fragment
         android:id="@+id/first"
-        android:name="com.ryunen344.dagashi.first.FirstFragment" />
+        android:name="com.ryunen344.dagashi.ui.first.FirstFragment" />
 
 </navigation>

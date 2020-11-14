@@ -1,8 +1,8 @@
-package com.ryunen344.dagashi.first
+package com.ryunen344.dagashi.ui.first
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
-import com.ryunen344.dagashi.repository.FirstRepository
+import com.ryunen344.dagashi.data.repository.FirstRepository
 
 class FirstViewModel @ViewModelInject constructor(private val firstRepository: FirstRepository) : ViewModel() {
     fun getStringFromRepository(): String {
