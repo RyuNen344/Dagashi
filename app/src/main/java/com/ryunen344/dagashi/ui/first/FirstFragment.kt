@@ -18,5 +18,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
         FragmentFirstBinding.bind(view).apply {
             Timber.wtf(viewModel.getStringFromRepository())
         }
+
+        viewModel.getMileStones()
     }
 }
