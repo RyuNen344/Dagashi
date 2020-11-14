@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryunen344.dagashi.data.repository.IssueRepository
 import com.ryunen344.dagashi.model.Issue
+import kotlinx.coroutines.channels.BroadcastChannel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
@@ -21,14 +23,28 @@ class IssuesViewModel @ViewModelInject constructor(private val issueRepository: 
     val isUpdated: Flow<Boolean>
         get() = issues.drop(1).zip(issues) { old, new -> old != new }
 
+    private val _openUrlModel: BroadcastChannel<OpenUrlModel> = BroadcastChannel(Channel.BUFFERED)
+    val openUrlModel: Flow<OpenUrlModel>
+        get() = _openUrlModel.asFlow()
+
     fun refresh(path: String) {
         viewModelScope.launch {
             _issues.offer(issueRepository.issue(path))
         }
     }
 
+    fun inputUrl(url: String) {
+        _openUrlModel.offer(OpenUrlModel.WebView(url))
+    }
+
     override fun onCleared() {
+        _openUrlModel.cancel()
         _issues.cancel()
         super.onCleared()
+    }
+
+    sealed class OpenUrlModel {
+        class WebView(url: String) : OpenUrlModel()
+        class ActionView(url: String) : OpenUrlModel()
     }
 }

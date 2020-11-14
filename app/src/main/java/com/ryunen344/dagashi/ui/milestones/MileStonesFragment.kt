@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.ryunen344.dagashi.R
 import com.ryunen344.dagashi.databinding.FragmentMileStonesBinding
 import com.ryunen344.dagashi.util.ext.bind
@@ -23,6 +24,7 @@ class MileStonesFragment : Fragment(R.layout.fragment_mile_stones) {
         }
 
         binding.viewRecycler.adapter = adapter
+        binding.toolbar.setupWithNavController(findNavController())
 
         bind(viewModel.mileStones) {
             adapter.setData(it)

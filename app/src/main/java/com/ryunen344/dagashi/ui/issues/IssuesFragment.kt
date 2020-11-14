@@ -5,12 +5,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.setupWithNavController
 import com.ryunen344.dagashi.R
 import com.ryunen344.dagashi.databinding.FragmentIssuesBinding
 import com.ryunen344.dagashi.util.ext.bind
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class IssuesFragment : Fragment(R.layout.fragment_issues) {
@@ -20,17 +21,18 @@ class IssuesFragment : Fragment(R.layout.fragment_issues) {
     private val viewModel: IssuesViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val binding = FragmentIssuesBinding.bind(view)
         val adapter = IssuesAdapter(
             onLabelClickListener = { label ->
-                Timber.wtf(label.labelIssueUrl)
+                viewModel.inputUrl(label.labelIssueUrl)
             },
             onIssueClickListener = { url ->
-                Timber.wtf(url)
+                viewModel.inputUrl(url)
             }
         )
 
+        val binding = FragmentIssuesBinding.bind(view)
         binding.viewRecycler.adapter = adapter
+        binding.toolbar.setupWithNavController(findNavController())
 
         bind(viewModel.issues) {
             adapter.setData(it)
@@ -38,6 +40,17 @@ class IssuesFragment : Fragment(R.layout.fragment_issues) {
 
         bind(viewModel.isUpdated) {
             Toast.makeText(requireContext(), "更新されたで", Toast.LENGTH_SHORT).show()
+        }
+
+        bind(viewModel.openUrlModel) {
+            when (it) {
+                is IssuesViewModel.OpenUrlModel.WebView -> {
+
+                }
+                is IssuesViewModel.OpenUrlModel.ActionView -> {
+
+                }
+            }
         }
 
         viewModel.refresh(args.path)
