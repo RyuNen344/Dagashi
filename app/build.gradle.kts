@@ -105,6 +105,8 @@ dependencies {
     implementation(Dep.Dagger.Android.viewModel)
     kapt(Dep.Dagger.Android.compiler)
 
+    implementation(Dep.ThreeTen.android)
+
     implementation(Dep.Timber.timber)
 
     testImplementation(Dep.Test.junit)

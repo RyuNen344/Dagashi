@@ -97,6 +97,10 @@ object Dep {
         const val timber = "com.jakewharton.timber:timber:4.7.1"
     }
 
+    object ThreeTen {
+        const val android = "com.jakewharton.threetenabp:threetenabp:1.3.0"
+    }
+
     object Test {
         const val junit = "junit:junit:4.13.1"
 

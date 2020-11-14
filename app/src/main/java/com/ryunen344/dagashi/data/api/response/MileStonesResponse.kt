@@ -1,7 +1,9 @@
 package com.ryunen344.dagashi.data.api.response
 
+import com.ryunen344.dagashi.data.api.serializer.OffsetDateTimeSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.threeten.bp.OffsetDateTime
 
 @Serializable
 data class MileStonesRootResponse(
@@ -35,8 +37,9 @@ data class MileStoneNodeResponse(
     val title: String,
     @SerialName("description")
     val description: String,
+    @Serializable(with = OffsetDateTimeSerializer::class)
     @SerialName("closedAt")
-    val closedAt: String,
+    val closedAt: OffsetDateTime,
     @SerialName("issues")
     val issues: MileStoneIssuesResponse,
     @SerialName("path")

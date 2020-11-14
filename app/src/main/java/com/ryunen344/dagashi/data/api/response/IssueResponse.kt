@@ -1,7 +1,9 @@
 package com.ryunen344.dagashi.data.api.response
 
+import com.ryunen344.dagashi.data.api.serializer.OffsetDateTimeSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.threeten.bp.OffsetDateTime
 
 @Serializable
 data class IssueRootResponse(
@@ -15,8 +17,9 @@ data class IssueRootResponse(
     val title: String,
     @SerialName("description")
     val description: String,
+    @Serializable(with = OffsetDateTimeSerializer::class)
     @SerialName("closedAt")
-    val closedAt: String,
+    val closedAt: OffsetDateTime,
     @SerialName("issues")
     val issues: IssuesResponse
 )
@@ -75,8 +78,9 @@ data class CommentsResponse(
 data class CommentNodeResponse(
     @SerialName("body")
     val body: String,
+    @Serializable(with = OffsetDateTimeSerializer::class)
     @SerialName("publishedAt")
-    val publishedAt: String,
+    val publishedAt: OffsetDateTime,
     @SerialName("author")
     val author: AuthorResponse
 )
