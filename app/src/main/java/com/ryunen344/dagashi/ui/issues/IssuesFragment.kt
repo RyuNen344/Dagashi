@@ -21,6 +21,7 @@ class IssuesFragment : Fragment(R.layout.fragment_issues) {
     private val viewModel: IssuesViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val binding = FragmentIssuesBinding.bind(view)
         val adapter = IssuesAdapter(
             onLabelClickListener = { label ->
                 viewModel.inputUrl(label.labelIssueUrl)
@@ -30,29 +31,32 @@ class IssuesFragment : Fragment(R.layout.fragment_issues) {
             }
         )
 
-        val binding = FragmentIssuesBinding.bind(view)
-        binding.viewRecycler.adapter = adapter
-        binding.toolbar.setupWithNavController(findNavController())
-
-        bind(viewModel.issues) {
-            adapter.setData(it)
+        binding.apply {
+            viewRecycler.adapter = adapter
+            toolbar.setupWithNavController(findNavController())
         }
 
-        bind(viewModel.isUpdated) {
-            Toast.makeText(requireContext(), "更新されたで", Toast.LENGTH_SHORT).show()
-        }
+        viewModel.apply {
+            bind(issues) {
+                adapter.setData(it)
+            }
 
-        bind(viewModel.openUrlModel) {
-            when (it) {
-                is IssuesViewModel.OpenUrlModel.WebView -> {
+            bind(isUpdated) {
+                Toast.makeText(requireContext(), "更新されたで", Toast.LENGTH_SHORT).show()
+            }
 
-                }
-                is IssuesViewModel.OpenUrlModel.ActionView -> {
+            bind(openUrlModel) {
+                when (it) {
+                    is IssuesViewModel.OpenUrlModel.WebView -> {
 
+                    }
+                    is IssuesViewModel.OpenUrlModel.ActionView -> {
+
+                    }
                 }
             }
+        }.run {
+            refresh(args.path)
         }
-
-        viewModel.refresh(args.path)
     }
 }

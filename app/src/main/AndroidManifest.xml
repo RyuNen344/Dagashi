@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dagashi">
 
-        <activity android:name="com.ryunen344.dagashi.MainActivity">
+        <activity android:name="com.ryunen344.dagashi.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -8,18 +8,23 @@
         android:id="@+id/mileStones"
         android:name="com.ryunen344.dagashi.ui.milestones.MileStonesFragment">
         <action
-            android:id="@+id/action_mileStones_to_first"
-            app:destination="@id/first" />
+            android:id="@+id/action_mileStones_to_issues"
+            app:destination="@id/issues" />
+        <action
+            android:id="@+id/action_mileStones_to_setting"
+            app:destination="@id/setting" />
     </fragment>
 
     <fragment
-        android:id="@+id/first"
+        android:id="@+id/issues"
         android:name="com.ryunen344.dagashi.ui.issues.IssuesFragment">
-
         <argument
             android:name="path"
             app:argType="string" />
-
     </fragment>
+
+    <fragment
+        android:id="@+id/setting"
+        android:name="com.ryunen344.dagashi.ui.setting.SettingFragment" />
 
 </navigation>
