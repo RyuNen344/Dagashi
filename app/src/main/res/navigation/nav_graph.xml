@@ -21,10 +21,21 @@
         <argument
             android:name="path"
             app:argType="string" />
+        <action
+            android:id="@+id/action_issues_to_web"
+            app:destination="@id/web" />
     </fragment>
 
     <fragment
         android:id="@+id/setting"
         android:name="com.ryunen344.dagashi.ui.setting.SettingFragment" />
+
+    <fragment
+        android:id="@+id/web"
+        android:name="com.ryunen344.dagashi.ui.web.WebFragment">
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

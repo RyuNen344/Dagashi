@@ -48,7 +48,7 @@ class IssuesFragment : Fragment(R.layout.fragment_issues) {
             bind(openUrlModel) {
                 when (it) {
                     is IssuesViewModel.OpenUrlModel.WebView -> {
-
+                        findNavController().navigate(IssuesFragmentDirections.actionIssuesToWeb(it.url))
                     }
                     is IssuesViewModel.OpenUrlModel.ActionView -> {
 

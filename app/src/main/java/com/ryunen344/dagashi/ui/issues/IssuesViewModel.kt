@@ -11,6 +11,8 @@ import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 
@@ -20,8 +22,8 @@ class IssuesViewModel @ViewModelInject constructor(private val issueRepository: 
     val issues: Flow<List<Issue>>
         get() = _issues.asFlow()
 
-    val isUpdated: Flow<Boolean>
-        get() = issues.drop(1).zip(issues) { old, new -> old != new }
+    val isUpdated: Flow<Unit>
+        get() = issues.drop(1).zip(issues) { old, new -> old != new }.filter { it }.map { Unit }
 
     private val _openUrlModel: BroadcastChannel<OpenUrlModel> = BroadcastChannel(Channel.BUFFERED)
     val openUrlModel: Flow<OpenUrlModel>
@@ -44,7 +46,7 @@ class IssuesViewModel @ViewModelInject constructor(private val issueRepository: 
     }
 
     sealed class OpenUrlModel {
-        class WebView(url: String) : OpenUrlModel()
-        class ActionView(url: String) : OpenUrlModel()
+        class WebView(val url: String) : OpenUrlModel()
+        class ActionView(val url: String) : OpenUrlModel()
     }
 }
