@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import com.ryunen344.dagashi.R
 import com.ryunen344.dagashi.databinding.FragmentIssuesBinding
+import com.ryunen344.dagashi.util.TextViewClickMovement
 import com.ryunen344.dagashi.util.ext.bind
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,6 +21,11 @@ class IssuesFragment : Fragment(R.layout.fragment_issues) {
 
     private val viewModel: IssuesViewModel by viewModels()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.refresh(args.path)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val binding = FragmentIssuesBinding.bind(view)
         val adapter = IssuesAdapter(
@@ -28,6 +34,13 @@ class IssuesFragment : Fragment(R.layout.fragment_issues) {
             },
             onIssueClickListener = { url ->
                 viewModel.inputUrl(url)
+            },
+            object : TextViewClickMovement.OnTextViewClickMovementListener {
+                override fun onLinkClicked(linkText: String, linkType: TextViewClickMovement.LinkType) {
+                    if (linkType == TextViewClickMovement.LinkType.WEB_URL) {
+                        viewModel.inputUrl(linkText)
+                    }
+                }
             }
         )
 
@@ -55,8 +68,6 @@ class IssuesFragment : Fragment(R.layout.fragment_issues) {
                     }
                 }
             }
-        }.run {
-            refresh(args.path)
         }
     }
 }

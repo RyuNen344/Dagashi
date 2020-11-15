@@ -10,6 +10,7 @@ import com.ryunen344.dagashi.R
 import com.ryunen344.dagashi.databinding.ItemIssueBinding
 import com.ryunen344.dagashi.model.Issue
 import com.ryunen344.dagashi.model.Label
+import com.ryunen344.dagashi.util.TextViewClickMovement
 import com.ryunen344.dagashi.util.ext.dp2px
 import com.ryunen344.dagashi.util.ext.setDebouncingOnClickListener
 import com.xwray.groupie.GroupAdapter
@@ -18,7 +19,8 @@ import com.xwray.groupie.viewbinding.BindableItem
 
 class IssuesAdapter(
     private val onLabelClickListener: (label: Label) -> Unit,
-    private val onIssueClickListener: (url: String) -> Unit
+    private val onIssueClickListener: (url: String) -> Unit,
+    private val onTextViewClickMovementListener: TextViewClickMovement.OnTextViewClickMovementListener
 ) : GroupAdapter<GroupieViewHolder>() {
 
     fun setData(list: List<Issue>) {
@@ -32,6 +34,7 @@ class IssuesAdapter(
     private inner class IssueItem(private val model: Issue, private val isLast: Boolean) :
         BindableItem<ItemIssueBinding>(model.url.hashCode().toLong()) {
         override fun bind(viewBinding: ItemIssueBinding, position: Int) {
+            val context = viewBinding.root.context
             viewBinding.apply {
                 textTitle.text = model.title
 
@@ -56,6 +59,7 @@ class IssuesAdapter(
                 }
 
                 textBody.text = model.body
+                textBody.movementMethod = TextViewClickMovement(context, onTextViewClickMovementListener)
 
                 layoutCommentContainer.apply {
                     removeAllViews()
@@ -65,7 +69,7 @@ class IssuesAdapter(
                         model.comments.forEach { comment ->
                             addView(
                                 CommentView(root.context).apply {
-                                    bind(comment)
+                                    bind(comment, onTextViewClickMovementListener)
                                 }
                             )
                         }
@@ -84,7 +88,7 @@ class IssuesAdapter(
                         leftMargin,
                         topMargin,
                         rightMargin,
-                        viewBinding.root.context.dp2px(
+                        context.dp2px(
                             if (isLast) 18 else 0
                         )
                     )

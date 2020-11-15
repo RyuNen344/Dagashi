@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import coil.load
 import com.ryunen344.dagashi.databinding.ViewCommentBinding
 import com.ryunen344.dagashi.model.Comment
+import com.ryunen344.dagashi.util.TextViewClickMovement
 
 class CommentView @JvmOverloads constructor(
     context: Context,
@@ -19,9 +20,10 @@ class CommentView @JvmOverloads constructor(
         this
     )
 
-    fun bind(comment: Comment) {
+    fun bind(comment: Comment, linkClickListener: TextViewClickMovement.OnTextViewClickMovementListener) {
         binding.imageUser.load(comment.author.avatarUrl)
         binding.textAuthorLogin.text = comment.author.login
         binding.textBody.text = comment.body
+        binding.textBody.movementMethod = TextViewClickMovement(context, linkClickListener)
     }
 }
