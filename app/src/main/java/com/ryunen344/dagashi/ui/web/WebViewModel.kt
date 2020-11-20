@@ -2,35 +2,53 @@ package com.ryunen344.dagashi.ui.web
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.channels.BroadcastChannel
-import kotlinx.coroutines.channels.Channel
+import androidx.lifecycle.viewModelScope
+import com.ryunen344.dagashi.di.DefaultDispatcher
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
-class WebViewModel @ViewModelInject constructor() : ViewModel() {
+class WebViewModel @ViewModelInject constructor(@DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher) : ViewModel() {
 
-    private val _backKeyEvent: BroadcastChannel<Unit> = BroadcastChannel(Channel.BUFFERED)
+    private val viewModelDefaultScope = CoroutineScope(viewModelScope.coroutineContext + defaultDispatcher)
+
+    private val _backKeyEvent: MutableSharedFlow<Unit> = MutableSharedFlow()
     val backKeyEvent: Flow<Unit>
-        get() = _backKeyEvent.asFlow()
+        get() = _backKeyEvent
 
-    private val _progress: BroadcastChannel<Int> = BroadcastChannel(Channel.BUFFERED)
+    private val _progress: MutableSharedFlow<Int> = MutableSharedFlow()
     val progress: Flow<Int>
-        get() = _progress.asFlow().map { it % 100 }
+        get() = _progress.map { it % 100 }
 
-    private val _webTitle: BroadcastChannel<String?> = BroadcastChannel(Channel.BUFFERED)
+    private val _webTitle: MutableSharedFlow<String?> = MutableSharedFlow()
     val webTitle: Flow<String>
-        get() = _webTitle.asFlow().map { it ?: "" }
+        get() = _webTitle.map { it ?: "" }
 
     fun backKeyTapped() {
-        _backKeyEvent.offer(Unit)
+        viewModelDefaultScope.launch {
+            _backKeyEvent.emit(Unit)
+        }
     }
 
     fun progressChanged(progress: Int) {
-        _progress.offer(progress)
+        viewModelDefaultScope.launch {
+            _progress.emit(progress)
+        }
     }
 
     fun titleChanged(title: String?) {
-        _webTitle.offer(title)
+        viewModelDefaultScope.launch {
+            _webTitle.emit(title)
+        }
+    }
+
+    override fun onCleared() {
+        viewModelDefaultScope.cancel()
+        super.onCleared()
     }
 }
