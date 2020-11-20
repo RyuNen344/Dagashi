@@ -94,6 +94,10 @@ class WebFragment : Fragment(R.layout.fragment_web) {
             bind(webTitle) {
                 binding.toolbar.title = it
             }
+
+            bind(webViewCacheMode) {
+                binding.viewWeb.settings.cacheMode = it
+            }
         }
     }
 

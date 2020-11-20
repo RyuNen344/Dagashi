@@ -1,19 +1,24 @@
 package com.ryunen344.dagashi.ui.web
 
+import android.webkit.WebSettings
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryunen344.dagashi.di.DefaultDispatcher
+import com.ryunen344.dagashi.util.NetworkManager
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-class WebViewModel @ViewModelInject constructor(@DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher) : ViewModel() {
+class WebViewModel @ViewModelInject constructor(
+    @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
+    networkManger: NetworkManager
+) : ViewModel() {
 
     private val viewModelDefaultScope = CoroutineScope(viewModelScope.coroutineContext + defaultDispatcher)
 
@@ -28,6 +33,11 @@ class WebViewModel @ViewModelInject constructor(@DefaultDispatcher private val d
     private val _webTitle: MutableSharedFlow<String?> = MutableSharedFlow()
     val webTitle: Flow<String>
         get() = _webTitle.map { it ?: "" }
+
+    val webViewCacheMode: Flow<Int> =
+        networkManger.isConnected
+            .map { if (it) WebSettings.LOAD_DEFAULT else WebSettings.LOAD_CACHE_ELSE_NETWORK }
+            .flowOn(defaultDispatcher)
 
     fun backKeyTapped() {
         viewModelDefaultScope.launch {
