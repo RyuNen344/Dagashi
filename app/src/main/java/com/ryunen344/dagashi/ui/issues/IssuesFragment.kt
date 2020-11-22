@@ -23,7 +23,7 @@ class IssuesFragment : Fragment(R.layout.fragment_issues) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.refresh(args.path)
+        viewModel.refresh(args.number, args.path)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

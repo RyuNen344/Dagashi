@@ -19,6 +19,9 @@
         android:id="@+id/issues"
         android:name="com.ryunen344.dagashi.ui.issues.IssuesFragment">
         <argument
+            android:name="number"
+            app:argType="integer" />
+        <argument
             android:name="path"
             app:argType="string" />
         <action

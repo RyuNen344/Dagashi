@@ -12,12 +12,16 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class IssuesViewModel @ViewModelInject constructor(
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
@@ -29,7 +33,7 @@ class IssuesViewModel @ViewModelInject constructor(
     private val _issues: MutableSharedFlow<List<Issue>> =
         MutableSharedFlow(replay = 1, extraBufferCapacity = 0, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     val issues: Flow<List<Issue>>
-        get() = _issues
+        get() = _issues.distinctUntilChanged()
 
     val isUpdated: Flow<Unit>
         get() = issues
@@ -43,9 +47,16 @@ class IssuesViewModel @ViewModelInject constructor(
     val openUrlModel: Flow<OpenUrlModel>
         get() = _openUrlModel
 
-    fun refresh(path: String) {
+    fun refresh(number: Int, path: String) {
+        issueRepository.issue(number).onEach {
+            _issues.emit(it)
+        }.launchIn(viewModelDefaultScope)
         viewModelDefaultScope.launch {
-            _issues.emit(issueRepository.issue(path))
+            runCatching {
+                issueRepository.refresh(path)
+            }.onFailure {
+                Timber.e(it)
+            }
         }
     }
 

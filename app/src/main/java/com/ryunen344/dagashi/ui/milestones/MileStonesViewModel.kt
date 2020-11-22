@@ -15,9 +15,12 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class MileStonesViewModel @ViewModelInject constructor(
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
@@ -40,8 +43,15 @@ class MileStonesViewModel @ViewModelInject constructor(
             .flowOn(defaultDispatcher)
 
     init {
+        mileStoneRepository.mileStones().onEach {
+            _mileStones.emit(it)
+        }.launchIn(viewModelDefaultScope)
         viewModelDefaultScope.launch {
-            _mileStones.emit(mileStoneRepository.mileStones())
+            runCatching {
+                mileStoneRepository.refresh()
+            }.onFailure {
+                Timber.wtf(it)
+            }
         }
     }
 

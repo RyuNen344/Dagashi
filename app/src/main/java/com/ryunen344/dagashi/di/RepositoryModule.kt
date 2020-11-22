@@ -1,6 +1,8 @@
 package com.ryunen344.dagashi.di
 
 import com.ryunen344.dagashi.data.api.DagashiApi
+import com.ryunen344.dagashi.data.db.interfaces.IssueDatabase
+import com.ryunen344.dagashi.data.db.interfaces.MileStoneDatabase
 import com.ryunen344.dagashi.data.repository.IssueRepository
 import com.ryunen344.dagashi.data.repository.MileStoneRepository
 import com.ryunen344.dagashi.data.repository.impl.IssueRepositoryImpl
@@ -20,18 +22,20 @@ object RepositoryModule {
     @Singleton
     fun provideMileStoneRepositoryImpl(
         dagashiApi: DagashiApi,
+        mileStoneDatabase: MileStoneDatabase,
         @IoDispatcher ioDispatcher: CoroutineDispatcher
     ): MileStoneRepositoryImpl {
-        return MileStoneRepositoryImpl(dagashiApi, ioDispatcher)
+        return MileStoneRepositoryImpl(dagashiApi, mileStoneDatabase, ioDispatcher)
     }
 
     @Provides
     @Singleton
     fun provideIssueRepositoryImpl(
         dagashiApi: DagashiApi,
+        issueDatabase: IssueDatabase,
         @IoDispatcher ioDispatcher: CoroutineDispatcher
     ): IssueRepositoryImpl {
-        return IssueRepositoryImpl(dagashiApi, ioDispatcher)
+        return IssueRepositoryImpl(dagashiApi, issueDatabase, ioDispatcher)
     }
 
     @Module

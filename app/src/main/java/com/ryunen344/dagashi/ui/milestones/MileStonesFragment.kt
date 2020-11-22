@@ -24,7 +24,7 @@ class MileStonesFragment : Fragment(R.layout.fragment_mile_stones) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val binding = FragmentMileStonesBinding.bind(view)
         val adapter = MileStonesAdapter {
-            findNavController().navigate(MileStonesFragmentDirections.actionMileStonesToIssues(it.path))
+            findNavController().navigate(MileStonesFragmentDirections.actionMileStonesToIssues(it.number, it.path))
         }
 
         binding.apply {
