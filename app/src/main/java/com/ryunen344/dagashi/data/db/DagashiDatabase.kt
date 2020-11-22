@@ -19,8 +19,8 @@ class DagashiDatabase @Inject constructor(
 
     override suspend fun saveMileStone(entity: List<MileStoneWithSummaryIssue>) {
         cacheDatabase.withTransaction {
-            cacheDatabase.mileStoneDao.insertMileStone(entity.map { it.mileStoneEntity })
-            cacheDatabase.mileStoneDao.insertSummaryIssue(entity.flatMap { it.issues })
+            cacheDatabase.mileStoneDao.insertOrUpdate(entity.map { it.mileStoneEntity })
+            cacheDatabase.summaryIssueDao.insertOrUpdate(entity.flatMap { it.issues })
         }
     }
 
@@ -30,9 +30,9 @@ class DagashiDatabase @Inject constructor(
 
     override suspend fun saveIssue(entity: List<IssueWithLabelAndComment>) {
         cacheDatabase.withTransaction {
-            cacheDatabase.issueDao.insertIssue(entity.map { it.issueEntity })
-            cacheDatabase.issueDao.insertLabel(entity.flatMap { it.labels }.distinct())
-            cacheDatabase.issueDao.insertIssueAndLabel(
+            cacheDatabase.issueDao.insertOrUpdate(entity.map { it.issueEntity })
+            cacheDatabase.labelDao.insertOrUpdate(entity.flatMap { it.labels }.distinct())
+            cacheDatabase.issueLabelCrossRefDao.insertOrUpdate(
                 entity.flatMap { combined ->
                     combined.labels.map { label ->
                         IssueLabelCrossRef(
@@ -42,7 +42,7 @@ class DagashiDatabase @Inject constructor(
                     }
                 }
             )
-            cacheDatabase.issueDao.insertComment(entity.flatMap { it.comments })
+            cacheDatabase.commentDao.insertOrUpdate(entity.flatMap { it.comments })
         }
     }
 }

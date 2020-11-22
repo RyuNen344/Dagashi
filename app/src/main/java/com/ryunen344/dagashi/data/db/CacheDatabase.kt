@@ -6,8 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.ryunen344.dagashi.data.db.converter.OffsetDateTimeConverter
+import com.ryunen344.dagashi.data.db.dao.CommentDao
 import com.ryunen344.dagashi.data.db.dao.IssueDao
+import com.ryunen344.dagashi.data.db.dao.IssueLabelCrossRefDao
+import com.ryunen344.dagashi.data.db.dao.LabelDao
 import com.ryunen344.dagashi.data.db.dao.MileStoneDao
+import com.ryunen344.dagashi.data.db.dao.SummaryIssueDao
 import com.ryunen344.dagashi.data.db.entity.CommentEntity
 import com.ryunen344.dagashi.data.db.entity.IssueEntity
 import com.ryunen344.dagashi.data.db.entity.LabelEntity
@@ -36,7 +40,11 @@ import kotlinx.coroutines.asExecutor
 )
 abstract class CacheDatabase : RoomDatabase() {
     abstract val issueDao: IssueDao
+    abstract val labelDao: LabelDao
+    abstract val issueLabelCrossRefDao: IssueLabelCrossRefDao
+    abstract val commentDao: CommentDao
     abstract val mileStoneDao: MileStoneDao
+    abstract val summaryIssueDao: SummaryIssueDao
 
     companion object {
 
