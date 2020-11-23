@@ -46,7 +46,8 @@ class IssuesAdapter(
                             addView(
                                 Chip(root.context).apply {
                                     text = label.name
-                                    chipBackgroundColor = ColorStateList.valueOf(label.colorInt)
+                                    chipBackgroundColor = ColorStateList.valueOf(label.tipColorInt)
+                                    setTextColor(context.getColor(label.tipTextColorResId))
                                     setDebouncingOnClickListener {
                                         onLabelClickListener(label)
                                     }
