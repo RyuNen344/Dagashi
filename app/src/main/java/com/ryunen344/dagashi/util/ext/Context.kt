@@ -1,7 +1,20 @@
 package com.ryunen344.dagashi.util.ext
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.net.Uri
 import android.util.DisplayMetrics
+import androidx.browser.customtabs.CustomTabsIntent
+import timber.log.Timber
+
+fun Context.startChromeTabs(url: String) {
+    try {
+        val tabsIntent: CustomTabsIntent = CustomTabsIntent.Builder().build()
+        tabsIntent.launchUrl(this, Uri.parse(url))
+    } catch (e: ActivityNotFoundException) {
+        Timber.e(e)
+    }
+}
 
 inline val Context.displayMetrics: DisplayMetrics
     get() = resources.displayMetrics

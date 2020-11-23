@@ -18,6 +18,7 @@ object Dep {
         const val fragment = "androidx.fragment:fragment-ktx:1.3.0-beta01"
         const val recycler = "androidx.recyclerview:recyclerview:1.2.0-alpha06"
         const val preference = "androidx.preference:preference-ktx:1.1.1"
+        const val browser = "androidx.browser:browser:1.3.0-rc01"
 
         object LifeCycle {
             private const val version = "2.3.0-beta01"
@@ -36,6 +37,11 @@ object Dep {
             private const val version = "2.3.0-alpha03"
             const val core = "androidx.room:room-ktx:$version"
             const val compiler = "androidx.room:room-compiler:$version"
+        }
+
+        object DataStore {
+            private const val version = "1.0.0-alpha04"
+            const val preferences = "androidx.datastore:datastore-preferences:$version"
         }
     }
 

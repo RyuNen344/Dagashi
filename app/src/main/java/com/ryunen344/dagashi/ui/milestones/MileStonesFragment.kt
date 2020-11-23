@@ -41,7 +41,7 @@ class MileStonesFragment : Fragment(R.layout.fragment_mile_stones) {
             }
 
             bind(isUpdated) {
-                Toast.makeText(requireContext(), "更新されたで", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.snack_bar_update, Toast.LENGTH_SHORT).show()
             }
         }
     }

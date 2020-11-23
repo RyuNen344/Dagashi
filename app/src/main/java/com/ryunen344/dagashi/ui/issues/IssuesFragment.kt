@@ -12,6 +12,7 @@ import com.ryunen344.dagashi.R
 import com.ryunen344.dagashi.databinding.FragmentIssuesBinding
 import com.ryunen344.dagashi.util.TextViewClickMovement
 import com.ryunen344.dagashi.util.ext.bind
+import com.ryunen344.dagashi.util.ext.startChromeTabs
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -55,7 +56,7 @@ class IssuesFragment : Fragment(R.layout.fragment_issues) {
             }
 
             bind(isUpdated) {
-                Toast.makeText(requireContext(), "更新されたで", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.snack_bar_update, Toast.LENGTH_SHORT).show()
             }
 
             bind(openUrlModel) {
@@ -63,8 +64,8 @@ class IssuesFragment : Fragment(R.layout.fragment_issues) {
                     is IssuesViewModel.OpenUrlModel.WebView -> {
                         findNavController().navigate(IssuesFragmentDirections.actionIssuesToWeb(it.url))
                     }
-                    is IssuesViewModel.OpenUrlModel.ActionView -> {
-
+                    is IssuesViewModel.OpenUrlModel.ChromeTabs -> {
+                        requireContext().startChromeTabs(it.url)
                     }
                 }
             }

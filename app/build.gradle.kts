@@ -76,6 +76,7 @@ dependencies {
     implementation(Dep.Android.fragment)
     implementation(Dep.Android.recycler)
     implementation(Dep.Android.preference)
+    implementation(Dep.Android.browser)
 
     implementation(Dep.Android.LifeCycle.viewModel)
     implementation(Dep.Android.LifeCycle.liveData)
@@ -97,6 +98,8 @@ dependencies {
 
     implementation(Dep.Android.Room.core)
     kapt(Dep.Android.Room.compiler)
+
+    implementation(Dep.Android.DataStore.preferences)
 
     implementation(Dep.Ktor.client)
     implementation(Dep.Ktor.serialization)

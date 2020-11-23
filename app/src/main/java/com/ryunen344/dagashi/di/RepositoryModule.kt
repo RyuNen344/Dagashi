@@ -3,10 +3,13 @@ package com.ryunen344.dagashi.di
 import com.ryunen344.dagashi.data.api.DagashiApi
 import com.ryunen344.dagashi.data.db.interfaces.IssueDatabase
 import com.ryunen344.dagashi.data.db.interfaces.MileStoneDatabase
+import com.ryunen344.dagashi.data.preferences.SettingPreferences
 import com.ryunen344.dagashi.data.repository.IssueRepository
 import com.ryunen344.dagashi.data.repository.MileStoneRepository
+import com.ryunen344.dagashi.data.repository.SettingRepository
 import com.ryunen344.dagashi.data.repository.impl.IssueRepositoryImpl
 import com.ryunen344.dagashi.data.repository.impl.MileStoneRepositoryImpl
+import com.ryunen344.dagashi.data.repository.impl.SettingRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -38,6 +41,14 @@ object RepositoryModule {
         return IssueRepositoryImpl(dagashiApi, issueDatabase, ioDispatcher)
     }
 
+    @Provides
+    @Singleton
+    fun provideSettingRepositoryImpl(
+        settingPreferences: SettingPreferences
+    ): SettingRepositoryImpl {
+        return SettingRepositoryImpl(settingPreferences)
+    }
+
     @Module
     @InstallIn(ApplicationComponent::class)
     abstract class RepositoryModuleBinds {
@@ -46,5 +57,8 @@ object RepositoryModule {
 
         @Binds
         abstract fun bindIssueRepository(impl: IssueRepositoryImpl): IssueRepository
+
+        @Binds
+        abstract fun bindSettingRepository(impl: SettingRepositoryImpl): SettingRepository
     }
 }

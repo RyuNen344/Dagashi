@@ -5,7 +5,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryunen344.dagashi.di.DefaultDispatcher
-import com.ryunen344.dagashi.util.NetworkManager
+import com.ryunen344.dagashi.framework.NetworkManager
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
