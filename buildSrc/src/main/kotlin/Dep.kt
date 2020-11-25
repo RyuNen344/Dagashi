@@ -125,5 +125,9 @@ object Dep {
                 const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Dep.Kotlin.Coroutines.version}"
             }
         }
+
+        object Mockk {
+            const val mock = "io.mockk:mockk:1.10.2"
+        }
     }
 }

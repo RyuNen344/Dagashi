@@ -118,6 +118,7 @@ dependencies {
     testImplementation(Dep.Test.junit)
     testImplementation(Dep.Test.Kotlin.Coroutines.test)
     testImplementation(Dep.Test.Android.junit)
+    testImplementation(Dep.Test.Mockk.mock)
     androidTestImplementation(Dep.Test.Android.espresso)
 }
 
