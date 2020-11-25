@@ -2,6 +2,8 @@ package com.ryunen344.dagashi.di
 
 import com.ryunen344.dagashi.BuildConfig
 import com.ryunen344.dagashi.data.api.DagashiApi
+import com.ryunen344.dagashi.data.api.impl.DagashiApiImpl
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -51,8 +53,15 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideDagashiApi(httpClient: HttpClient, @ApiEndpoint apiEndpoint: String): DagashiApi {
-        return DagashiApi(httpClient, apiEndpoint)
+    fun provideDagashiApiImpl(httpClient: HttpClient, @ApiEndpoint apiEndpoint: String): DagashiApiImpl {
+        return DagashiApiImpl(httpClient, apiEndpoint)
+    }
+
+    @Module
+    @InstallIn(ApplicationComponent::class)
+    abstract class ApiModuleBinds {
+        @Binds
+        abstract fun bindDagashiApi(impl: DagashiApiImpl): DagashiApi
     }
 }
 
