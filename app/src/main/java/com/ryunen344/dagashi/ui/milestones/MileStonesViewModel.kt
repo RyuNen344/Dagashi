@@ -4,8 +4,10 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryunen344.dagashi.data.repository.MileStoneRepository
+import com.ryunen344.dagashi.data.repository.SettingRepository
 import com.ryunen344.dagashi.di.DefaultDispatcher
 import com.ryunen344.dagashi.model.MileStone
+import com.ryunen344.dagashi.util.ext.isPassedDay
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
@@ -14,17 +16,20 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
+import org.threeten.bp.OffsetDateTime
 import timber.log.Timber
 
 class MileStonesViewModel @ViewModelInject constructor(
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
-    private val mileStoneRepository: MileStoneRepository
+    private val mileStoneRepository: MileStoneRepository,
+    private val settingRepository: SettingRepository
 ) : ViewModel() {
 
     private val viewModelDefaultScope = CoroutineScope(viewModelScope.coroutineContext + defaultDispatcher)
@@ -48,7 +53,11 @@ class MileStonesViewModel @ViewModelInject constructor(
         }.launchIn(viewModelDefaultScope)
         viewModelDefaultScope.launch {
             runCatching {
-                mileStoneRepository.refresh()
+                val needsUpdate = settingRepository.mileStoneLastUpdateAt().firstOrNull().isPassedDay
+                if (needsUpdate) {
+                    mileStoneRepository.refresh()
+                    settingRepository.updateMileStoneLastUpdateAt(OffsetDateTime.now())
+                }
             }.onFailure {
                 Timber.wtf(it)
             }

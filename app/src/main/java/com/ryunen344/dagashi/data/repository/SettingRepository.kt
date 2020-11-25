@@ -1,8 +1,11 @@
 package com.ryunen344.dagashi.data.repository
 
 import kotlinx.coroutines.flow.Flow
+import org.threeten.bp.OffsetDateTime
 
 interface SettingRepository {
-    suspend fun updateIsOpenInWebView(isOpen: Boolean)
+    fun mileStoneLastUpdateAt(): Flow<OffsetDateTime?>
+    suspend fun updateMileStoneLastUpdateAt(time: OffsetDateTime)
     fun isOpenInWebView(): Flow<Boolean>
+    suspend fun updateIsOpenInWebView(isOpen: Boolean)
 }
