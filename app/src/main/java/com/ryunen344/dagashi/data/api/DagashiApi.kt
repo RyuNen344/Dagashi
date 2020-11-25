@@ -11,9 +11,13 @@ class DagashiApi @Inject constructor(
     private val httpClient: HttpClient,
     private val apiEndpoint: String,
 ) {
-    suspend fun milestones(): MileStonesRootResponse {
+    suspend fun milestones(previousEndCursor: String? = null): MileStonesRootResponse {
         return httpClient.get {
-            url("$apiEndpoint/api/index.json")
+            if (previousEndCursor == null) {
+                url("$apiEndpoint/api/index.json")
+            } else {
+                url("$apiEndpoint/api/$previousEndCursor.json")
+            }
             accept(ContentType.Application.Json)
         }
     }

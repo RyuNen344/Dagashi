@@ -1,6 +1,7 @@
 package com.ryunen344.dagashi.data.repository.impl
 
 import com.ryunen344.dagashi.data.api.DagashiApi
+import com.ryunen344.dagashi.data.db.entity.combined.MileStoneWithSummaryIssue
 import com.ryunen344.dagashi.data.db.interfaces.MileStoneDatabase
 import com.ryunen344.dagashi.data.repository.MileStoneRepository
 import com.ryunen344.dagashi.data.repository.mapper.MileStoneMapper
@@ -22,8 +23,16 @@ class MileStoneRepositoryImpl @Inject constructor(
 
     override suspend fun refresh() {
         withContext(dispatcher) {
-            val response = dagashiApi.milestones().milestones.nodes.map(MileStoneMapper::toEntity)
-            mileStoneDatabase.saveMileStone(response)
+            var hasNextPage = true
+            var previousEndCursor: String? = null
+            val result = mutableSetOf<MileStoneWithSummaryIssue>()
+            while (hasNextPage) {
+                val response = dagashiApi.milestones(previousEndCursor).milestones
+                result.addAll(response.nodes.map(MileStoneMapper::toEntity))
+                hasNextPage = response.pageInfo.hasNextPage
+                previousEndCursor = response.pageInfo.endCursor
+            }
+            mileStoneDatabase.saveMileStone(result.toList())
         }
     }
 
