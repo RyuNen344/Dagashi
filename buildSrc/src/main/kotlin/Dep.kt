@@ -116,7 +116,8 @@ object Dep {
         const val junit = "junit:junit:4.13.1"
 
         object Android {
-            const val junit = "androidx.test.ext:junit:1.1.2"
+            const val core = "androidx.test:core-ktx:1.3.0"
+            const val junit = "androidx.test.ext:junit-ktx:1.1.2"
             const val espresso = "androidx.test.espresso:espresso-core:3.3.0"
         }
 
@@ -124,6 +125,10 @@ object Dep {
             object Coroutines {
                 const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Dep.Kotlin.Coroutines.version}"
             }
+        }
+
+        object Robolectric {
+            const val robolectric = "org.robolectric:robolectric:4.4"
         }
 
         object Mockk {

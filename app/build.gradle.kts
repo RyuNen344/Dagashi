@@ -60,9 +60,14 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
     lintOptions {
-        disable += setOf("UnsafeExperimentalUsageError",
-        "UnsafeExperimentalUsageWarning")
+        disable += setOf(
+            "UnsafeExperimentalUsageError",
+            "UnsafeExperimentalUsageWarning"
+        )
     }
 }
 
@@ -123,7 +128,9 @@ dependencies {
 
     testImplementation(Dep.Test.junit)
     testImplementation(Dep.Test.Kotlin.Coroutines.test)
+    testImplementation(Dep.Test.Android.core)
     testImplementation(Dep.Test.Android.junit)
+    testImplementation(Dep.Test.Robolectric.robolectric)
     testImplementation(Dep.Test.Mockk.mock)
     androidTestImplementation(Dep.Test.Android.espresso)
 }
