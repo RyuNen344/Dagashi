@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("androidx.navigation.safeargs")
     id("dagger.hilt.android.plugin")
+    id("jacoco")
     kotlin("android")
     kotlin("kapt")
     kotlin("plugin.serialization")
@@ -39,6 +40,7 @@ android {
 
     buildTypes {
         getByName("debug") {
+            isTestCoverageEnabled = true
             applicationIdSuffix = Packages.debugNameSuffix
             buildConfigField("String", "API_ENDPOINT", "\"https://androiddagashi.github.io\"")
         }
@@ -57,6 +59,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    lintOptions {
+        disable += setOf("UnsafeExperimentalUsageError",
+        "UnsafeExperimentalUsageWarning")
     }
 }
 
@@ -129,4 +135,33 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
         "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
         "-Xuse-experimental=kotlinx.serialization.ExperimentalSerializationApi"
     )
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+task("jacocoMerge", JacocoMerge::class) {
+    gradle.afterProject {
+        if (project.rootProject != project && project.plugins.hasPlugin("jacoco")) {
+            executionData = files("${project.buildDir}/jacoco/testDebugUnitTest.exec")
+        }
+    }
+}
+
+task("jacocoTestReport", JacocoReport::class) {
+    dependsOn(tasks.getByName("jacocoMerge"))
+    reports {
+        xml.isEnabled = true
+        csv.isEnabled = false
+        html.isEnabled = true
+    }
+    executionData.from += (tasks.getByName("jacocoMerge") as JacocoMerge).destinationFile
+
+    gradle.afterProject {
+        if (project.rootProject != project && project.plugins.hasPlugin("jacoco")) {
+            sourceDirectories.setFrom("${project.projectDir}/src/main/java")
+            classDirectories.setFrom(project.fileTree("${project.buildDir}/tmp/kotlin-classes/debug"))
+        }
+    }
 }
