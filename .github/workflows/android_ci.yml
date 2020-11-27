@@ -10,12 +10,9 @@ jobs:
       - name: Gradle Cache
         uses: actions/cache@v2
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
+          path: ~/.gradle
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+
   build:
     needs: setup
     runs-on: ubuntu-latest
