@@ -9,6 +9,7 @@ buildscript {
         classpath(Dep.GradlePlugin.daggerHilt)
         classpath(Dep.GradlePlugin.kotlin)
         classpath(Dep.GradlePlugin.kotlinSerialization)
+        classpath(Dep.GradlePlugin.releaseHub)
     }
 }
 
