@@ -4,6 +4,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("jacoco")
     id("com.releaseshub.gradle.plugin")
+    id("org.jlleitschuh.gradle.ktlint")
     kotlin("android")
     kotlin("kapt")
     kotlin("plugin.serialization")
@@ -28,7 +29,6 @@ android {
                         "room.expandProjection" to "true"
                     )
                 )
-
             }
         }
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -183,4 +183,20 @@ releasesHub {
     pullRequestsMax = 2
     gitHubUserName = "RyuNen344"
     gitHubUserEmail = "s1100633@outlook.com"
+}
+
+ktlint {
+    verbose.set(true)
+    android.set(true)
+    coloredOutput.set(true)
+    outputColorName.set("RED")
+    additionalEditorconfigFile.set(file("${rootDir.absolutePath}/.editorconfig"))
+    reporters {
+        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
+        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.HTML)
+    }
+    filter {
+        exclude("**/generated/**")
+        include("**/kotlin/**")
+    }
 }

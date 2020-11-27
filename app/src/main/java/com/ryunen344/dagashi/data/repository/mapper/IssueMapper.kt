@@ -22,7 +22,7 @@ object IssueMapper {
         return response.issues.nodes.mapIndexed { index, issueNodeResponse ->
             IssueWithLabelAndComment(
                 issueEntity = IssueEntity(
-                    singleUniqueId = "${response.number}_${index}",
+                    singleUniqueId = "${response.number}_$index",
                     id = index,
                     number = response.number,
                     url = issueNodeResponse.url,
@@ -30,7 +30,7 @@ object IssueMapper {
                     body = issueNodeResponse.body
                 ),
                 labels = toEntity(issueNodeResponse.labels),
-                comments = toEntity("${response.number}_${index}", issueNodeResponse.comments)
+                comments = toEntity("${response.number}_$index", issueNodeResponse.comments)
             )
         }
     }

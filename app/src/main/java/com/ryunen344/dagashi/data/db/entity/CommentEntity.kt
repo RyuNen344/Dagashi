@@ -9,12 +9,14 @@ import org.threeten.bp.OffsetDateTime
 @Entity(
     tableName = "comment",
     primaryKeys = ["id", "single_unique_id"],
-    foreignKeys = [ForeignKey(
-        entity = IssueEntity::class,
-        parentColumns = ["single_unique_id"],
-        childColumns = ["single_unique_id"],
-        onDelete = ForeignKey.CASCADE
-    )]
+    foreignKeys = [
+        ForeignKey(
+            entity = IssueEntity::class,
+            parentColumns = ["single_unique_id"],
+            childColumns = ["single_unique_id"],
+            onDelete = ForeignKey.CASCADE
+        )
+    ]
 )
 data class CommentEntity(
     @ColumnInfo(name = "id")

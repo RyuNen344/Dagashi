@@ -36,11 +36,14 @@ class WebFragment : Fragment(R.layout.fragment_web) {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        requireActivity().onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                viewModel.backKeyTapped()
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    viewModel.backKeyTapped()
+                }
             }
-        })
+        )
     }
 
     @SuppressLint("SetJavaScriptEnabled")
