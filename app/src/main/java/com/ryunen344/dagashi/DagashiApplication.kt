@@ -11,6 +11,7 @@ class DagashiApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        // ciが動くか確認
         AndroidThreeTen.init(this)
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
