@@ -22,7 +22,7 @@ class NetworkManagerImpl @Inject constructor(context: Context) : NetworkManager 
                     .mapNotNull { connectivityManager.getNetworkCapabilities(it) }
                     .filter {
                         it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
-                                it.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+                            it.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
                     }
 
             return activeNetworks.isNotEmpty()

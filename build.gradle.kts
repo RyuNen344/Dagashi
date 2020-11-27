@@ -2,6 +2,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven("https://plugins.gradle.org/m2/")
     }
     dependencies {
         classpath(Dep.GradlePlugin.android)
@@ -10,6 +11,7 @@ buildscript {
         classpath(Dep.GradlePlugin.kotlin)
         classpath(Dep.GradlePlugin.kotlinSerialization)
         classpath(Dep.GradlePlugin.releaseHub)
+        classpath(Dep.GradlePlugin.ktlint)
     }
 }
 

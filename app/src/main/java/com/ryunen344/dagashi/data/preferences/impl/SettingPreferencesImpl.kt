@@ -72,5 +72,3 @@ class SettingPreferencesImpl @Inject constructor(context: Context) : SettingPref
         private const val DATA_STORE_NAME = "setting"
     }
 }
-
-

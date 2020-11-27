@@ -7,4 +7,3 @@ interface DagashiApi {
     suspend fun milestones(previousEndCursor: String? = null): MileStonesRootResponse
     suspend fun issues(path: String): IssueRootResponse
 }
-
