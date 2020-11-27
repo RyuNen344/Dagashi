@@ -27,7 +27,7 @@ jobs:
       - name: Gradle Cache
         uses: actions/cache@v2
         with:
-          path: ~/.gradle
+          path: ~/.gradle/**
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
       - name: Unit Test
         run: ./gradlew testDebug
