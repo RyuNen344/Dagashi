@@ -14,7 +14,9 @@ jobs:
       - name: Gradle Cache
         uses: actions/cache@v2
         with:
-          path: ~/.gradle
+          path: |
+            ~/.gradle/**
+            ~/**/build/**
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
       - name: Build with Gradle
         run: ./gradlew assembleDebug
@@ -27,7 +29,9 @@ jobs:
       - name: Gradle Cache
         uses: actions/cache@v2
         with:
-          path: ~/.gradle/**
+          path: |
+            ~/.gradle/**
+            ~/**/build/**
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
       - name: Unit Test
         run: ./gradlew testDebug
@@ -44,7 +48,9 @@ jobs:
       - name: Gradle Cache
         uses: actions/cache@v2
         with:
-          path: ~/.gradle
+          path: |
+            ~/.gradle/**
+            ~/**/build/**
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
       - name: run lint
         run: ./gradlew lint
