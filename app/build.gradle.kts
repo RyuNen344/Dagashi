@@ -169,7 +169,11 @@ task("jacocoTestReport", JacocoReport::class) {
     gradle.afterProject {
         if (project.rootProject != project && project.plugins.hasPlugin("jacoco")) {
             sourceDirectories.setFrom("${project.projectDir}/src/main/java")
-            classDirectories.setFrom(project.fileTree("${project.buildDir}/tmp/kotlin-classes/debug"))
+            classDirectories.setFrom(
+                project.fileTree(
+                    "${project.buildDir}/tmp/kotlin-classes/debug"
+                )
+            )
         }
     }
 }
@@ -193,7 +197,6 @@ ktlint {
     additionalEditorconfigFile.set(file("${rootDir.absolutePath}/.editorconfig"))
     reporters {
         reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
-        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.HTML)
     }
     filter {
         exclude("**/generated/**")
