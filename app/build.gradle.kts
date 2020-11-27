@@ -131,6 +131,7 @@ dependencies {
     testImplementation(Dep.Test.Kotlin.Coroutines.test)
     testImplementation(Dep.Test.Android.core)
     testImplementation(Dep.Test.Android.junit)
+    testImplementation(Dep.Test.Android.room)
     testImplementation(Dep.Test.Robolectric.robolectric)
     testImplementation(Dep.Test.Mockk.mock)
     androidTestImplementation(Dep.Test.Android.espresso)

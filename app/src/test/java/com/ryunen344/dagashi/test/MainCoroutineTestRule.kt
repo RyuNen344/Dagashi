@@ -10,7 +10,7 @@ import kotlinx.coroutines.test.setMain
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
-class CoroutineTestRule(
+class MainCoroutineTestRule(
     val dispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
 ) : TestWatcher(), TestCoroutineScope by TestCoroutineScope(dispatcher) {
 
@@ -21,15 +21,15 @@ class CoroutineTestRule(
 
     override fun finished(description: Description?) {
         super.finished(description)
-        cleanupTestCoroutines()
         Dispatchers.resetMain()
+        cleanupTestCoroutines()
     }
 }
 
-fun CoroutineTestRule.runBlockingTest(block: suspend () -> Unit) {
+fun MainCoroutineTestRule.runBlockingTest(block: suspend TestCoroutineScope.() -> Unit) {
     this.dispatcher.runBlockingTest {
         block()
     }
 }
 
-fun CoroutineTestRule.CoroutineScope(): CoroutineScope = CoroutineScope(dispatcher)
+fun MainCoroutineTestRule.CoroutineScope(): CoroutineScope = CoroutineScope(dispatcher)
