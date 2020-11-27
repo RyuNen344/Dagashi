@@ -16,17 +16,22 @@ jobs:
         with:
           path: ~/.gradle
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
+      - name: Build with Gradle
+        run: ./gradlew assembleDebug
 
-  build:
+  unit test:
     needs: setup
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build with Gradle
-        run: ./gradlew assembleDebug
+      - name: Gradle Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
       - name: Unit Test
         run: ./gradlew testDebug
-  danger:
+  lint:
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -35,7 +40,11 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: '2.7'
-          architecture: 'x64'
+      - name: Gradle Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
       - name: run lint
         run: ./gradlew lint
       - name: run ktlint
@@ -44,11 +53,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-danger-${{ env.cache-name }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-danger-${{ env.cache-name }}-gems-
-            ${{ runner.os }}-danger-${{ env.cache-name }}-
-            ${{ runner.os }}-danger-
+          key: ${{ runner.os }}-danger-${{ env.cache-name }}-gems-${{ hashFiles('**/Gemfile') }}
       - name: run danger
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
