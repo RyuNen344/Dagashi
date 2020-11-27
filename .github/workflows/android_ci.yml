@@ -19,7 +19,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew assembleDebug
 
-  unit test:
+  test:
     needs: setup
     runs-on: ubuntu-latest
     steps:
