@@ -3,6 +3,7 @@ plugins {
     id("androidx.navigation.safeargs")
     id("dagger.hilt.android.plugin")
     id("jacoco")
+    id("com.releaseshub.gradle.plugin")
     kotlin("android")
     kotlin("kapt")
     kotlin("plugin.serialization")
@@ -171,4 +172,15 @@ task("jacocoTestReport", JacocoReport::class) {
             classDirectories.setFrom(project.fileTree("${project.buildDir}/tmp/kotlin-classes/debug"))
         }
     }
+}
+
+releasesHub {
+    dependenciesBasePath = "buildSrc/src/main/kotlin/"
+    dependenciesClassNames = listOf("Dep.kt")
+    pullRequestEnabled = true
+    gitHubRepositoryOwner = "RyuNen344"
+    gitHubRepositoryName = "Dagashi"
+    pullRequestsMax = 2
+    gitHubUserName = "RyuNen344"
+    gitHubUserEmail = "s1100633@outlook.com"
 }

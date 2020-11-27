@@ -6,6 +6,7 @@ object Dep {
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Dagger.version}"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.version}"
         const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:${Kotlin.version}"
+        const val releaseHub = "com.releaseshub:releases-hub-gradle-plugin:1.6.1"
     }
 
     object Android {

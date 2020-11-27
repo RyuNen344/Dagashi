@@ -1,0 +1,15 @@
+name: Run auto update
+on:
+  repository_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  update_dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: run auto update
+        run: ./gradlew app:upgradeDependencies
+        env:
+          gitHubWriteToken: ${{ secrets.GITHUB_TOKEN }}
