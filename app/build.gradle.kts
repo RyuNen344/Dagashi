@@ -57,8 +57,9 @@ android {
     }
 
     sourceSets {
-        getByName("androidTest").java.srcDirs("src/sharedTest/java")
-        getByName("test").java.srcDirs("src/sharedTest/java")
+        val sharedTestDir = "src/sharedTest/java"
+        getByName("androidTest").java.srcDirs(sharedTestDir)
+        getByName("test").java.srcDirs(sharedTestDir)
     }
 
     compileOptions {
@@ -144,6 +145,7 @@ dependencies {
     testImplementation(Dep.Test.Android.room)
     testImplementation(Dep.Test.Robolectric.robolectric)
     testImplementation(Dep.Test.Mockk.mock)
+    testImplementation(Dep.ThreeTen.jvm)
     androidTestImplementation(Dep.Test.Kotlin.Coroutines.test)
     androidTestImplementation(Dep.Test.Android.junit)
     androidTestImplementation(Dep.Test.Android.espresso)
