@@ -54,6 +54,12 @@ android {
             buildConfigField("String", "API_ENDPOINT", "\"https://androiddagashi.github.io\"")
         }
     }
+
+    sourceSets {
+        getByName("androidTest").java.srcDirs("src/sharedTest/java")
+        getByName("test").java.srcDirs("src/sharedTest/java")
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -69,6 +75,9 @@ android {
             "UnsafeExperimentalUsageError",
             "UnsafeExperimentalUsageWarning"
         )
+    }
+    packagingOptions {
+        exclude("META-INF/*")
     }
 }
 
@@ -134,6 +143,8 @@ dependencies {
     testImplementation(Dep.Test.Android.room)
     testImplementation(Dep.Test.Robolectric.robolectric)
     testImplementation(Dep.Test.Mockk.mock)
+    androidTestImplementation(Dep.Test.Kotlin.Coroutines.test)
+    androidTestImplementation(Dep.Test.Android.junit)
     androidTestImplementation(Dep.Test.Android.espresso)
 }
 

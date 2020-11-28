@@ -16,10 +16,10 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class IssueDaoTest {
 
-    @get:Rule(order = 0)
+    @get:Rule
     val mainCoroutineTestRule = MainCoroutineTestRule()
 
-    @get:Rule(order = 1)
+    @get:Rule
     val daoTestRule = DaoTestRule()
 
     private lateinit var dao: IssueDao
