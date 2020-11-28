@@ -35,6 +35,12 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
       - name: Unit Test
         run: ./gradlew testDebug
+      - name: Jacoco
+        run: ./gradlew jacocoTestReport
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   lint:
     needs: setup

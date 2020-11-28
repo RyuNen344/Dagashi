@@ -46,6 +46,7 @@ android {
             buildConfigField("String", "API_ENDPOINT", "\"https://androiddagashi.github.io\"")
         }
         getByName("release") {
+            isTestCoverageEnabled = false
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
