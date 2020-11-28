@@ -70,4 +70,108 @@ class IssueDaoTest {
             )
         }
     }
+
+    @Test
+    fun updateSingleIssue() {
+        runBlocking {
+            val before = ModelGenerator.createIssue()
+            dao.insert(before)
+            val after = before.copy(title = "update title")
+            dao.update(after)
+            val result = dao.select(after.number).first()
+            MatcherAssert.assertThat(
+                result,
+                CoreMatchers.equalTo(
+                    listOf(
+                        IssueWithLabelAndComment(
+                            after,
+                            emptyList(),
+                            emptyList()
+                        )
+                    )
+                )
+            )
+        }
+    }
+
+    @Test
+    fun updateMultipleIssue() {
+        runBlocking {
+            val before = ModelGenerator.createIssues()
+            dao.insert(before)
+            val after = before.toMutableList().apply {
+                removeAt(0)
+                add(0, before[0].copy(title = "update title"))
+            }
+            dao.update(after)
+            val result = dao.select(after.first().number).first()
+            MatcherAssert.assertThat(
+                result,
+                CoreMatchers.equalTo(
+                    after
+                        .sortedByDescending {
+                            it.number
+                        }.map {
+                            IssueWithLabelAndComment(
+                                it,
+                                emptyList(),
+                                emptyList()
+                            )
+                        }
+                )
+            )
+        }
+    }
+
+    @Test
+    fun insertOrUpdateSingleIssue() {
+        runBlocking {
+            val before = ModelGenerator.createIssue()
+            dao.insert(before)
+            val after = before.copy(title = "update title")
+            dao.insertOrUpdate(after)
+            val result = dao.select(after.number).first()
+            MatcherAssert.assertThat(
+                result,
+                CoreMatchers.equalTo(
+                    listOf(
+                        IssueWithLabelAndComment(
+                            after,
+                            emptyList(),
+                            emptyList()
+                        )
+                    )
+                )
+            )
+        }
+    }
+
+    @Test
+    fun insertOrUpdateMultipleIssue() {
+        runBlocking {
+            val before = ModelGenerator.createIssues()
+            dao.insert(before)
+            val after = before.toMutableList().apply {
+                removeAt(0)
+                add(0, before[0].copy(title = "update title"))
+            }
+            dao.insertOrUpdate(after)
+            val result = dao.select(after.first().number).first()
+            MatcherAssert.assertThat(
+                result,
+                CoreMatchers.equalTo(
+                    after
+                        .sortedByDescending {
+                            it.number
+                        }.map {
+                            IssueWithLabelAndComment(
+                                it,
+                                emptyList(),
+                                emptyList()
+                            )
+                        }
+                )
+            )
+        }
+    }
 }
