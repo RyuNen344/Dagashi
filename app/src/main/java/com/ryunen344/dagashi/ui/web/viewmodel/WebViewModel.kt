@@ -1,4 +1,4 @@
-package com.ryunen344.dagashi.ui.web
+package com.ryunen344.dagashi.ui.web.viewmodel
 
 import android.webkit.WebSettings
 import androidx.hilt.lifecycle.ViewModelInject
@@ -18,40 +18,40 @@ import kotlinx.coroutines.launch
 class WebViewModel @ViewModelInject constructor(
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
     networkManger: NetworkManager
-) : ViewModel() {
+) : ViewModel(), WebViewModelInput, WebViewModelOutput {
 
     private val viewModelDefaultScope = CoroutineScope(viewModelScope.coroutineContext + defaultDispatcher)
 
     private val _backKeyEvent: MutableSharedFlow<Unit> = MutableSharedFlow()
-    val backKeyEvent: Flow<Unit>
+    override val backKeyEvent: Flow<Unit>
         get() = _backKeyEvent
 
     private val _progress: MutableSharedFlow<Int> = MutableSharedFlow()
-    val progress: Flow<Int>
+    override val progress: Flow<Int>
         get() = _progress.map { it % 100 }
 
     private val _webTitle: MutableSharedFlow<String?> = MutableSharedFlow()
-    val webTitle: Flow<String>
+    override val webTitle: Flow<String>
         get() = _webTitle.map { it ?: "" }
 
-    val webViewCacheMode: Flow<Int> =
+    override val webViewCacheMode: Flow<Int> =
         networkManger.isConnected
             .map { if (it) WebSettings.LOAD_DEFAULT else WebSettings.LOAD_CACHE_ELSE_NETWORK }
             .flowOn(defaultDispatcher)
 
-    fun backKeyTapped() {
+    override fun backKeyTapped() {
         viewModelDefaultScope.launch {
             _backKeyEvent.emit(Unit)
         }
     }
 
-    fun progressChanged(progress: Int) {
+    override fun progressChanged(progress: Int) {
         viewModelDefaultScope.launch {
             _progress.emit(progress)
         }
     }
 
-    fun titleChanged(title: String?) {
+    override fun titleChanged(title: String?) {
         viewModelDefaultScope.launch {
             _webTitle.emit(title)
         }

@@ -10,6 +10,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import com.ryunen344.dagashi.R
 import com.ryunen344.dagashi.databinding.FragmentIssuesBinding
+import com.ryunen344.dagashi.ui.issues.viewmodel.IssuesViewModel
+import com.ryunen344.dagashi.ui.issues.viewmodel.IssuesViewModelOutput
 import com.ryunen344.dagashi.util.TextViewClickMovement
 import com.ryunen344.dagashi.util.ext.bind
 import com.ryunen344.dagashi.util.ext.startChromeTabs
@@ -61,10 +63,10 @@ class IssuesFragment : Fragment(R.layout.fragment_issues) {
 
             bind(openUrlModel) {
                 when (it) {
-                    is IssuesViewModel.OpenUrlModel.WebView -> {
+                    is IssuesViewModelOutput.OpenUrlModel.WebView -> {
                         findNavController().navigate(IssuesFragmentDirections.actionIssuesToWeb(it.url))
                     }
-                    is IssuesViewModel.OpenUrlModel.ChromeTabs -> {
+                    is IssuesViewModelOutput.OpenUrlModel.ChromeTabs -> {
                         requireContext().startChromeTabs(it.url)
                     }
                 }
