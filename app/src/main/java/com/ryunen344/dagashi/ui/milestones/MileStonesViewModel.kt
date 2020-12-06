@@ -12,6 +12,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.drop
@@ -21,6 +22,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 import org.threeten.bp.OffsetDateTime
@@ -39,18 +41,23 @@ class MileStonesViewModel @ViewModelInject constructor(
     val mileStones: Flow<List<MileStone>>
         get() = _mileStones
 
+    private val _isUpdated: Channel<Unit> = Channel(capacity = Channel.BUFFERED)
     val isUpdated: Flow<Unit>
-        get() = mileStones
-            .drop(1)
-            .zip(mileStones) { new, old -> new != old }
-            .filter { it }
-            .map { Unit }
-            .flowOn(defaultDispatcher)
+        get() = _isUpdated.receiveAsFlow()
 
     init {
         mileStoneRepository.mileStones().onEach {
             _mileStones.emit(it)
         }.launchIn(viewModelDefaultScope)
+        mileStones
+            .drop(1)
+            .zip(mileStones) { new, old -> new != old }
+            .filter { it }
+            .map { Unit }
+            .flowOn(defaultDispatcher)
+            .onEach {
+                _isUpdated.send(Unit)
+            }.launchIn(viewModelDefaultScope)
         viewModelDefaultScope.launch {
             runCatching {
                 val needsUpdate = settingRepository.mileStoneLastUpdateAt().firstOrNull().isPassedDay
