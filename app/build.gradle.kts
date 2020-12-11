@@ -207,6 +207,7 @@ releasesHub {
 ktlint {
     verbose.set(true)
     android.set(true)
+    ignoreFailures.set(true)
     coloredOutput.set(true)
     outputColorName.set("RED")
     additionalEditorconfigFile.set(file("${rootDir.absolutePath}/.editorconfig"))
