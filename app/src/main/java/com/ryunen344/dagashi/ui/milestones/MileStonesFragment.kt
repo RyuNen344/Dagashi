@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import com.ryunen344.dagashi.R
 import com.ryunen344.dagashi.databinding.FragmentMileStonesBinding
+import com.ryunen344.dagashi.ui.milestones.viewmodel.MileStonesViewModel
 import com.ryunen344.dagashi.util.ext.bind
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn

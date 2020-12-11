@@ -20,6 +20,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.ryunen344.dagashi.BuildConfig
 import com.ryunen344.dagashi.R
 import com.ryunen344.dagashi.databinding.FragmentWebBinding
+import com.ryunen344.dagashi.ui.web.viewmodel.WebViewModel
 import com.ryunen344.dagashi.util.ext.bind
 import dagger.hilt.android.AndroidEntryPoint
 
