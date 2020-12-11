@@ -156,7 +156,8 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
     kotlinOptions.freeCompilerArgs = listOf(
         "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
         "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
-        "-Xuse-experimental=kotlinx.serialization.ExperimentalSerializationApi"
+        "-Xuse-experimental=kotlinx.serialization.ExperimentalSerializationApi",
+        "-Xuse-experimental=kotlinx.coroutines.InternalCoroutinesApi"
     )
 }
 
