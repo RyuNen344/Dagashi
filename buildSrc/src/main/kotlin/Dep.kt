@@ -65,15 +65,20 @@ object Dep {
     }
 
     object Dagger {
-        const val version = "2.28-alpha"
+        const val version = "2.30.1-alpha"
         const val hilt = "com.google.dagger:hilt-android:$version"
         const val compiler = "com.google.dagger:hilt-android-compiler:$version"
 
         object Android {
             private const val version = "1.0.0-alpha02"
-            const val hilt = "androidx.hilt:hilt-common:$version"
             const val viewModel = "androidx.hilt:hilt-lifecycle-viewmodel:$version"
             const val compiler = "androidx.hilt:hilt-compiler:$version"
+        }
+
+        object Assisted {
+            private const val version = "0.6.0"
+            const val common = "com.squareup.inject:assisted-inject-annotations-dagger2:$version"
+            const val compiler = "com.squareup.inject:assisted-inject-processor-dagger2:$version"
         }
     }
 

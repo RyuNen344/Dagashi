@@ -1,12 +1,13 @@
 package com.ryunen344.dagashi.ui.issues.viewmodel
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryunen344.dagashi.data.repository.IssueRepository
 import com.ryunen344.dagashi.data.repository.SettingRepository
 import com.ryunen344.dagashi.di.DefaultDispatcher
 import com.ryunen344.dagashi.model.Issue
+import com.squareup.inject.assisted.Assisted
+import com.squareup.inject.assisted.AssistedInject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
@@ -19,7 +20,6 @@ import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.take
@@ -27,11 +27,18 @@ import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class IssuesViewModel @ViewModelInject constructor(
+class IssuesViewModel @AssistedInject constructor(
+    @Assisted private val number: Int,
+    @Assisted private val path: String,
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
     private val issueRepository: IssueRepository,
     private val settingRepository: SettingRepository
 ) : ViewModel(), IssuesViewModelInput, IssuesViewModelOutput {
+
+    @AssistedInject.Factory
+    interface AssistedFactory {
+        fun create(number: Int, path: String): IssuesViewModel
+    }
 
     private val viewModelDefaultScope = CoroutineScope(viewModelScope.coroutineContext + defaultDispatcher)
 
@@ -52,25 +59,6 @@ class IssuesViewModel @ViewModelInject constructor(
 
     init {
         bindOutput()
-    }
-
-    private fun bindOutput() {
-        issues
-            .drop(1)
-            .zip(issues) { new, old -> new != old }
-            .filter { it }
-            .map { Unit }
-            .flowOn(defaultDispatcher)
-            .onEach {
-                _isUpdated.send(Unit)
-            }.launchIn(viewModelDefaultScope)
-    }
-
-    override fun refresh(number: Int, path: String) {
-        // TODO: 2020/12/06 AssistedInjectに移行してbindOutputに処理を移行
-        issueRepository.issue(number).onEach {
-            _issues.emit(it)
-        }.launchIn(viewModelDefaultScope)
         viewModelDefaultScope.launch {
             runCatching {
                 issueRepository.refresh(path)
@@ -78,6 +66,23 @@ class IssuesViewModel @ViewModelInject constructor(
                 Timber.e(it)
             }
         }
+    }
+
+    private fun bindOutput() {
+        issues
+            .drop(1)
+            .zip(issues) { new, old -> new != old }
+            .filter { it }
+            .flowOn(defaultDispatcher)
+            .onEach {
+                _isUpdated.send(Unit)
+            }.launchIn(viewModelDefaultScope)
+
+        issueRepository
+            .issue(number)
+            .onEach {
+                _issues.emit(it)
+            }.launchIn(viewModelDefaultScope)
     }
 
     override fun inputUrl(url: String) {
