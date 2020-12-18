@@ -18,7 +18,7 @@ import androidx.room.ForeignKey
 data class SummaryIssueEntity(
     @ColumnInfo(name = "id")
     val id: Int,
-    @ColumnInfo(name = "mile_stone_id")
+    @ColumnInfo(name = "mile_stone_id", index = true)
     val mileStoneId: String,
     @ColumnInfo(name = "title")
     val title: String

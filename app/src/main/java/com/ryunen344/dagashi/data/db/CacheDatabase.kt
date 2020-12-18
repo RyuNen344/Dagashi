@@ -14,6 +14,7 @@ import com.ryunen344.dagashi.data.db.dao.MileStoneDao
 import com.ryunen344.dagashi.data.db.dao.SummaryIssueDao
 import com.ryunen344.dagashi.data.db.entity.CommentEntity
 import com.ryunen344.dagashi.data.db.entity.IssueEntity
+import com.ryunen344.dagashi.data.db.entity.IssueFts
 import com.ryunen344.dagashi.data.db.entity.LabelEntity
 import com.ryunen344.dagashi.data.db.entity.MileStoneEntity
 import com.ryunen344.dagashi.data.db.entity.SummaryIssueEntity
@@ -28,7 +29,8 @@ import kotlinx.coroutines.asExecutor
         CommentEntity::class,
         MileStoneEntity::class,
         SummaryIssueEntity::class,
-        IssueLabelCrossRef::class
+        IssueLabelCrossRef::class,
+        IssueFts::class
     ],
     version = 1,
     exportSchema = false

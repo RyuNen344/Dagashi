@@ -21,7 +21,7 @@ import org.threeten.bp.OffsetDateTime
 data class CommentEntity(
     @ColumnInfo(name = "id")
     val id: Int,
-    @ColumnInfo(name = "single_unique_id")
+    @ColumnInfo(name = "single_unique_id", index = true)
     val singleUniqueId: String,
     @ColumnInfo(name = "body")
     val body: String,

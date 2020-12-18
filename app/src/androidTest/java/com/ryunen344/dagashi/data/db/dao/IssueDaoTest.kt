@@ -174,4 +174,25 @@ class IssueDaoTest {
             )
         }
     }
+
+    @Test
+    fun selectKeywordIssue() {
+        runBlocking {
+            val issue = ModelGenerator.createIssue()
+            dao.insert(issue)
+            val result = dao.search(issue.title.take(1)).first()
+            MatcherAssert.assertThat(
+                result,
+                CoreMatchers.equalTo(
+                    listOf(
+                        IssueWithLabelAndComment(
+                            issue,
+                            emptyList(),
+                            emptyList()
+                        )
+                    )
+                )
+            )
+        }
+    }
 }
