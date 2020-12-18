@@ -26,6 +26,6 @@ import com.ryunen344.dagashi.data.db.entity.LabelEntity
 data class IssueLabelCrossRef(
     @ColumnInfo(name = "single_unique_id")
     val singleUniqueId: String,
-    @ColumnInfo(name = "label_name")
+    @ColumnInfo(name = "label_name", index = true)
     val labelName: String
 )

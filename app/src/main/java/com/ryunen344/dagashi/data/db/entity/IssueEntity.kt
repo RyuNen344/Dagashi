@@ -18,5 +18,5 @@ data class IssueEntity(
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "body")
-    val body: String,
+    val body: String
 )
