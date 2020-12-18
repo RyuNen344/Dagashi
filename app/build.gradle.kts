@@ -131,9 +131,10 @@ dependencies {
 
     implementation(Dep.Dagger.hilt)
     kapt(Dep.Dagger.compiler)
-    implementation(Dep.Dagger.Android.hilt)
     implementation(Dep.Dagger.Android.viewModel)
     kapt(Dep.Dagger.Android.compiler)
+    compileOnly(Dep.Dagger.Assisted.common)
+    kapt(Dep.Dagger.Assisted.compiler)
 
     implementation(Dep.ThreeTen.android)
 

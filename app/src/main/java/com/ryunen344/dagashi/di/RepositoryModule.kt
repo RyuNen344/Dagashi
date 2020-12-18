@@ -14,12 +14,12 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object RepositoryModule {
     @Provides
     @Singleton
@@ -50,7 +50,7 @@ object RepositoryModule {
     }
 
     @Module
-    @InstallIn(ApplicationComponent::class)
+    @InstallIn(SingletonComponent::class)
     abstract class RepositoryModuleBinds {
         @Binds
         abstract fun bindMileStoneRepository(impl: MileStoneRepositoryImpl): MileStoneRepository

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
@@ -13,20 +12,25 @@ import com.ryunen344.dagashi.databinding.FragmentIssuesBinding
 import com.ryunen344.dagashi.ui.issues.viewmodel.IssuesViewModel
 import com.ryunen344.dagashi.ui.issues.viewmodel.IssuesViewModelOutput
 import com.ryunen344.dagashi.util.TextViewClickMovement
+import com.ryunen344.dagashi.util.ext.assistedViewModels
 import com.ryunen344.dagashi.util.ext.bind
 import com.ryunen344.dagashi.util.ext.startChromeTabs
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class IssuesFragment : Fragment(R.layout.fragment_issues) {
 
     private val args: IssuesFragmentArgs by navArgs()
 
-    private val viewModel: IssuesViewModel by viewModels()
+    @Inject
+    lateinit var issuesViewModelAssistedFactory: IssuesViewModel.AssistedFactory
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.refresh(args.number, args.path)
+    private val viewModel: IssuesViewModel by assistedViewModels {
+        issuesViewModelAssistedFactory.create(
+            args.number,
+            args.path
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
