@@ -48,7 +48,7 @@ object Dep {
     }
 
     object Kotlin {
-        const val version = "1.4.10"
+        const val version = "1.4.21"
         const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib:$version"
         const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
 

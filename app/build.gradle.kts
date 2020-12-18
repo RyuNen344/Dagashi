@@ -7,6 +7,7 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint")
     kotlin("android")
     kotlin("kapt")
+    kotlin("plugin.parcelize")
     kotlin("plugin.serialization")
 }
 
