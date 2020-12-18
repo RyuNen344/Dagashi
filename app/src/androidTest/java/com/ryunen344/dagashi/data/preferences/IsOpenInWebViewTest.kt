@@ -31,7 +31,6 @@ class IsOpenInWebViewTest {
                 println("isOpen $it")
             }.launchIn(mainCoroutineTestRule)
 
-
             mainCoroutineTestRule.runBlockingTest {
                 settingPreferencesImpl.updateIsOpenInWebView(true)
             }

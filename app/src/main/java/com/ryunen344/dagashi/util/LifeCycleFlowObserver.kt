@@ -1,18 +1,11 @@
 package com.ryunen344.dagashi.util
 
 import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.whenStateAtLeast
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 
 class LifeCycleFlowObserver<T>(
     lifecycleOwner: LifecycleOwner,
@@ -52,4 +45,3 @@ inline fun <reified T> Flow<T>.observeIn(
 ) {
     LifeCycleFlowObserver(lifecycleOwner, this, {})
 }
-
