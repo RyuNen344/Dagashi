@@ -44,7 +44,7 @@ class IssuesAdapter(
                         viewScrollLabel.isVisible = true
                         model.labels.forEach { label ->
                             addView(
-                                Chip(root.context).apply {
+                                Chip(context).apply {
                                     text = label.name
                                     chipBackgroundColor = ColorStateList.valueOf(label.tipColorInt)
                                     setTextColor(context.getColor(label.tipTextColorResId))
@@ -69,7 +69,7 @@ class IssuesAdapter(
                         isVisible = true
                         model.comments.forEach { comment ->
                             addView(
-                                CommentView(root.context).apply {
+                                CommentView(context).apply {
                                     bind(comment, onTextViewClickMovementListener)
                                 }
                             )

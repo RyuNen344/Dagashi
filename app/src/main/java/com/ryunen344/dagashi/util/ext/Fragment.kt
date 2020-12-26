@@ -1,6 +1,9 @@
 package com.ryunen344.dagashi.util.ext
 
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.IdRes
+import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -49,5 +52,21 @@ inline fun <reified T : ViewModel> Fragment.assistedNavGraphViewModels(@IdRes na
                 return body() as T
             }
         }
+    }
+}
+
+fun Fragment.showKeyboard(targetView: View) {
+    (requireContext().getSystemService() as? InputMethodManager)?.let {
+        targetView.requestFocus()
+        it.showSoftInput(targetView, InputMethodManager.SHOW_IMPLICIT)
+    }
+}
+
+fun Fragment.hideKeyboard() {
+    (requireContext().getSystemService() as? InputMethodManager)?.let {
+        it.hideSoftInputFromWindow(
+            requireView().windowToken,
+            InputMethodManager.HIDE_NOT_ALWAYS
+        )
     }
 }
