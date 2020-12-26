@@ -28,6 +28,10 @@ class DagashiDatabase @Inject constructor(
         return cacheDatabase.issueDao.select(number)
     }
 
+    override fun issueEntityByKeyword(keyword: String): Flow<List<IssueWithLabelAndComment>> {
+        return cacheDatabase.issueDao.search(keyword)
+    }
+
     override suspend fun saveIssue(entity: List<IssueWithLabelAndComment>) {
         cacheDatabase.withTransaction {
             cacheDatabase.issueDao.insertOrUpdate(entity.map { it.issueEntity })

@@ -33,6 +33,12 @@ class IssueRepositoryImpl @Inject constructor(
             .flowOn(dispatcher)
     }
 
+    override fun issueByKeyword(keyword: String): Flow<List<Issue>> {
+        return issueDatabase.issueEntityByKeyword(keyword)
+            .map { it.map(::toModel) }
+            .flowOn(dispatcher)
+    }
+
     private suspend fun issueFromApi(path: String): List<Issue> {
         return withContext(dispatcher) {
             dagashiApi.issues(path).issues.nodes.map(IssueMapper::toModel)
