@@ -7,14 +7,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.channels.actor
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.isActive
-import ru.ldralighieri.corbind.corbindReceiveChannel
-import ru.ldralighieri.corbind.safeOffer
 
 data class SearchViewQueryTextFocusEvent(
     val view: SearchView,
@@ -44,7 +43,7 @@ suspend fun SearchView.queryTextFocusChangeEvents(
 fun SearchView.queryTextFocusChangeEvents(
     scope: CoroutineScope,
     capacity: Int = Channel.RENDEZVOUS
-): ReceiveChannel<SearchViewQueryTextFocusEvent> = corbindReceiveChannel(capacity) {
+): ReceiveChannel<SearchViewQueryTextFocusEvent> = internalReceiveChannel(capacity) {
     safeOffer(SearchViewQueryTextFocusEvent(this@queryTextFocusChangeEvents, false))
     setOnQueryTextFocusChangeListener(listener(scope, ::safeOffer))
     invokeOnClose { setOnQueryTextFocusChangeListener(null) }
@@ -66,3 +65,20 @@ private fun listener(
         emitter(SearchViewQueryTextFocusEvent(v as SearchView, hasFocus))
     }
 }
+
+private inline fun <T> internalReceiveChannel(
+    capacity: Int = Channel.RENDEZVOUS,
+    block: Channel<T>.() -> Unit
+): ReceiveChannel<T> {
+    val channel = Channel<T>(capacity)
+    channel.block()
+    return channel
+}
+
+private fun <T> SendChannel<T>.safeOffer(element: T) =
+    !isClosedForSend && try {
+        offer(element)
+    } catch (t: Throwable) {
+        false
+    }
+
