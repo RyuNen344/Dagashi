@@ -34,7 +34,11 @@
 
     <fragment
         android:id="@+id/search"
-        android:name="com.ryunen344.dagashi.ui.search.SearchFragment" />
+        android:name="com.ryunen344.dagashi.ui.search.SearchFragment">
+        <action
+            android:id="@+id/action_issues_to_web"
+            app:destination="@id/web" />
+    </fragment>
 
     <fragment
         android:id="@+id/setting"
