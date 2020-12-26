@@ -4,7 +4,6 @@
     <string name="mile_stone_menu_setting">設定</string>
     <string name="issue_button_github">GitHubで見る</string>
     <string name="snack_bar_update">更新されました</string>
-    <string name="chrome_tabs_share">共有</string>
     <string name="setting_browser">WebViewで開く</string>
     <string name="setting_force_refresh">データ更新</string>
 </resources>
