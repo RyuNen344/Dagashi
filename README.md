@@ -9,6 +9,10 @@
 ## 機能
 
 ### ローカル保存機能
+MileStoneとIssueはローカル保存されます。<br>
+MileStoneは1日1回、Issueは表示毎に更新します。<br>
+設定画面でMileStoneを強制更新することができます。<br>
 
-その他はTBD
+### issue検索機能
+ローカル保存されているissueは全文検索を行うことができます。
 
