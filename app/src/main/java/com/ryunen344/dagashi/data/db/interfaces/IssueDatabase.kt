@@ -6,5 +6,7 @@ import kotlinx.coroutines.flow.Flow
 interface IssueDatabase {
     fun issueEntity(number: Int): Flow<List<IssueWithLabelAndComment>>
 
+    fun issueEntityByKeyword(keyword: String): Flow<List<IssueWithLabelAndComment>>
+
     suspend fun saveIssue(entity: List<IssueWithLabelAndComment>)
 }
