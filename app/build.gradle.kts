@@ -99,7 +99,6 @@ dependencies {
     implementation(Dep.Android.activity)
     implementation(Dep.Android.fragment)
     implementation(Dep.Android.recycler)
-    implementation(Dep.Android.preference)
     implementation(Dep.Android.browser)
 
     implementation(Dep.Android.LifeCycle.viewModel)

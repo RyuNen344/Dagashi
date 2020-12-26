@@ -19,7 +19,6 @@ object Dep {
         const val activity = "androidx.activity:activity-ktx:1.2.0-beta01"
         const val fragment = "androidx.fragment:fragment-ktx:1.3.0-beta01"
         const val recycler = "androidx.recyclerview:recyclerview:1.2.0-alpha06"
-        const val preference = "androidx.preference:preference-ktx:1.1.1"
         const val browser = "androidx.browser:browser:1.3.0-rc01"
 
         object LifeCycle {

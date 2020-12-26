@@ -1,51 +1,34 @@
 package com.ryunen344.dagashi.ui.setting
 
 import android.os.Bundle
-import androidx.preference.Preference
-import androidx.preference.PreferenceCategory
-import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.SwitchPreferenceCompat
+import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.ryunen344.dagashi.R
+import com.ryunen344.dagashi.databinding.FragmentSettingBinding
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import ru.ldralighieri.corbind.view.clicks
 
 @AndroidEntryPoint
-class SettingFragment : PreferenceFragmentCompat() {
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        setPreferencesFromResource(R.xml.setting, rootKey)
+class SettingFragment : Fragment(R.layout.fragment_setting) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val binding = FragmentSettingBinding.bind(view)
+        binding.apply {
+            toolbar.setupWithNavController(findNavController())
 
-        when (rootKey) {
-            "categoryTheme" -> {
-                Timber.wtf("categoryTheme")
-            }
-            else            -> {
-                Timber.wtf("else")
-            }
+            itemSettingBrowser.clicks()
+                .onEach {
+                }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+            itemSettingForceRefresh.clicks()
+                .debounce(500)
+                .onEach {
+                }.launchIn(viewLifecycleOwner.lifecycleScope)
         }
-        val context = preferenceManager.context
-        val screen = preferenceManager.createPreferenceScreen(context)
-
-        val notificationPreference = SwitchPreferenceCompat(context)
-        notificationPreference.key = "notifications"
-        notificationPreference.title = "Enable message notifications"
-
-        val notificationCategory = PreferenceCategory(context)
-        notificationCategory.key = "notifications_category"
-        notificationCategory.title = "Notifications"
-        screen.addPreference(notificationCategory)
-        notificationCategory.addPreference(notificationPreference)
-
-        val feedbackPreference = Preference(context)
-        feedbackPreference.key = "feedback"
-        feedbackPreference.title = "Send feedback"
-        feedbackPreference.summary = "Report technical issues or suggest new features"
-
-        val helpCategory = PreferenceCategory(context)
-        helpCategory.key = "help"
-        helpCategory.title = "Help"
-        screen.addPreference(helpCategory)
-        helpCategory.addPreference(feedbackPreference)
-
-        preferenceScreen = screen
     }
 }
