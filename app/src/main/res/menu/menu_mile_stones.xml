@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_open_in_new"
+        android:title="@string/mile_stone_menu_search"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
         android:id="@+id/setting"
         android:icon="@drawable/ic_setting"
         android:title="@string/mile_stone_menu_setting"

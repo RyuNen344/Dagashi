@@ -22,6 +22,7 @@ import com.ryunen344.dagashi.R
 import com.ryunen344.dagashi.databinding.FragmentWebBinding
 import com.ryunen344.dagashi.ui.web.viewmodel.WebViewModel
 import com.ryunen344.dagashi.util.ext.bind
+import com.ryunen344.dagashi.util.ext.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -108,6 +109,11 @@ class WebFragment : Fragment(R.layout.fragment_web) {
     override fun onSaveInstanceState(outState: Bundle) {
         binding.viewWeb.saveState(outState)
         super.onSaveInstanceState(outState)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        hideKeyboard()
     }
 
     override fun onDestroyView() {
