@@ -16,7 +16,7 @@ object OffsetDateTimeSerializer : KSerializer<OffsetDateTime> {
         PrimitiveSerialDescriptor("OffsetDateTimeSerializer", PrimitiveKind.STRING)
 
     override fun serialize(encoder: Encoder, value: OffsetDateTime) {
-        encoder.encodeString(value.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")))
+        encoder.encodeString(value.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME))
     }
 
     override fun deserialize(decoder: Decoder): OffsetDateTime {
