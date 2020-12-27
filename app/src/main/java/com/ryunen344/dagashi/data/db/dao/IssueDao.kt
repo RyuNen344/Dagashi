@@ -17,7 +17,7 @@ abstract class IssueDao : BaseDao<IssueEntity>() {
     abstract fun select(number: Int): Flow<List<IssueWithLabelAndComment>>
 
     @Transaction
-    @Query("SELECT * FROM issue JOIN IssueFts ON issue.title == IssueFts.title AND issue.body == IssueFts.body WHERE IssueFts.title MATCH '*'||:keyword||'*' OR IssueFts.body MATCH '*'||:keyword||'*' ")
+    @Query("SELECT * FROM issue JOIN IssueFts ON issue.title == IssueFts.title AND issue.body == IssueFts.body WHERE IssueFts MATCH '*'||:keyword||'*'")
     abstract fun search(keyword: String): Flow<List<IssueWithLabelAndComment>>
 }
 
