@@ -12,7 +12,7 @@
         app:shapeAppearance="@style/Theme.Dagashi.Shape.Image.Circle"
         tools:src="@drawable/ic_launcher_background" />
 
-    <TextView
+    <androidx.emoji.widget.EmojiAppCompatTextView
         android:id="@+id/text_author_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="@id/image_user"
         tools:text="sample text description" />
 
-    <TextView
+    <androidx.emoji.widget.EmojiAppCompatTextView
         android:id="@+id/text_body"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
