@@ -1,4 +1,4 @@
-package com.ryunen344.dagashi.ui.issues.viewmodel
+package com.ryunen344.dagashi.ui.issues.path.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -27,17 +27,17 @@ import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class IssuesViewModel @AssistedInject constructor(
+class PathIssuesViewModel @AssistedInject constructor(
     @Assisted private val number: Int,
     @Assisted private val path: String,
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
     private val issueRepository: IssueRepository,
     private val settingRepository: SettingRepository
-) : ViewModel(), IssuesViewModelInput, IssuesViewModelOutput {
+) : ViewModel(), PathIssuesViewModelInput, PathIssuesViewModelOutput {
 
     @AssistedInject.Factory
     interface AssistedFactory {
-        fun create(number: Int, path: String): IssuesViewModel
+        fun create(number: Int, path: String): PathIssuesViewModel
     }
 
     private val viewModelDefaultScope = CoroutineScope(viewModelScope.coroutineContext + defaultDispatcher)
@@ -52,9 +52,9 @@ class IssuesViewModel @AssistedInject constructor(
         get() = _isUpdated.receiveAsFlow()
 
     private val openUrl: MutableSharedFlow<String> = MutableSharedFlow()
-    override val openUrlModel: Flow<IssuesViewModelOutput.OpenUrlModel>
+    override val openUrlModel: Flow<PathIssuesViewModelOutput.OpenUrlModel>
         get() = combine(openUrl, settingRepository.isOpenInWebView().take(1)) { url, isOpen ->
-            if (isOpen) IssuesViewModelOutput.OpenUrlModel.WebView(url) else IssuesViewModelOutput.OpenUrlModel.ChromeTabs(url)
+            if (isOpen) PathIssuesViewModelOutput.OpenUrlModel.WebView(url) else PathIssuesViewModelOutput.OpenUrlModel.ChromeTabs(url)
         }
 
     init {

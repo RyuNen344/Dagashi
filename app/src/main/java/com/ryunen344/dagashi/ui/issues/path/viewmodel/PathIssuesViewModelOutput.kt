@@ -1,10 +1,11 @@
-package com.ryunen344.dagashi.ui.search.viewmodel
+package com.ryunen344.dagashi.ui.issues.path.viewmodel
 
 import com.ryunen344.dagashi.model.Issue
 import kotlinx.coroutines.flow.Flow
 
-interface SearchViewModelOutput {
+interface PathIssuesViewModelOutput {
     val issues: Flow<List<Issue>>
+    val isUpdated: Flow<Unit>
     val openUrlModel: Flow<OpenUrlModel>
 
     sealed class OpenUrlModel {
@@ -12,3 +13,5 @@ interface SearchViewModelOutput {
         class ChromeTabs(val url: String) : OpenUrlModel()
     }
 }
+
+
