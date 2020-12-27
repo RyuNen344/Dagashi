@@ -1,6 +1,5 @@
 package com.ryunen344.dagashi.data.api
 
-import com.ryunen344.dagashi.data.api.impl.DagashiApiImpl
 import com.ryunen344.dagashi.di.ApiModule
 import com.ryunen344.dagashi.test.MainCoroutineTestRule
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +14,7 @@ class CommunicationTest {
     @get:Rule
     val mainCoroutineTestRule = MainCoroutineTestRule()
 
-    private val api = DagashiApiImpl(ApiModule.provideHttpClient(ApiModule.provideJson()), "https://androiddagashi.github.io")
+    private val api = ApiModule.provideDagashiApiImpl(ApiModule.provideHttpClient(ApiModule.provideJson()), ApiModule.provideApiEndpoint())
 
     @Test
     fun testMilestones() {
