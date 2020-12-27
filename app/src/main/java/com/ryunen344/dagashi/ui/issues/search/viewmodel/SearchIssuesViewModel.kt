@@ -1,4 +1,4 @@
-package com.ryunen344.dagashi.ui.search.viewmodel
+package com.ryunen344.dagashi.ui.issues.search.viewmodel
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
@@ -19,11 +19,11 @@ import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class SearchViewModel @ViewModelInject constructor(
+class SearchIssuesViewModel @ViewModelInject constructor(
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
     private val issueRepository: IssueRepository,
     private val settingRepository: SettingRepository
-) : ViewModel(), SearchViewModelInput, SearchViewModelOutput {
+) : ViewModel(), SearchIssuesViewModelInput, SearchIssuesViewModelOutput {
 
     private val viewModelDefaultScope = CoroutineScope(viewModelScope.coroutineContext + defaultDispatcher)
 
@@ -33,9 +33,9 @@ class SearchViewModel @ViewModelInject constructor(
         get() = _issues
 
     private val openUrl: MutableSharedFlow<String> = MutableSharedFlow()
-    override val openUrlModel: Flow<SearchViewModelOutput.OpenUrlModel>
+    override val openUrlModel: Flow<SearchIssuesViewModelOutput.OpenUrlModel>
         get() = combine(openUrl, settingRepository.isOpenInWebView().take(1)) { url, isOpen ->
-            if (isOpen) SearchViewModelOutput.OpenUrlModel.WebView(url) else SearchViewModelOutput.OpenUrlModel.ChromeTabs(url)
+            if (isOpen) SearchIssuesViewModelOutput.OpenUrlModel.WebView(url) else SearchIssuesViewModelOutput.OpenUrlModel.ChromeTabs(url)
         }
 
     override fun searchIssue(keyword: String) {

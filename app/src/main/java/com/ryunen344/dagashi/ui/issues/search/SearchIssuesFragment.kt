@@ -1,4 +1,4 @@
-package com.ryunen344.dagashi.ui.search
+package com.ryunen344.dagashi.ui.issues.search
 
 import android.os.Bundle
 import android.view.View
@@ -9,8 +9,8 @@ import androidx.navigation.fragment.findNavController
 import com.ryunen344.dagashi.R
 import com.ryunen344.dagashi.databinding.FragmentSearchBinding
 import com.ryunen344.dagashi.ui.issues.IssuesAdapter
-import com.ryunen344.dagashi.ui.search.viewmodel.SearchViewModel
-import com.ryunen344.dagashi.ui.search.viewmodel.SearchViewModelOutput
+import com.ryunen344.dagashi.ui.issues.search.viewmodel.SearchIssuesViewModel
+import com.ryunen344.dagashi.ui.issues.search.viewmodel.SearchIssuesViewModelOutput
 import com.ryunen344.dagashi.util.TextViewClickMovement
 import com.ryunen344.dagashi.util.ext.bind
 import com.ryunen344.dagashi.util.ext.hideKeyboard
@@ -24,9 +24,9 @@ import kotlinx.coroutines.flow.onEach
 import ru.ldralighieri.corbind.appcompat.queryTextChangeEvents
 
 @AndroidEntryPoint
-class SearchFragment : Fragment(R.layout.fragment_search) {
+class SearchIssuesFragment : Fragment(R.layout.fragment_search) {
 
-    private val viewModel: SearchViewModel by viewModels()
+    private val viewModel: SearchIssuesViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val binding = FragmentSearchBinding.bind(view)
@@ -80,10 +80,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
             bind(openUrlModel) {
                 when (it) {
-                    is SearchViewModelOutput.OpenUrlModel.WebView -> {
-                        findNavController().navigate(SearchFragmentDirections.actionIssuesToWeb(it.url))
+                    is SearchIssuesViewModelOutput.OpenUrlModel.WebView -> {
+                        findNavController().navigate(SearchIssuesFragmentDirections.actionIssuesToWeb(it.url))
                     }
-                    is SearchViewModelOutput.OpenUrlModel.ChromeTabs -> {
+                    is SearchIssuesViewModelOutput.OpenUrlModel.ChromeTabs -> {
                         requireContext().startChromeTabs(it.url)
                     }
                 }

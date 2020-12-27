@@ -1,4 +1,4 @@
-package com.ryunen344.dagashi.ui.issues
+package com.ryunen344.dagashi.ui.issues.path
 
 import android.os.Bundle
 import android.view.View
@@ -9,8 +9,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import com.ryunen344.dagashi.R
 import com.ryunen344.dagashi.databinding.FragmentIssuesBinding
-import com.ryunen344.dagashi.ui.issues.viewmodel.IssuesViewModel
-import com.ryunen344.dagashi.ui.issues.viewmodel.IssuesViewModelOutput
+import com.ryunen344.dagashi.ui.issues.IssuesAdapter
+import com.ryunen344.dagashi.ui.issues.path.viewmodel.PathIssuesViewModel
+import com.ryunen344.dagashi.ui.issues.path.viewmodel.PathIssuesViewModelOutput
 import com.ryunen344.dagashi.util.TextViewClickMovement
 import com.ryunen344.dagashi.util.ext.assistedViewModels
 import com.ryunen344.dagashi.util.ext.bind
@@ -19,14 +20,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class IssuesFragment : Fragment(R.layout.fragment_issues) {
+class PathIssuesFragment : Fragment(R.layout.fragment_issues) {
 
-    private val args: IssuesFragmentArgs by navArgs()
+    private val args: PathIssuesFragmentArgs by navArgs()
 
     @Inject
-    lateinit var issuesViewModelAssistedFactory: IssuesViewModel.AssistedFactory
+    lateinit var issuesViewModelAssistedFactory: PathIssuesViewModel.AssistedFactory
 
-    private val viewModel: IssuesViewModel by assistedViewModels {
+    private val viewModel: PathIssuesViewModel by assistedViewModels {
         issuesViewModelAssistedFactory.create(
             args.number,
             args.path
@@ -67,10 +68,10 @@ class IssuesFragment : Fragment(R.layout.fragment_issues) {
 
             bind(openUrlModel) {
                 when (it) {
-                    is IssuesViewModelOutput.OpenUrlModel.WebView -> {
-                        findNavController().navigate(IssuesFragmentDirections.actionIssuesToWeb(it.url))
+                    is PathIssuesViewModelOutput.OpenUrlModel.WebView -> {
+                        findNavController().navigate(PathIssuesFragmentDirections.actionIssuesToWeb(it.url))
                     }
-                    is IssuesViewModelOutput.OpenUrlModel.ChromeTabs -> {
+                    is PathIssuesViewModelOutput.OpenUrlModel.ChromeTabs -> {
                         requireContext().startChromeTabs(it.url)
                     }
                 }
