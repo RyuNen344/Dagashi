@@ -10,12 +10,12 @@ import com.ryunen344.dagashi.R
 import com.ryunen344.dagashi.databinding.ItemIssueBinding
 import com.ryunen344.dagashi.model.Issue
 import com.ryunen344.dagashi.model.Label
+import com.ryunen344.dagashi.util.EquatableContentsItem
 import com.ryunen344.dagashi.util.TextViewClickMovement
 import com.ryunen344.dagashi.util.ext.dp2px
 import com.ryunen344.dagashi.util.ext.setDebouncingOnClickListener
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
-import com.xwray.groupie.viewbinding.BindableItem
 
 class IssuesAdapter(
     private val onLabelClickListener: (label: Label) -> Unit,
@@ -32,7 +32,7 @@ class IssuesAdapter(
     }
 
     private inner class IssueItem(private val model: Issue, private val isLast: Boolean) :
-        BindableItem<ItemIssueBinding>(model.url.hashCode().toLong()) {
+        EquatableContentsItem<ItemIssueBinding>(model.url.hashCode().toLong()) {
         override fun bind(viewBinding: ItemIssueBinding, position: Int) {
             val context = viewBinding.root.context
             viewBinding.apply {
@@ -100,5 +100,7 @@ class IssuesAdapter(
         override fun getLayout(): Int = R.layout.item_issue
 
         override fun initializeViewBinding(view: View): ItemIssueBinding = ItemIssueBinding.bind(view)
+
+        override fun providerEquatableContents(): Array<*> = arrayOf(model, isLast)
     }
 }

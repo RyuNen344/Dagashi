@@ -6,11 +6,11 @@ import androidx.core.view.updateLayoutParams
 import com.ryunen344.dagashi.R
 import com.ryunen344.dagashi.databinding.ItemMilestoneBinding
 import com.ryunen344.dagashi.model.MileStone
+import com.ryunen344.dagashi.util.EquatableContentsItem
 import com.ryunen344.dagashi.util.ext.dp2px
 import com.ryunen344.dagashi.util.ext.setDebouncingOnClickListener
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
-import com.xwray.groupie.viewbinding.BindableItem
 import org.threeten.bp.format.DateTimeFormatter
 
 class MileStonesAdapter(
@@ -26,7 +26,7 @@ class MileStonesAdapter(
     }
 
     private inner class MileStoneItem(private val model: MileStone, private val isLast: Boolean) :
-        BindableItem<ItemMilestoneBinding>(model.id.hashCode().toLong()) {
+        EquatableContentsItem<ItemMilestoneBinding>(model.id.hashCode().toLong()) {
         override fun bind(viewBinding: ItemMilestoneBinding, position: Int) {
             viewBinding.apply {
                 textTitle.text = model.title
@@ -51,5 +51,7 @@ class MileStonesAdapter(
         override fun getLayout(): Int = R.layout.item_milestone
 
         override fun initializeViewBinding(view: View): ItemMilestoneBinding = ItemMilestoneBinding.bind(view)
+
+        override fun providerEquatableContents(): Array<*> = arrayOf(model, isLast)
     }
 }
