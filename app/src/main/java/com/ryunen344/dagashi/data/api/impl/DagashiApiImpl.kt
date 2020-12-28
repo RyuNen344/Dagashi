@@ -4,24 +4,25 @@ import com.ryunen344.dagashi.data.api.DagashiApi
 import com.ryunen344.dagashi.data.api.response.IssueRootResponse
 import com.ryunen344.dagashi.data.api.response.MileStonesRootResponse
 import com.ryunen344.dagashi.di.ApiEndpoint
-import io.ktor.client.HttpClient
-import io.ktor.client.request.accept
-import io.ktor.client.request.get
-import io.ktor.client.request.url
-import io.ktor.http.ContentType
+import io.ktor.client.*
+import io.ktor.client.request.*
+import io.ktor.http.*
 import javax.inject.Inject
 
 class DagashiApiImpl @Inject constructor(
     private val httpClient: HttpClient,
     @ApiEndpoint private val apiEndpoint: String,
 ) : DagashiApi {
-    override suspend fun milestones(previousEndCursor: String?): MileStonesRootResponse {
+    override suspend fun milestones(): MileStonesRootResponse {
         return httpClient.get {
-            if (previousEndCursor == null) {
-                url("$apiEndpoint/api/index.json")
-            } else {
-                url("$apiEndpoint/api/$previousEndCursor.json")
-            }
+            url("$apiEndpoint/api/index.json")
+            accept(ContentType.Application.Json)
+        }
+    }
+
+    override suspend fun milestones(previousEndCursor: String): MileStonesRootResponse {
+        return httpClient.get {
+            url("$apiEndpoint/api/$previousEndCursor.json")
             accept(ContentType.Application.Json)
         }
     }
