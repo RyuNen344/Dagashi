@@ -1,5 +1,13 @@
 package com.ryunen344.dagashi.test
 
+import com.ryunen344.dagashi.data.api.response.AuthorResponse
+import com.ryunen344.dagashi.data.api.response.CommentNodeResponse
+import com.ryunen344.dagashi.data.api.response.CommentsResponse
+import com.ryunen344.dagashi.data.api.response.IssueNodeResponse
+import com.ryunen344.dagashi.data.api.response.IssueRootResponse
+import com.ryunen344.dagashi.data.api.response.IssuesResponse
+import com.ryunen344.dagashi.data.api.response.LabelNodeResponse
+import com.ryunen344.dagashi.data.api.response.LabelsResponse
 import com.ryunen344.dagashi.data.api.response.MileStoneIssueResponse
 import com.ryunen344.dagashi.data.api.response.MileStoneIssuesResponse
 import com.ryunen344.dagashi.data.api.response.MileStoneNodeResponse
@@ -10,6 +18,86 @@ import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.ZoneOffset
 
 object ResponseGenerator {
+
+    // region issue
+    @JvmStatic
+    fun createIssueRootResponse(): IssueRootResponse {
+        return IssueRootResponse(
+            id = "id",
+            number = 0,
+            url = "https://github.com/RyuNen344",
+            title = "title",
+            description = "description",
+            closedAt = OffsetDateTime.of(2020, 12, 20, 6, 30, 0, 0, ZoneOffset.UTC),
+            issues = createIssueResponse()
+        )
+    }
+
+    @JvmStatic
+    fun createIssueResponse(): IssuesResponse {
+        return IssuesResponse(
+            totalCount = 1,
+            pageInfo = createSinglePageInfo(),
+            nodes = listOf(createIssueNodeResponse())
+        )
+    }
+
+    @JvmStatic
+    fun createIssueNodeResponse(): IssueNodeResponse {
+        return IssueNodeResponse(
+            url = "https://github.com/RyuNen344",
+            title = "title",
+            body = "body",
+            labels = createLabelsResponse(),
+            comments = createCommentsResponse()
+        )
+    }
+
+
+    @JvmStatic
+    fun createLabelsResponse(): LabelsResponse {
+        return LabelsResponse(
+            nodes = listOf(createLabelNodeResponse())
+        )
+    }
+
+    @JvmStatic
+    fun createLabelNodeResponse(): LabelNodeResponse {
+        return LabelNodeResponse(
+            name = "name",
+            description = "description",
+            color = "FFFFFF"
+        )
+    }
+
+    @JvmStatic
+    fun createCommentsResponse(): CommentsResponse {
+        return CommentsResponse(
+            totalCount = 1,
+            pageInfo = createSinglePageInfo(),
+            nodes = listOf(createCommentNodeResponse())
+        )
+    }
+
+    @JvmStatic
+    fun createCommentNodeResponse(): CommentNodeResponse {
+        return CommentNodeResponse(
+            body = "body",
+            publishedAt = OffsetDateTime.of(2020, 12, 22, 6, 30, 0, 0, ZoneOffset.UTC),
+            author = createAuthorResponse()
+        )
+    }
+
+    @JvmStatic
+    fun createAuthorResponse(): AuthorResponse {
+        return AuthorResponse(
+            login = "RyuNen344",
+            url = "https://github.com/RyuNen344",
+            avatarUrl = "https://avatars2.githubusercontent.com/u/32740480?v=4",
+        )
+    }
+    // endregion
+
     // region milestone
     @JvmStatic
     fun createSinglePageMileStonesRootResponse(): MileStonesRootResponse {
