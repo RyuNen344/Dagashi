@@ -35,6 +35,12 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
       - name: Unit Test
         run: ./gradlew testDebug
+      - uses: malinskiy/action-android/emulator-run-cmd@release/0.1.0
+        with:
+          cmd: ./gradlew connectedCheck --stacktrace
+          api: 30
+          tag: default
+          abi: x86
       - name: Jacoco
         run: ./gradlew jacocoTestReport
       - name: Upload Coverage
