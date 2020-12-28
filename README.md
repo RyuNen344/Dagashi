@@ -1,6 +1,6 @@
 # Hello Dagashi
 
-![Android CI](https://github.com/RyuNen344/Dagashi/workflows/Android%20CI/badge.svg)
+![Android CI](https://github.com/RyuNen344/Dagashi/workflows/Android%20CI%20Master/badge.svg)
 [![codecov](https://codecov.io/gh/RyuNen344/Dagashi/branch/master/graph/badge.svg?token=68M48T5OXX)](https://codecov.io/gh/RyuNen344/Dagashi)
 
 ## Android Dagashiとは
