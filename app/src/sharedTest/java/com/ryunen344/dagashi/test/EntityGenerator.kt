@@ -1,12 +1,12 @@
 package com.ryunen344.dagashi.test
 
-import android.util.Base64
 import com.ryunen344.dagashi.data.db.entity.IssueEntity
 import com.ryunen344.dagashi.data.db.entity.MileStoneEntity
+import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndComment
+import com.ryunen344.dagashi.data.db.entity.combined.MileStoneWithSummaryIssue
 import org.threeten.bp.OffsetDateTime
-import kotlin.random.Random
 
-object ModelGenerator {
+object EntityGenerator {
 
     // region issue
     @JvmStatic
@@ -66,6 +66,26 @@ object ModelGenerator {
             )
         )
     }
+
+    @JvmStatic
+    fun createIssueWithLabelAndComment(): IssueWithLabelAndComment {
+        return IssueWithLabelAndComment(
+            createIssue(),
+            emptyList(),
+            emptyList()
+        )
+    }
+
+    @JvmStatic
+    fun createIssueWithLabelAndComments(): List<IssueWithLabelAndComment> {
+        return createIssues().map {
+            IssueWithLabelAndComment(
+                it,
+                emptyList(),
+                emptyList()
+            )
+        }
+    }
     // endregion
 
     // region milestone
@@ -83,11 +103,12 @@ object ModelGenerator {
         )
     }
 
+    @JvmStatic
     fun createMileStones(): List<MileStoneEntity> {
         val now = OffsetDateTime.now()
         return listOf(
             MileStoneEntity(
-                Base64.encodeToString(Random.Default.nextBytes(32), 0),
+                "random_string_1",
                 0,
                 "https://www.google.co.jp/",
                 "title",
@@ -96,7 +117,7 @@ object ModelGenerator {
                 "0-${now.year}-${now.monthValue}-${now.dayOfMonth}"
             ),
             MileStoneEntity(
-                Base64.encodeToString(Random.Default.nextBytes(32), 0),
+                "random_string_2",
                 1,
                 "https://www.google.co.jp/",
                 "title",
@@ -105,7 +126,7 @@ object ModelGenerator {
                 "1-${now.year}-${now.monthValue}-${now.dayOfMonth}"
             ),
             MileStoneEntity(
-                Base64.encodeToString(Random.Default.nextBytes(32), 0),
+                "random_string_3",
                 2,
                 "https://www.google.co.jp/",
                 "title",
@@ -114,7 +135,7 @@ object ModelGenerator {
                 "2-${now.year}-${now.monthValue}-${now.dayOfMonth}"
             ),
             MileStoneEntity(
-                Base64.encodeToString(Random.Default.nextBytes(32), 0),
+                "random_string_4",
                 3,
                 "https://www.google.co.jp/",
                 "title",
@@ -125,5 +146,22 @@ object ModelGenerator {
         )
     }
 
+    @JvmStatic
+    fun createMileStoneWithSummaryIssue(): MileStoneWithSummaryIssue {
+        return MileStoneWithSummaryIssue(
+            createMileStone(),
+            emptyList()
+        )
+    }
+
+    @JvmStatic
+    fun createMileStoneWithSummaryIssues(): List<MileStoneWithSummaryIssue> {
+        return createMileStones().map {
+            MileStoneWithSummaryIssue(
+                it,
+                emptyList()
+            )
+        }
+    }
     // endregion
 }

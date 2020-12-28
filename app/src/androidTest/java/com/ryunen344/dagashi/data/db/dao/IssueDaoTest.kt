@@ -2,8 +2,8 @@ package com.ryunen344.dagashi.data.db.dao
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndComment
+import com.ryunen344.dagashi.test.EntityGenerator
 import com.ryunen344.dagashi.test.MainCoroutineTestRule
-import com.ryunen344.dagashi.test.ModelGenerator
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers
@@ -32,7 +32,7 @@ class IssueDaoTest {
     @Test
     fun writeSingleIssue() {
         runBlocking {
-            val issue = ModelGenerator.createIssue()
+            val issue = EntityGenerator.createIssue()
             dao.insert(issue)
             val result = dao.select(issue.number).first()
             MatcherAssert.assertThat(
@@ -53,7 +53,7 @@ class IssueDaoTest {
     @Test
     fun writeMultipleIssue() {
         runBlocking {
-            val issues = ModelGenerator.createIssues()
+            val issues = EntityGenerator.createIssues()
             dao.insert(issues)
             val result = dao.select(issues.first().number).first()
             MatcherAssert.assertThat(
@@ -74,7 +74,7 @@ class IssueDaoTest {
     @Test
     fun updateSingleIssue() {
         runBlocking {
-            val before = ModelGenerator.createIssue()
+            val before = EntityGenerator.createIssue()
             dao.insert(before)
             val after = before.copy(title = "update title")
             dao.update(after)
@@ -97,7 +97,7 @@ class IssueDaoTest {
     @Test
     fun updateMultipleIssue() {
         runBlocking {
-            val before = ModelGenerator.createIssues()
+            val before = EntityGenerator.createIssues()
             dao.insert(before)
             val after = before.toMutableList().apply {
                 removeAt(0)
@@ -126,7 +126,7 @@ class IssueDaoTest {
     @Test
     fun insertOrUpdateSingleIssue() {
         runBlocking {
-            val before = ModelGenerator.createIssue()
+            val before = EntityGenerator.createIssue()
             dao.insert(before)
             val after = before.copy(title = "update title")
             dao.insertOrUpdate(after)
@@ -149,7 +149,7 @@ class IssueDaoTest {
     @Test
     fun insertOrUpdateMultipleIssue() {
         runBlocking {
-            val before = ModelGenerator.createIssues()
+            val before = EntityGenerator.createIssues()
             dao.insert(before)
             val after = before.toMutableList().apply {
                 removeAt(0)
@@ -178,7 +178,7 @@ class IssueDaoTest {
     @Test
     fun selectKeywordIssue() {
         runBlocking {
-            val issue = ModelGenerator.createIssue()
+            val issue = EntityGenerator.createIssue()
             dao.insert(issue)
             val result = dao.search(issue.title.take(1)).first()
             MatcherAssert.assertThat(
