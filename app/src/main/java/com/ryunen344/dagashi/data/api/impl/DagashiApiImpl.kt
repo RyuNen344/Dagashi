@@ -4,9 +4,11 @@ import com.ryunen344.dagashi.data.api.DagashiApi
 import com.ryunen344.dagashi.data.api.response.IssueRootResponse
 import com.ryunen344.dagashi.data.api.response.MileStonesRootResponse
 import com.ryunen344.dagashi.di.ApiEndpoint
-import io.ktor.client.*
-import io.ktor.client.request.*
-import io.ktor.http.*
+import io.ktor.client.HttpClient
+import io.ktor.client.request.accept
+import io.ktor.client.request.get
+import io.ktor.client.request.url
+import io.ktor.http.ContentType
 import javax.inject.Inject
 
 class DagashiApiImpl @Inject constructor(
