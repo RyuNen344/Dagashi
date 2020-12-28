@@ -2,8 +2,8 @@ package com.ryunen344.dagashi.data.db.dao
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ryunen344.dagashi.data.db.entity.combined.MileStoneWithSummaryIssue
+import com.ryunen344.dagashi.test.EntityGenerator
 import com.ryunen344.dagashi.test.MainCoroutineTestRule
-import com.ryunen344.dagashi.test.ModelGenerator
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers
@@ -32,7 +32,7 @@ class MileStoneDaoTest {
     @Test
     fun insertSingleMileStone() {
         runBlocking {
-            val mileStone = ModelGenerator.createMileStone()
+            val mileStone = EntityGenerator.createMileStone()
             dao.insert(mileStone)
             val result = dao.select().first()
             MatcherAssert.assertThat(
@@ -52,7 +52,7 @@ class MileStoneDaoTest {
     @Test
     fun insertMultipleMiltStone() {
         runBlocking {
-            val mileStones = ModelGenerator.createMileStones()
+            val mileStones = EntityGenerator.createMileStones()
             dao.insert(mileStones)
             val result = dao.select().first()
             MatcherAssert.assertThat(
@@ -75,7 +75,7 @@ class MileStoneDaoTest {
     @Test
     fun insertSameSingleMileStone() {
         runBlocking {
-            val before = ModelGenerator.createMileStone()
+            val before = EntityGenerator.createMileStone()
             dao.insert(before)
             val after = before.copy(title = "update title")
             dao.insert(after)
@@ -97,7 +97,7 @@ class MileStoneDaoTest {
     @Test
     fun insertSameMultipleMileStone() {
         runBlocking {
-            val before = ModelGenerator.createMileStones()
+            val before = EntityGenerator.createMileStones()
             dao.insert(before)
             val after = before.toMutableList().apply {
                 removeAt(0)
@@ -125,7 +125,7 @@ class MileStoneDaoTest {
     @Test
     fun updateSingleMileStone() {
         runBlocking {
-            val before = ModelGenerator.createMileStone()
+            val before = EntityGenerator.createMileStone()
             dao.insert(before)
             val after = before.copy(title = "update title")
             dao.update(after)
@@ -147,7 +147,7 @@ class MileStoneDaoTest {
     @Test
     fun updateMultipleMileStone() {
         runBlocking {
-            val before = ModelGenerator.createMileStones()
+            val before = EntityGenerator.createMileStones()
             dao.insert(before)
             val after = before.toMutableList().apply {
                 removeAt(0)
@@ -176,7 +176,7 @@ class MileStoneDaoTest {
     @Test
     fun insertOrUpdateSingleMileStone() {
         runBlocking {
-            val before = ModelGenerator.createMileStone()
+            val before = EntityGenerator.createMileStone()
             dao.insert(before)
             val insertResult = dao.select().first()
             MatcherAssert.assertThat(
@@ -211,7 +211,7 @@ class MileStoneDaoTest {
     @Test
     fun insertOrUpdateMultipleMileStone() {
         runBlocking {
-            val before = ModelGenerator.createMileStones()
+            val before = EntityGenerator.createMileStones()
             dao.insert(before)
             val after = before.toMutableList().apply {
                 removeAt(0)
