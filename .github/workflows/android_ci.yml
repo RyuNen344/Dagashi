@@ -19,7 +19,7 @@ jobs:
             ~/**/build/**
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
       - name: Build with Gradle
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleDebug --stacktrace
 
   test:
     needs: setup
@@ -34,12 +34,12 @@ jobs:
             ~/**/build/**
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
       - name: Unit Test
-        run: ./gradlew testDebug
+        run: ./gradlew testDebug --stacktrace
       - name: Instrumented Unit Test
         uses: reactivecircus/android-emulator-runner@v2
           with:
             api-level: 30
-            script: ./gradlew connectedCheck
+            script: ./gradlew connectedCheck --stacktrace
       - name: Jacoco
         run: ./gradlew jacocoTestReport
       - name: Upload Coverage
