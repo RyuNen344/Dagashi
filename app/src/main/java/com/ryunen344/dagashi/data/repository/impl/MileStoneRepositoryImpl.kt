@@ -42,6 +42,7 @@ class MileStoneRepositoryImpl @Inject constructor(
             .flowOn(dispatcher)
     }
 
+    @Deprecated("Don't use except for remote test")
     private suspend fun mileStonesFromApi(): List<MileStone> {
         return withContext(dispatcher) {
             dagashiApi.milestones().milestones.nodes.map(MileStoneMapper::toModel)
