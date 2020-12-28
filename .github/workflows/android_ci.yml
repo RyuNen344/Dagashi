@@ -37,9 +37,9 @@ jobs:
         run: ./gradlew testDebug --stacktrace
       - name: Instrumented Unit Test
         uses: reactivecircus/android-emulator-runner@v2
-          with:
-            api-level: 30
-            script: ./gradlew connectedCheck --stacktrace
+        with:
+          api-level: 30
+          script: ./gradlew connectedCheck --stacktrace
       - name: Jacoco
         run: ./gradlew jacocoTestReport
       - name: Upload Coverage
