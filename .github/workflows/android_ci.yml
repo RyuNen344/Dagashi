@@ -36,12 +36,11 @@ jobs:
       - name: Unit Test
         run: ./gradlew testDebug --stacktrace
       - name: Instrumented Unit Test
-        uses: malinskiy/action-android/emulator-run-cmd@release/0.1.0
+        uses: reactivecircus/android-emulator-runner@v2
         with:
-          api: 29
-          abi: x86_64
-          tag: default
-          cmd: ./gradlew connectedCheck --stacktrace --continue
+          api-level: 29
+          arch: x86_64
+          script: ./gradlew connectedCheck --stacktrace --continue
       - name: Jacoco
         run: ./gradlew jacocoTestReport
       - name: Upload Coverage
