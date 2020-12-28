@@ -27,7 +27,7 @@ class MileStoneRepositoryImpl @Inject constructor(
             var previousEndCursor: String? = null
             val result = mutableSetOf<MileStoneWithSummaryIssue>()
             while (hasNextPage) {
-                val response = dagashiApi.milestones(previousEndCursor).milestones
+                val response = if (previousEndCursor == null) dagashiApi.milestones().milestones else dagashiApi.milestones(previousEndCursor).milestones
                 result.addAll(response.nodes.map(MileStoneMapper::toEntity))
                 hasNextPage = response.pageInfo.hasNextPage
                 previousEndCursor = response.pageInfo.endCursor
