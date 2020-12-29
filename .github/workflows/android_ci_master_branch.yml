@@ -29,13 +29,6 @@ jobs:
     runs-on: macos-10.15
     steps:
       - uses: actions/checkout@v2
-      - name: Gradle Cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/**
-            ~/**/build/**
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
       - name: Unit Test
         run: ./gradlew testDebug --stacktrace
       - name: Instrumented Unit Test
