@@ -170,7 +170,9 @@ jacoco {
 task("jacocoMerge", JacocoMerge::class) {
     gradle.afterProject {
         if (project.rootProject != project && project.plugins.hasPlugin("jacoco")) {
-            executionData = files("${project.buildDir}/jacoco/testDebugUnitTest.exec")
+            executionData = fileTree("${project.buildDir}") {
+                includes += mutableSetOf("**/*.exec", "**/*.ec")
+            }
         }
     }
 }
@@ -187,11 +189,7 @@ task("jacocoTestReport", JacocoReport::class) {
     gradle.afterProject {
         if (project.rootProject != project && project.plugins.hasPlugin("jacoco")) {
             sourceDirectories.setFrom("${project.projectDir}/src/main/java")
-            classDirectories.setFrom(
-                project.fileTree(
-                    "${project.buildDir}/tmp/kotlin-classes/debug"
-                )
-            )
+            classDirectories.setFrom("${project.buildDir}/tmp/kotlin-classes/debug", "${project.buildDir}/intermediates/javac/debug/classes")
         }
     }
 }
