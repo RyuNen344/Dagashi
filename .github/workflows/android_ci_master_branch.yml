@@ -26,7 +26,7 @@ jobs:
 
   test:
     needs: setup
-    runs-on: ubuntu-latest
+    runs-on: macos-10.15
     steps:
       - uses: actions/checkout@v2
       - name: Gradle Cache
@@ -39,11 +39,10 @@ jobs:
       - name: Unit Test
         run: ./gradlew testDebug --stacktrace
       - name: Instrumented Unit Test
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: reactivecircus/android-emulator-runner@v2.14.1
         with:
           api-level: 29
           arch: x86_64
-          profile: pixel3
           script: ./gradlew connectedCheck --stacktrace --continue
       - name: Jacoco
         run: ./gradlew jacocoTestReport
