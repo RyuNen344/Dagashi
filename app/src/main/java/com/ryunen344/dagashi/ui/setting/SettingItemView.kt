@@ -29,7 +29,8 @@ class SettingItemView @JvmOverloads constructor(
         context.theme.obtainStyledAttributes(
             attrs,
             R.styleable.SettingItemView,
-            0, 0
+            0,
+            0
         ).run {
             try {
                 binding.apply {

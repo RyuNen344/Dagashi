@@ -13,5 +13,3 @@ interface PathIssuesViewModelOutput {
         class ChromeTabs(val url: String) : OpenUrlModel()
     }
 }
-
-
