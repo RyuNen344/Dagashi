@@ -1,10 +1,14 @@
 package com.ryunen344.dagashi.test
 
+import com.ryunen344.dagashi.data.db.entity.AuthorEntity
+import com.ryunen344.dagashi.data.db.entity.CommentEntity
 import com.ryunen344.dagashi.data.db.entity.IssueEntity
+import com.ryunen344.dagashi.data.db.entity.LabelEntity
 import com.ryunen344.dagashi.data.db.entity.MileStoneEntity
 import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndComment
 import com.ryunen344.dagashi.data.db.entity.combined.MileStoneWithSummaryIssue
 import org.threeten.bp.OffsetDateTime
+import org.threeten.bp.ZoneOffset
 
 object EntityGenerator {
 
@@ -71,8 +75,37 @@ object EntityGenerator {
     fun createIssueWithLabelAndComment(): IssueWithLabelAndComment {
         return IssueWithLabelAndComment(
             createIssue(),
-            emptyList(),
-            emptyList()
+            listOf(createLabel()),
+            listOf(createComment())
+        )
+    }
+
+    @JvmStatic
+    fun createLabel(): LabelEntity {
+        return LabelEntity(
+            name = "name",
+            description = "description",
+            color = "FFFFFF"
+        )
+    }
+
+    @JvmStatic
+    fun createComment(): CommentEntity {
+        return CommentEntity(
+            id = 0,
+            singleUniqueId = "single_unique_id",
+            body = "body",
+            publishedAt = OffsetDateTime.of(2020, 12, 30, 12, 45, 0, 0, ZoneOffset.UTC),
+            author = createAuthor()
+        )
+    }
+
+    @JvmStatic
+    fun createAuthor(): AuthorEntity {
+        return AuthorEntity(
+            login = "RyuNen344",
+            url = "https://github.com/RyuNen344",
+            avatarUrl = "https://avatars2.githubusercontent.com/u/32740480?v=4"
         )
     }
 
