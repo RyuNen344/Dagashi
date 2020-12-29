@@ -28,9 +28,11 @@ class CoilInitializer @Inject constructor(@ApplicationContext private val applic
         val builder = OkHttpClient.Builder()
         builder.cache(CoilUtils.createDefaultCache(context))
         if (BuildConfig.DEBUG) {
-            builder.addInterceptor(HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.HEADERS
-            })
+            builder.addInterceptor(
+                HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.HEADERS
+                }
+            )
         }
         return builder.build()
     }

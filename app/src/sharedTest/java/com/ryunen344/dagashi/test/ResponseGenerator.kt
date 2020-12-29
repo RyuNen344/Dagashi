@@ -53,7 +53,6 @@ object ResponseGenerator {
         )
     }
 
-
     @JvmStatic
     fun createLabelsResponse(): LabelsResponse {
         return LabelsResponse(

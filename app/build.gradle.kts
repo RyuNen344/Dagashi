@@ -189,7 +189,10 @@ task("jacocoTestReport", JacocoReport::class) {
     gradle.afterProject {
         if (project.rootProject != project && project.plugins.hasPlugin("jacoco")) {
             sourceDirectories.setFrom("${project.projectDir}/src/main/java")
-            classDirectories.setFrom("${project.buildDir}/tmp/kotlin-classes/debug", "${project.buildDir}/intermediates/javac/debug/classes")
+            classDirectories.setFrom(
+                "${project.buildDir}/tmp/kotlin-classes/debug",
+                "${project.buildDir}/intermediates/javac/debug/classes"
+            )
         }
     }
 }

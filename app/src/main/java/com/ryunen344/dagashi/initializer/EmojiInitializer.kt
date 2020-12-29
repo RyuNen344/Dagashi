@@ -26,15 +26,17 @@ class EmojiInitializer @Inject constructor(@ApplicationContext private val appli
             // EmojiCompat よって、切り替わった絵文字に色をつける（デバック目的）
             .setEmojiSpanIndicatorEnabled(BuildConfig.DEBUG)
             .setEmojiSpanIndicatorColor(Color.GREEN)
-            .registerInitCallback(object : EmojiCompat.InitCallback() {
-                override fun onInitialized() {
-                    Timber.d("EmojiCompat initialized")
-                }
+            .registerInitCallback(
+                object : EmojiCompat.InitCallback() {
+                    override fun onInitialized() {
+                        Timber.d("EmojiCompat initialized")
+                    }
 
-                override fun onFailed(throwable: Throwable?) {
-                    Timber.e(throwable, "EmojiCompat initialization failed")
+                    override fun onFailed(throwable: Throwable?) {
+                        Timber.e(throwable, "EmojiCompat initialization failed")
+                    }
                 }
-            })
+            )
         EmojiCompat.init(config)
     }
 }
