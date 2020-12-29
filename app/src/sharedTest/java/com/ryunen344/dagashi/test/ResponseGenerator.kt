@@ -92,7 +92,7 @@ object ResponseGenerator {
         return AuthorResponse(
             login = "RyuNen344",
             url = "https://github.com/RyuNen344",
-            avatarUrl = "https://avatars2.githubusercontent.com/u/32740480?v=4",
+            avatarUrl = "https://avatars2.githubusercontent.com/u/32740480?v=4"
         )
     }
     // endregion
