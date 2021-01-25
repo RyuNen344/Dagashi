@@ -25,7 +25,7 @@ data class CommentEntity(
     val singleUniqueId: String,
     @ColumnInfo(name = "body")
     val body: String,
-    @ColumnInfo(name = "publishedAt")
+    @ColumnInfo(name = "published_at")
     val publishedAt: OffsetDateTime,
     @Embedded
     val author: AuthorEntity
