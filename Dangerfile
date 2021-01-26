@@ -18,7 +18,7 @@ github.dismiss_out_of_range_messages
 android_lint.skip_gradle_task = true
 android_lint.filtering = true
 
-android_lint_dir_pattern = "**/build/reports/lint-results.xml"
+android_lint_dir_pattern = "**/lint-results.xml"
 Dir.glob(android_lint_dir_pattern) do |file|
   android_lint.report_file = file
   android_lint.lint(inline_mode: true)
