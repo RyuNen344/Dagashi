@@ -34,12 +34,9 @@ end
 checkstyle_format.base_path = Dir.pwd
 
 # ktlint
-ktlint.skip_gradle_task = true
-ktlint.filtering = true
-ktlint_dir_pattern = "**/build/reports/ktlint/**.xml"
+ktlint_dir_pattern = "**/build/reports/ktlint/*.xml"
 Dir.glob(ktlint_dir_pattern) do |file|
-  checkstyle_format.report file
-  ktlint.lint(inline_mode: true)
+  checkstyle_format.report = file
 end
 
 lgtm.check_lgtm https_image_only: true
