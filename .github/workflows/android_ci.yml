@@ -74,3 +74,5 @@ jobs:
           bundle update
           bundle install
           bundle exec danger
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
