@@ -36,7 +36,7 @@ checkstyle_format.base_path = Dir.pwd
 # ktlint
 ktlint_dir_pattern = "**/ktlint*.xml"
 Dir.glob(ktlint_dir_pattern) do |file|
-  checkstyle_format.report = file
+  checkstyle_format.report file
 end
 
 lgtm.check_lgtm https_image_only: true
