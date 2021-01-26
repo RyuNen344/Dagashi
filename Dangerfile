@@ -36,7 +36,6 @@ checkstyle_format.base_path = Dir.pwd
 # ktlint
 ktlint_dir_pattern = "**/ktlint*.xml"
 Dir.glob(ktlint_dir_pattern) do |file|
-  message file
   checkstyle_format.report = file
 end
 
