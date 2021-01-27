@@ -163,40 +163,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
     )
 }
 
-jacoco {
-    toolVersion = "0.8.5"
-}
-
-task("jacocoMerge", JacocoMerge::class) {
-    gradle.afterProject {
-        if (project.rootProject != project && project.plugins.hasPlugin("jacoco")) {
-            executionData = fileTree("${project.buildDir}") {
-                includes += mutableSetOf("**/*.exec", "**/*.ec")
-            }
-        }
-    }
-}
-
-task("jacocoTestReport", JacocoReport::class) {
-    dependsOn(tasks.getByName("jacocoMerge"))
-    reports {
-        xml.isEnabled = true
-        csv.isEnabled = false
-        html.isEnabled = true
-    }
-    executionData.from += (tasks.getByName("jacocoMerge") as JacocoMerge).destinationFile
-
-    gradle.afterProject {
-        if (project.rootProject != project && project.plugins.hasPlugin("jacoco")) {
-            sourceDirectories.setFrom("${project.projectDir}/src/main/java")
-            classDirectories.setFrom(
-                "${project.buildDir}/tmp/kotlin-classes/debug",
-                "${project.buildDir}/intermediates/javac/debug/classes"
-            )
-        }
-    }
-}
-
 releasesHub {
     dependenciesBasePath = "buildSrc/src/main/kotlin/"
     dependenciesClassNames = listOf("Dep.kt")

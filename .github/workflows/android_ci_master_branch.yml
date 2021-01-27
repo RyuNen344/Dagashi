@@ -38,7 +38,7 @@ jobs:
           arch: x86_64
           script: ./gradlew connectedCheck --stacktrace --continue
       - name: Jacoco
-        run: ./gradlew jacocoTestReport
+        run: ./gradlew jacocoMergedReport
       - name: Upload Coverage
         uses: codecov/codecov-action@v1
         with:

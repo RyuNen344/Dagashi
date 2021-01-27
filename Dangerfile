@@ -39,4 +39,13 @@ Dir.glob(ktlint_dir_pattern) do |file|
   checkstyle_format.report file
 end
 
+####
+#
+# danger-jacoco
+#
+####
+# reference: https://github.com/Malinskiy/danger-jacoco
+
+jacoco.report("build/reports/jacoco/jacocoMergedReport/jacocoMergedReport.xml")
+
 lgtm.check_lgtm https_image_only: true
