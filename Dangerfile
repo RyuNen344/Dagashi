@@ -45,7 +45,6 @@ end
 #
 ####
 # reference: https://github.com/Malinskiy/danger-jacoco
-jacoco_pattern = "./build/reports/jacoco/jacocoMergedReport/jacocoMergedReport.xml"
-jacoco.report(jacoco_pattern)
+jacoco.report(Dir.glob("**/jacocoMergedReport.xml").first)
 
 lgtm.check_lgtm https_image_only: true
