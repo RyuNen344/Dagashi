@@ -10,6 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: run auto update
-        run: ./gradlew app:upgradeDependencies
+        run: ./gradlew upgradeDependencies
         env:
           gitHubWriteToken: ${{ secrets.GITHUB_TOKEN }}

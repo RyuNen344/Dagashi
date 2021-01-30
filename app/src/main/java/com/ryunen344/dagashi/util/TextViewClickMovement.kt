@@ -72,10 +72,10 @@ class TextViewClickMovement(
             val linkText = getLinkText(mWidget, mBuffer, event)
             var linkType = LinkType.NONE
             when {
-                Patterns.PHONE.matcher(linkText).matches()         -> {
+                Patterns.PHONE.matcher(linkText).matches() -> {
                     linkType = LinkType.PHONE
                 }
-                Patterns.WEB_URL.matcher(linkText).matches()       -> {
+                Patterns.WEB_URL.matcher(linkText).matches() -> {
                     linkType = LinkType.WEB_URL
                 }
                 Patterns.EMAIL_ADDRESS.matcher(linkText).matches() -> {
