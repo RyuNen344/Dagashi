@@ -29,6 +29,17 @@ allprojects {
     }
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions.suppressWarnings = false
+    kotlinOptions.freeCompilerArgs = listOf(
+        "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
+        "-Xuse-experimental=kotlinx.serialization.ExperimentalSerializationApi",
+        "-Xuse-experimental=kotlinx.coroutines.InternalCoroutinesApi",
+        "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"
+    )
+}
+
 tasks.register("clean", Delete::class) {
     group = "cleanup"
     delete(rootProject.buildDir)
@@ -70,17 +81,6 @@ task("jacocoMergedReport", JacocoReport::class) {
             classDirectories.setFrom(current.map { it.absolutePath })
         }
     }
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.suppressWarnings = false
-    kotlinOptions.freeCompilerArgs = listOf(
-        "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
-        "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
-        "-Xuse-experimental=kotlinx.serialization.ExperimentalSerializationApi",
-        "-Xuse-experimental=kotlinx.coroutines.InternalCoroutinesApi",
-        "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"
-    )
 }
 
 releasesHub {
