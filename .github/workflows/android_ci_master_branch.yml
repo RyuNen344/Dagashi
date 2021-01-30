@@ -42,8 +42,6 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
       - name: Unit Test
         run: ./gradlew test --stacktrace
-      - name: Unit Test
-        run: ./gradlew testDebug --stacktrace
       - name: Instrumented Test
         uses: reactivecircus/android-emulator-runner@v2.14.3
         with:
