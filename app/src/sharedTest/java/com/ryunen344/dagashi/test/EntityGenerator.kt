@@ -5,6 +5,7 @@ import com.ryunen344.dagashi.data.db.entity.CommentEntity
 import com.ryunen344.dagashi.data.db.entity.IssueEntity
 import com.ryunen344.dagashi.data.db.entity.LabelEntity
 import com.ryunen344.dagashi.data.db.entity.MileStoneEntity
+import com.ryunen344.dagashi.data.db.entity.SummaryIssueEntity
 import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndComment
 import com.ryunen344.dagashi.data.db.entity.combined.MileStoneWithSummaryIssue
 import org.threeten.bp.OffsetDateTime
@@ -181,9 +182,10 @@ object EntityGenerator {
 
     @JvmStatic
     fun createMileStoneWithSummaryIssue(): MileStoneWithSummaryIssue {
+        val mileStoneEntity = createMileStone()
         return MileStoneWithSummaryIssue(
-            createMileStone(),
-            emptyList()
+            mileStoneEntity,
+            listOf(createSummaryIssue(mileStoneEntity))
         )
     }
 
@@ -195,6 +197,15 @@ object EntityGenerator {
                 emptyList()
             )
         }
+    }
+
+    @JvmStatic
+    fun createSummaryIssue(mileStoneEntity: MileStoneEntity): SummaryIssueEntity {
+        return SummaryIssueEntity(
+            0,
+            mileStoneEntity.id,
+            "summary_issue_title"
+        )
     }
     // endregion
 }
