@@ -18,7 +18,7 @@ data class MileStoneEntity(
     val title: String,
     @ColumnInfo(name = "description")
     val description: String,
-    @ColumnInfo(name = "closedAt")
+    @ColumnInfo(name = "closed_at")
     val closedAt: OffsetDateTime,
     @ColumnInfo(name = "path")
     val path: String

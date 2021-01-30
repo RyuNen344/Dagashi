@@ -9,6 +9,6 @@ data class AuthorEntity(
     val login: String,
     @ColumnInfo(name = "url")
     val url: String,
-    @ColumnInfo(name = "avatarUrl")
+    @ColumnInfo(name = "avatar_url")
     val avatarUrl: String
 )
