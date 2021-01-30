@@ -29,15 +29,15 @@
                 android:id="@+id/item_setting_browser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:text="@string/setting_browser"
-                app:isSwitchVisible="true" />
+                app:isSwitchVisible="true"
+                app:text="@string/setting_browser" />
 
             <com.ryunen344.dagashi.ui.setting.SettingItemView
                 android:id="@+id/item_setting_force_refresh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:text="@string/setting_force_refresh"
-                app:isSwitchVisible="false" />
+                app:isSwitchVisible="false"
+                app:text="@string/setting_force_refresh" />
 
         </LinearLayout>
 

@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_mile_stones"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_mile_stones" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/view_recycler"
