@@ -55,13 +55,14 @@ object MileStoneMapper {
     }
 
     @JvmStatic
-    fun toModel(entity: SummaryIssueEntity): SummaryIssue {
+    private fun toModel(entity: SummaryIssueEntity): SummaryIssue {
         return SummaryIssue(
             entity.title
         )
     }
 
     @JvmStatic
+    @Deprecated("Don't use except for remote test")
     fun toModel(node: MileStoneNodeResponse): MileStone {
         return MileStone(
             id = node.id,
