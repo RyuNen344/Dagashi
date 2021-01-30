@@ -100,7 +100,7 @@ ktlint {
     ignoreFailures.set(true)
     coloredOutput.set(true)
     outputColorName.set("RED")
-    additionalEditorconfigFile.set(file("${rootDir.absolutePath}/.editorconfig"))
+    additionalEditorconfigFile.set(file("$rootDir/.editorconfig"))
     reporters {
         reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
     }
