@@ -21,35 +21,15 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew assembleDebug --stacktrace
 
-  test:
+  check:
     needs: setup
     runs-on: macos-10.15
-    steps:
-      - uses: actions/checkout@v2
-      - name: Unit Test
-        run: ./gradlew testDebug --stacktrace
-      - name: Instrumented Unit Test
-        uses: reactivecircus/android-emulator-runner@v2.14.3
-        with:
-          api-level: 29
-          arch: x86_64
-          script: ./gradlew connectedCheck --stacktrace --continue
-      - name: Jacoco
-        run: ./gradlew jacocoTestReport
-      - name: Upload Coverage
-        uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-
-  lint:
-    needs: setup
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Setup ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: '2.7'
+          ruby-version: '2.7.2'
       - name: Gradle Cache
         uses: actions/cache@v2
         with:
@@ -58,19 +38,22 @@ jobs:
             ~/**/build/**
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
       - name: run lint
-        run: ./gradlew lint
+        run: ./gradlew lint --stacktrace
       - name: run ktlint
-        run: ./gradlew ktlintCheck
+        run: ./gradlew ktlintCheck --stacktrace
+      - name: Unit Test
+        run: ./gradlew test --stacktrace
       - name: Unit Test
         run: ./gradlew testDebug --stacktrace
+      - name: Instrumented Test
+        uses: reactivecircus/android-emulator-runner@v2.14.3
+        with:
+          api-level: 29
+          arch: x86_64
+          script: ./gradlew connectedCheck --stacktrace --continue
       - name: Jacoco
         run: ./gradlew jacocoMergedReport
-      - name: Cache Gems
-        uses: actions/cache@v1
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-danger-${{ env.cache-name }}-gems-${{ hashFiles('**/Gemfile') }}
-      - name: run danger
+      - name: Danger
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -78,3 +61,7 @@ jobs:
           bundle update
           bundle install
           bundle exec danger
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

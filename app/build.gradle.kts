@@ -3,7 +3,6 @@ plugins {
     id("androidx.navigation.safeargs")
     id("dagger.hilt.android.plugin")
     id("jacoco")
-    id("com.releaseshub.gradle.plugin")
     id("org.jlleitschuh.gradle.ktlint")
     kotlin("android")
     kotlin("kapt")
@@ -150,42 +149,4 @@ dependencies {
     androidTestImplementation(Dep.Test.Kotlin.Coroutines.test)
     androidTestImplementation(Dep.Test.Android.junit)
     androidTestImplementation(Dep.Test.Android.espresso)
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.suppressWarnings = false
-    kotlinOptions.freeCompilerArgs = listOf(
-        "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
-        "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
-        "-Xuse-experimental=kotlinx.serialization.ExperimentalSerializationApi",
-        "-Xuse-experimental=kotlinx.coroutines.InternalCoroutinesApi",
-        "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"
-    )
-}
-
-releasesHub {
-    dependenciesBasePath = "buildSrc/src/main/kotlin/"
-    dependenciesClassNames = listOf("Dep.kt")
-    pullRequestEnabled = true
-    gitHubRepositoryOwner = "RyuNen344"
-    gitHubRepositoryName = "Dagashi"
-    pullRequestsMax = 2
-    gitHubUserName = "RyuNen344"
-    gitHubUserEmail = "s1100633@outlook.com"
-}
-
-ktlint {
-    verbose.set(true)
-    android.set(true)
-    ignoreFailures.set(true)
-    coloredOutput.set(true)
-    outputColorName.set("RED")
-    additionalEditorconfigFile.set(file("${rootDir.absolutePath}/.editorconfig"))
-    reporters {
-        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
-    }
-    filter {
-        exclude("**/generated/**")
-        include("**/kotlin/**")
-    }
 }

@@ -24,15 +24,24 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew assembleDebug --stacktrace
 
-  test:
+  update-cov:
     needs: setup
     runs-on: macos-10.15
     steps:
       - uses: actions/checkout@v2
+      - name: Gradle Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/**
+            ~/**/build/**
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
+      - name: Unit Test
+        run: ./gradlew test --stacktrace
       - name: Unit Test
         run: ./gradlew testDebug --stacktrace
-      - name: Instrumented Unit Test
-        uses: reactivecircus/android-emulator-runner@v2.14.1
+      - name: Instrumented Test
+        uses: reactivecircus/android-emulator-runner@v2.14.3
         with:
           api-level: 29
           arch: x86_64
