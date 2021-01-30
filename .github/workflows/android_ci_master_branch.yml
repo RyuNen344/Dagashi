@@ -7,7 +7,7 @@ on:
 
 jobs:
   setup:
-    runs-on: ubuntu-latest
+    runs-on: macos-10.15
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 1.8
@@ -24,22 +24,34 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew assembleDebug --stacktrace
 
-  test:
+  update-cov:
     needs: setup
     runs-on: macos-10.15
     steps:
       - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Gradle Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/**
+            ~/**/build/**
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*') }}
       - name: Unit Test
-        run: ./gradlew testDebug --stacktrace
-      - name: Instrumented Unit Test
-        uses: reactivecircus/android-emulator-runner@v2.14.1
+        run: ./gradlew test --stacktrace
+      - name: Instrumented Test
+        uses: reactivecircus/android-emulator-runner@v2.14.3
         with:
           api-level: 29
           arch: x86_64
           script: ./gradlew connectedCheck --stacktrace --continue
       - name: Jacoco
-        run: ./gradlew jacocoTestReport
+        run: ./gradlew jacocoMergedReport
       - name: Upload Coverage
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./build/reports/jacoco/jacocoMergedReport/jacocoMergedReport.xml
