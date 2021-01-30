@@ -22,31 +22,48 @@ buildscript {
 }
 
 allprojects {
+    apply(plugin = "jacoco")
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
     repositories {
         google()
         jcenter()
         maven("https://dl.bintray.com/lisawray/maven")
     }
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.suppressWarnings = false
-    kotlinOptions.freeCompilerArgs = listOf(
-        "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
-        "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
-        "-Xuse-experimental=kotlinx.serialization.ExperimentalSerializationApi",
-        "-Xuse-experimental=kotlinx.coroutines.InternalCoroutinesApi",
-        "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"
-    )
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        kotlinOptions.suppressWarnings = false
+        kotlinOptions.freeCompilerArgs = listOf(
+            "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
+            "-Xuse-experimental=kotlinx.serialization.ExperimentalSerializationApi",
+            "-Xuse-experimental=kotlinx.coroutines.InternalCoroutinesApi",
+            "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"
+        )
+    }
+    afterEvaluate {
+        jacoco {
+            toolVersion = "0.8.2"
+        }
+        ktlint {
+            verbose.set(true)
+            android.set(true)
+            ignoreFailures.set(true)
+            coloredOutput.set(true)
+            outputColorName.set("RED")
+            additionalEditorconfigFile.set(file("${rootDir.absolutePath}/.editorconfig"))
+            reporters {
+                reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
+            }
+            filter {
+                exclude("**/generated/**")
+                include("**/kotlin/**")
+            }
+        }
+    }
 }
 
 tasks.register("clean", Delete::class) {
     group = "cleanup"
     delete(rootProject.buildDir)
-}
-
-jacoco {
-    toolVersion = "0.8.2"
 }
 
 task("jacocoMerge", JacocoMerge::class) {
@@ -70,7 +87,9 @@ task("jacocoMergedReport", JacocoReport::class) {
         csv.isEnabled = false
         html.isEnabled = true
     }
-    executionData.setFrom((tasks.getByName("jacocoMerge") as JacocoMerge).destinationFile.absolutePath)
+    executionData.setFrom(
+        (tasks.getByName("jacocoMerge") as JacocoMerge).destinationFile.absolutePath
+    )
 
     gradle.afterProject {
         if (rootProject != this && plugins.hasPlugin("jacoco")) {
@@ -92,20 +111,4 @@ releasesHub {
     pullRequestsMax = 2
     gitHubUserName = "RyuNen344"
     gitHubUserEmail = "s1100633@outlook.com"
-}
-
-ktlint {
-    verbose.set(true)
-    android.set(true)
-    ignoreFailures.set(true)
-    coloredOutput.set(true)
-    outputColorName.set("RED")
-    additionalEditorconfigFile.set(file("$rootDir/.editorconfig"))
-    reporters {
-        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
-    }
-    filter {
-        exclude("**/generated/**")
-        include("**/kotlin/**")
-    }
 }
