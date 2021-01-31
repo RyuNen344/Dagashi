@@ -37,7 +37,7 @@ object Dep {
         }
 
         object Room {
-            const val version = "2.3.0-alpha03"
+            const val version = "2.3.0-beta01"
             const val core = "androidx.room:room-ktx:$version"
             const val compiler = "androidx.room:room-compiler:$version"
         }
