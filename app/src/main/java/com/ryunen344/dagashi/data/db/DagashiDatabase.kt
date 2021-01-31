@@ -30,6 +30,10 @@ class DagashiDatabase @Inject constructor(
         return cacheDatabase.issueDao.select(number)
     }
 
+    override fun issueOnStashed(): Flow<List<IssueWithLabelAndCommentOnStash>> {
+        return cacheDatabase.issueDao.stashed()
+    }
+
     override fun issueEntityByKeyword(keyword: String): Flow<List<IssueWithLabelAndCommentOnStash>> {
         return cacheDatabase.issueDao.search(keyword)
     }

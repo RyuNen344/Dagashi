@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Hello Dagashi</string>
     <string name="mile_stone_menu_search">検索</string>
+    <string name="mile_stone_menu_stash">保存済み</string>
     <string name="mile_stone_menu_setting">設定</string>
     <string name="issue_button_github">GitHubで見る</string>
     <string name="snack_bar_update">更新されました</string>
