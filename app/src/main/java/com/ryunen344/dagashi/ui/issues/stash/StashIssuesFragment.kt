@@ -18,7 +18,7 @@ import com.ryunen344.dagashi.util.ext.startChromeTabs
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class StashIssuesFragment: Fragment(R.layout.fragment_stash) {
+class StashIssuesFragment : Fragment(R.layout.fragment_stash) {
 
     private val viewModel: StashIssuesViewModel by viewModels()
 
