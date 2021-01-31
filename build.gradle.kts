@@ -108,7 +108,7 @@ releasesHub {
     pullRequestEnabled = true
     gitHubRepositoryOwner = "RyuNen344"
     gitHubRepositoryName = "Dagashi"
-    pullRequestsMax = 2
+    pullRequestsMax = 20
     gitHubUserName = "RyuNen344"
     gitHubUserEmail = "s1100633@outlook.com"
 }
