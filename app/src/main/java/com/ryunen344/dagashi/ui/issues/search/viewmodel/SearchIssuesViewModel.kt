@@ -56,6 +56,16 @@ class SearchIssuesViewModel @ViewModelInject constructor(
         }
     }
 
+    override fun toggleStash(issue: Issue) {
+        viewModelDefaultScope.launch {
+            if (issue.isStashed) {
+                issueRepository.unStashIssue(issue.singleUniqueId)
+            } else {
+                issueRepository.stashIssue(issue.singleUniqueId)
+            }
+        }
+    }
+
     override fun onCleared() {
         viewModelDefaultScope.cancel()
         super.onCleared()

@@ -16,10 +16,12 @@ import com.ryunen344.dagashi.util.ext.dp2px
 import com.ryunen344.dagashi.util.ext.setDebouncingOnClickListener
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Item
 
 class IssuesAdapter(
     private val onLabelClickListener: (label: Label) -> Unit,
     private val onIssueClickListener: (url: String) -> Unit,
+    private val onStashClickListener: (issue: Issue) -> Unit,
     private val onTextViewClickMovementListener: TextViewClickMovement.OnTextViewClickMovementListener
 ) : GroupAdapter<GroupieViewHolder>() {
 
@@ -80,6 +82,12 @@ class IssuesAdapter(
                     }
                 }
 
+                checkboxStash.isChecked = model.isStashed
+
+                checkboxStash.setDebouncingOnClickListener {
+                    onStashClickListener(model)
+                }
+
                 buttonGithub.setDebouncingOnClickListener {
                     onIssueClickListener(model.url)
                 }
@@ -97,10 +105,51 @@ class IssuesAdapter(
             }
         }
 
+        override fun bind(viewBinding: ItemIssueBinding, position: Int, payloads: MutableList<Any>) {
+            if (payloads.isEmpty()) {
+                super.bind(viewBinding, position, payloads)
+            } else {
+                payloads.distinct().forEach { payload ->
+                    when (payload) {
+                        is Payload.IsStashed -> {
+                            viewBinding.checkboxStash.isChecked = payload.isStashed
+                        }
+
+                        is Payload.IsLast -> {
+                            viewBinding.root.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                                setMargins(
+                                    leftMargin,
+                                    topMargin,
+                                    rightMargin,
+                                    viewBinding.root.context.dp2px(
+                                        if (isLast) 18 else 0
+                                    )
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         override fun getLayout(): Int = R.layout.item_issue
 
         override fun initializeViewBinding(view: View): ItemIssueBinding = ItemIssueBinding.bind(view)
 
         override fun providerEquatableContents(): Array<*> = arrayOf(model, isLast)
+
+        override fun getChangePayload(newItem: Item<*>): Any? {
+            return when {
+                newItem !is IssueItem -> null
+                model.isStashed != newItem.model.isStashed -> Payload.IsStashed(newItem.model.isStashed)
+                isLast != newItem.isLast -> Payload.IsLast(newItem.isLast)
+                else -> null
+            }
+        }
+    }
+
+    private sealed class Payload {
+        data class IsStashed(val isStashed: Boolean) : Payload()
+        data class IsLast(val isLast: Boolean) : Payload()
     }
 }

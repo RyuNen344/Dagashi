@@ -43,6 +43,9 @@ class PathIssuesFragment : Fragment(R.layout.fragment_issues) {
             onIssueClickListener = { url ->
                 viewModel.inputUrl(url)
             },
+            onStashClickListener = { issue ->
+                viewModel.toggleStash(issue)
+            },
             object : TextViewClickMovement.OnTextViewClickMovementListener {
                 override fun onLinkClicked(linkText: String, linkType: TextViewClickMovement.LinkType) {
                     if (linkType == TextViewClickMovement.LinkType.WEB_URL) {

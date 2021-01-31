@@ -79,11 +79,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="8dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_comment_divider" />
+
+        <CheckBox
+            android:id="@+id/checkbox_stash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.Dagashi.CheckBox"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="6dp"
+            app:layout_constraintBottom_toBottomOf="@id/button_github"
+            app:layout_constraintEnd_toStartOf="@id/button_github" />
 
         <Button
             android:id="@+id/button_github"
@@ -95,7 +104,7 @@
             android:layout_marginBottom="18dp"
             android:text="@string/issue_button_github"
             android:textSize="12sp"
-            app:icon="@drawable/ic_open_in_new"
+            app:icon="@drawable/ic_octcat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_comment_container" />

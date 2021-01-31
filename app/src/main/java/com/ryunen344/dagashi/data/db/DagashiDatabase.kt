@@ -1,6 +1,7 @@
 package com.ryunen344.dagashi.data.db
 
 import androidx.room.withTransaction
+import com.ryunen344.dagashi.data.db.entity.StashedIssueEntity
 import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndComment
 import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndCommentOnStash
 import com.ryunen344.dagashi.data.db.entity.combined.MileStoneWithSummaryIssue
@@ -49,5 +50,13 @@ class DagashiDatabase @Inject constructor(
             )
             cacheDatabase.commentDao.insertOrUpdate(entity.flatMap { it.comments })
         }
+    }
+
+    override suspend fun stashIssue(stashedIssueEntity: StashedIssueEntity) {
+        cacheDatabase.stashedIssueDao.insertOrUpdate(stashedIssueEntity)
+    }
+
+    override suspend fun unStashIssue(stashedIssueEntity: StashedIssueEntity) {
+        cacheDatabase.stashedIssueDao.delete(stashedIssueEntity)
     }
 }
