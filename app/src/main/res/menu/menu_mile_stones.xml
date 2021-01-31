@@ -9,6 +9,12 @@
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
+        android:id="@+id/stash"
+        android:icon="@drawable/ic_unstash"
+        android:title="@string/mile_stone_menu_stash"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
         android:id="@+id/setting"
         android:icon="@drawable/ic_setting"
         android:title="@string/mile_stone_menu_setting"

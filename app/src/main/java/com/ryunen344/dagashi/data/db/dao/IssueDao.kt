@@ -18,6 +18,10 @@ abstract class IssueDao : BaseDao<IssueEntity>() {
     abstract fun select(number: Int): Flow<List<IssueWithLabelAndCommentOnStash>>
 
     @Transaction
+    @Query("SELECT issue.*, 1 AS is_stashed FROM issue JOIN stashed_issue ON issue.single_unique_id = stashed_issue.single_unique_id ORDER BY id ASC")
+    abstract fun stashed(): Flow<List<IssueWithLabelAndCommentOnStash>>
+
+    @Transaction
     @Query("SELECT *, EXISTS (SELECT * FROM stashed_issue WHERE single_unique_id = issue.single_unique_id) AS is_stashed FROM issue JOIN IssueFts ON issue.title == IssueFts.title AND issue.body == IssueFts.body WHERE IssueFts MATCH '*'||:keyword||'*'")
     abstract fun search(keyword: String): Flow<List<IssueWithLabelAndCommentOnStash>>
 }

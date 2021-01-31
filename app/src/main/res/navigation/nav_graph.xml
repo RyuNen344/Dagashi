@@ -14,6 +14,9 @@
             android:id="@+id/action_mileStones_to_search"
             app:destination="@id/search" />
         <action
+            android:id="@+id/action_mileStones_to_stash"
+            app:destination="@id/stash" />
+        <action
             android:id="@+id/action_mileStones_to_setting"
             app:destination="@id/setting" />
     </fragment>
@@ -39,6 +42,15 @@
             android:id="@+id/action_issues_to_web"
             app:destination="@id/web" />
     </fragment>
+
+    <fragment
+        android:id="@+id/stash"
+        android:name="com.ryunen344.dagashi.ui.issues.stash.StashIssuesFragment">
+        <action
+            android:id="@+id/action_issues_to_web"
+            app:destination="@id/web" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/setting"

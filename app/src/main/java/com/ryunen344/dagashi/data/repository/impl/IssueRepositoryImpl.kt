@@ -46,6 +46,12 @@ class IssueRepositoryImpl @Inject constructor(
             .flowOn(dispatcher)
     }
 
+    override fun issueOnStashed(): Flow<List<Issue>> {
+        return issueDatabase.issueOnStashed()
+            .map { it.map(::toModel) }
+            .flowOn(dispatcher)
+    }
+
     override fun issueByKeyword(keyword: String): Flow<List<Issue>> {
         return issueDatabase.issueEntityByKeyword(keyword)
             .map { it.map(::toModel) }

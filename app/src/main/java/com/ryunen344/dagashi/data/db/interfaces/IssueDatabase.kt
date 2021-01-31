@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.Flow
 interface IssueDatabase {
     fun issueEntity(number: Int): Flow<List<IssueWithLabelAndCommentOnStash>>
 
+    fun issueOnStashed(): Flow<List<IssueWithLabelAndCommentOnStash>>
+
     fun issueEntityByKeyword(keyword: String): Flow<List<IssueWithLabelAndCommentOnStash>>
 
     suspend fun saveIssue(entity: List<IssueWithLabelAndComment>)

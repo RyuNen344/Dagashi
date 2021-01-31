@@ -8,5 +8,6 @@ interface IssueRepository {
     suspend fun stashIssue(singleUniqueId: String)
     suspend fun unStashIssue(singleUniqueId: String)
     fun issue(number: Int): Flow<List<Issue>>
+    fun issueOnStashed(): Flow<List<Issue>>
     fun issueByKeyword(keyword: String): Flow<List<Issue>>
 }
