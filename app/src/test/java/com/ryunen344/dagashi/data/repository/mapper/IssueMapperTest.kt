@@ -36,21 +36,21 @@ class IssueMapperTest {
 
     @Test
     fun toIssue() {
-        val response = EntityGenerator.createIssueWithLabelAndComment()
+        val response = EntityGenerator.createIssueWithLabelAndCommentOnStash()
         val result = IssueMapper.toModel(response)
 
-        MatcherAssert.assertThat(result.url, CoreMatchers.equalTo(response.issueEntity.url))
-        MatcherAssert.assertThat(result.title, CoreMatchers.equalTo(response.issueEntity.title))
-        MatcherAssert.assertThat(result.body, CoreMatchers.equalTo(response.issueEntity.body))
+        MatcherAssert.assertThat(result.url, CoreMatchers.equalTo(response.issueWithLabelAndComment.issueEntity.url))
+        MatcherAssert.assertThat(result.title, CoreMatchers.equalTo(response.issueWithLabelAndComment.issueEntity.title))
+        MatcherAssert.assertThat(result.body, CoreMatchers.equalTo(response.issueWithLabelAndComment.issueEntity.body))
 
-        MatcherAssert.assertThat(result.labels.first().name, CoreMatchers.equalTo(response.labels.first().name))
-        MatcherAssert.assertThat(result.labels.first().description, CoreMatchers.equalTo(response.labels.first().description))
-        MatcherAssert.assertThat(result.labels.first().color, CoreMatchers.equalTo(response.labels.first().color))
+        MatcherAssert.assertThat(result.labels.first().name, CoreMatchers.equalTo(response.issueWithLabelAndComment.labels.first().name))
+        MatcherAssert.assertThat(result.labels.first().description, CoreMatchers.equalTo(response.issueWithLabelAndComment.labels.first().description))
+        MatcherAssert.assertThat(result.labels.first().color, CoreMatchers.equalTo(response.issueWithLabelAndComment.labels.first().color))
 
-        MatcherAssert.assertThat(result.comments.first().body, CoreMatchers.equalTo(response.comments.first().body))
-        MatcherAssert.assertThat(result.comments.first().publishedAt, CoreMatchers.equalTo(response.comments.first().publishedAt))
-        MatcherAssert.assertThat(result.comments.first().author.login, CoreMatchers.equalTo(response.comments.first().author.login))
-        MatcherAssert.assertThat(result.comments.first().author.url, CoreMatchers.equalTo(response.comments.first().author.url))
-        MatcherAssert.assertThat(result.comments.first().author.avatarUrl, CoreMatchers.equalTo(response.comments.first().author.avatarUrl))
+        MatcherAssert.assertThat(result.comments.first().body, CoreMatchers.equalTo(response.issueWithLabelAndComment.comments.first().body))
+        MatcherAssert.assertThat(result.comments.first().publishedAt, CoreMatchers.equalTo(response.issueWithLabelAndComment.comments.first().publishedAt))
+        MatcherAssert.assertThat(result.comments.first().author.login, CoreMatchers.equalTo(response.issueWithLabelAndComment.comments.first().author.login))
+        MatcherAssert.assertThat(result.comments.first().author.url, CoreMatchers.equalTo(response.issueWithLabelAndComment.comments.first().author.url))
+        MatcherAssert.assertThat(result.comments.first().author.avatarUrl, CoreMatchers.equalTo(response.issueWithLabelAndComment.comments.first().author.avatarUrl))
     }
 }

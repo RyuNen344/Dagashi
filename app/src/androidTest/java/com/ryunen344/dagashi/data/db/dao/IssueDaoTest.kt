@@ -2,6 +2,7 @@ package com.ryunen344.dagashi.data.db.dao
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndComment
+import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndCommentOnStash
 import com.ryunen344.dagashi.test.EntityGenerator
 import com.ryunen344.dagashi.test.MainCoroutineTestRule
 import kotlinx.coroutines.flow.first
@@ -39,10 +40,13 @@ class IssueDaoTest {
                 result,
                 CoreMatchers.equalTo(
                     listOf(
-                        IssueWithLabelAndComment(
-                            issue,
-                            emptyList(),
-                            emptyList()
+                        IssueWithLabelAndCommentOnStash(
+                            IssueWithLabelAndComment(
+                                issue,
+                                emptyList(),
+                                emptyList()
+                            ),
+                            false
                         )
                     )
                 )
@@ -60,10 +64,13 @@ class IssueDaoTest {
                 result,
                 CoreMatchers.equalTo(
                     issues.map {
-                        IssueWithLabelAndComment(
-                            it,
-                            emptyList(),
-                            emptyList()
+                        IssueWithLabelAndCommentOnStash(
+                            IssueWithLabelAndComment(
+                                it,
+                                emptyList(),
+                                emptyList()
+                            ),
+                            false
                         )
                     }
                 )
@@ -83,10 +90,13 @@ class IssueDaoTest {
                 result,
                 CoreMatchers.equalTo(
                     listOf(
-                        IssueWithLabelAndComment(
-                            after,
-                            emptyList(),
-                            emptyList()
+                        IssueWithLabelAndCommentOnStash(
+                            IssueWithLabelAndComment(
+                                after,
+                                emptyList(),
+                                emptyList()
+                            ),
+                            false
                         )
                     )
                 )
@@ -109,13 +119,15 @@ class IssueDaoTest {
                 result,
                 CoreMatchers.equalTo(
                     after
-                        .sortedByDescending {
-                            it.number
-                        }.map {
-                            IssueWithLabelAndComment(
-                                it,
-                                emptyList(),
-                                emptyList()
+                        .sortedByDescending { it.number }
+                        .map {
+                            IssueWithLabelAndCommentOnStash(
+                                IssueWithLabelAndComment(
+                                    it,
+                                    emptyList(),
+                                    emptyList()
+                                ),
+                                false
                             )
                         }
                 )
@@ -135,10 +147,13 @@ class IssueDaoTest {
                 result,
                 CoreMatchers.equalTo(
                     listOf(
-                        IssueWithLabelAndComment(
-                            after,
-                            emptyList(),
-                            emptyList()
+                        IssueWithLabelAndCommentOnStash(
+                            IssueWithLabelAndComment(
+                                after,
+                                emptyList(),
+                                emptyList()
+                            ),
+                            false
                         )
                     )
                 )
@@ -164,10 +179,13 @@ class IssueDaoTest {
                         .sortedByDescending {
                             it.number
                         }.map {
-                            IssueWithLabelAndComment(
-                                it,
-                                emptyList(),
-                                emptyList()
+                            IssueWithLabelAndCommentOnStash(
+                                IssueWithLabelAndComment(
+                                    it,
+                                    emptyList(),
+                                    emptyList()
+                                ),
+                                false
                             )
                         }
                 )
@@ -185,10 +203,13 @@ class IssueDaoTest {
                 result,
                 CoreMatchers.equalTo(
                     listOf(
-                        IssueWithLabelAndComment(
-                            issue,
-                            emptyList(),
-                            emptyList()
+                        IssueWithLabelAndCommentOnStash(
+                            IssueWithLabelAndComment(
+                                issue,
+                                emptyList(),
+                                emptyList()
+                            ),
+                            false
                         )
                     )
                 )

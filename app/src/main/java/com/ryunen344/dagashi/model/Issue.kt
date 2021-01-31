@@ -5,5 +5,6 @@ data class Issue(
     val title: String,
     val body: String,
     val labels: List<Label>,
-    val comments: List<Comment>
+    val comments: List<Comment>,
+    val isStashed: Boolean
 )

@@ -7,6 +7,7 @@ import com.ryunen344.dagashi.data.db.entity.LabelEntity
 import com.ryunen344.dagashi.data.db.entity.MileStoneEntity
 import com.ryunen344.dagashi.data.db.entity.SummaryIssueEntity
 import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndComment
+import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndCommentOnStash
 import com.ryunen344.dagashi.data.db.entity.combined.MileStoneWithSummaryIssue
 import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.ZoneOffset
@@ -73,15 +74,6 @@ object EntityGenerator {
     }
 
     @JvmStatic
-    fun createIssueWithLabelAndComment(): IssueWithLabelAndComment {
-        return IssueWithLabelAndComment(
-            createIssue(),
-            listOf(createLabel()),
-            listOf(createComment())
-        )
-    }
-
-    @JvmStatic
     fun createLabel(): LabelEntity {
         return LabelEntity(
             name = "name",
@@ -111,12 +103,39 @@ object EntityGenerator {
     }
 
     @JvmStatic
+    fun createIssueWithLabelAndComment(): IssueWithLabelAndComment {
+        return IssueWithLabelAndComment(
+            createIssue(),
+            listOf(createLabel()),
+            listOf(createComment())
+        )
+    }
+
+    @JvmStatic
     fun createIssueWithLabelAndComments(): List<IssueWithLabelAndComment> {
         return createIssues().map {
             IssueWithLabelAndComment(
                 it,
-                emptyList(),
-                emptyList()
+                listOf(createLabel()),
+                listOf(createComment())
+            )
+        }
+    }
+
+    @JvmStatic
+    fun createIssueWithLabelAndCommentOnStash(): IssueWithLabelAndCommentOnStash {
+        return IssueWithLabelAndCommentOnStash(
+            createIssueWithLabelAndComment(),
+            false
+        )
+    }
+
+    @JvmStatic
+    fun createIssueWithLabelAndCommentOnStashes(): List<IssueWithLabelAndCommentOnStash> {
+        return createIssueWithLabelAndComments().map {
+            IssueWithLabelAndCommentOnStash(
+                it,
+                false
             )
         }
     }
