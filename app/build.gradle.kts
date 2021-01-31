@@ -70,12 +70,6 @@ android {
     testOptions {
         unitTests.isIncludeAndroidResources = true
     }
-    lintOptions {
-        disable += setOf(
-            "UnsafeExperimentalUsageError",
-            "UnsafeExperimentalUsageWarning"
-        )
-    }
     packagingOptions {
         exclude("META-INF/*")
     }
