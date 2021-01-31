@@ -9,4 +9,13 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="Widget.Dagashi.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
+        <item name="enforceMaterialTheme">false</item>
+        <item name="useMaterialThemeColors">false</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@drawable/selector_stash</item>
+    </style>
 </resources>

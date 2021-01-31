@@ -37,6 +37,9 @@ class SearchIssuesFragment : Fragment(R.layout.fragment_search) {
             onIssueClickListener = { url ->
                 viewModel.inputUrl(url)
             },
+            onStashClickListener = { issue ->
+                viewModel.toggleStash(issue)
+            },
             object : TextViewClickMovement.OnTextViewClickMovementListener {
                 override fun onLinkClicked(linkText: String, linkType: TextViewClickMovement.LinkType) {
                     if (linkType == TextViewClickMovement.LinkType.WEB_URL) {

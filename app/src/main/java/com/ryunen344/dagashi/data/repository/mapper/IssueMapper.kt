@@ -2,7 +2,6 @@ package com.ryunen344.dagashi.data.repository.mapper
 
 import com.ryunen344.dagashi.data.api.response.CommentNodeResponse
 import com.ryunen344.dagashi.data.api.response.CommentsResponse
-import com.ryunen344.dagashi.data.api.response.IssueNodeResponse
 import com.ryunen344.dagashi.data.api.response.IssueRootResponse
 import com.ryunen344.dagashi.data.api.response.LabelNodeResponse
 import com.ryunen344.dagashi.data.api.response.LabelsResponse
@@ -10,6 +9,7 @@ import com.ryunen344.dagashi.data.db.entity.AuthorEntity
 import com.ryunen344.dagashi.data.db.entity.CommentEntity
 import com.ryunen344.dagashi.data.db.entity.IssueEntity
 import com.ryunen344.dagashi.data.db.entity.LabelEntity
+import com.ryunen344.dagashi.data.db.entity.StashedIssueEntity
 import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndComment
 import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndCommentOnStash
 import com.ryunen344.dagashi.model.Author
@@ -65,8 +65,14 @@ object IssueMapper {
     }
 
     @JvmStatic
+    fun toEntity(singleUniqueId: String): StashedIssueEntity {
+        return StashedIssueEntity(singleUniqueId = singleUniqueId)
+    }
+
+    @JvmStatic
     fun toModel(entity: IssueWithLabelAndCommentOnStash): Issue {
         return Issue(
+            singleUniqueId = entity.issueWithLabelAndComment.issueEntity.singleUniqueId,
             url = entity.issueWithLabelAndComment.issueEntity.url,
             title = entity.issueWithLabelAndComment.issueEntity.title,
             body = entity.issueWithLabelAndComment.issueEntity.body,
@@ -99,15 +105,18 @@ object IssueMapper {
     }
 
     @JvmStatic
-    fun toModel(node: IssueNodeResponse): Issue {
-        return Issue(
-            url = node.url,
-            title = node.title,
-            body = node.body,
-            labels = node.labels.nodes.map(::toModel),
-            comments = node.comments.nodes.map(::toModel),
-            isStashed = false
-        )
+    fun toModel(response: IssueRootResponse): List<Issue> {
+        return response.issues.nodes.mapIndexed { index, node ->
+            Issue(
+                singleUniqueId = "${response.number}_$index",
+                url = node.url,
+                title = node.title,
+                body = node.body,
+                labels = node.labels.nodes.map(::toModel),
+                comments = node.comments.nodes.map(::toModel),
+                isStashed = false
+            )
+        }
     }
 
     @JvmStatic

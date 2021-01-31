@@ -4,6 +4,7 @@ import com.ryunen344.dagashi.data.api.DagashiApi
 import com.ryunen344.dagashi.data.db.interfaces.IssueDatabase
 import com.ryunen344.dagashi.data.repository.IssueRepository
 import com.ryunen344.dagashi.data.repository.mapper.IssueMapper
+import com.ryunen344.dagashi.data.repository.mapper.IssueMapper.toEntity
 import com.ryunen344.dagashi.data.repository.mapper.IssueMapper.toModel
 import com.ryunen344.dagashi.di.IoDispatcher
 import com.ryunen344.dagashi.model.Issue
@@ -27,6 +28,18 @@ class IssueRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun stashIssue(singleUniqueId: String) {
+        withContext(dispatcher) {
+            issueDatabase.stashIssue(toEntity(singleUniqueId))
+        }
+    }
+
+    override suspend fun unStashIssue(singleUniqueId: String) {
+        withContext(dispatcher) {
+            issueDatabase.unStashIssue(toEntity(singleUniqueId))
+        }
+    }
+
     override fun issue(number: Int): Flow<List<Issue>> {
         return issueDatabase.issueEntity(number)
             .map { it.map(::toModel) }
@@ -42,7 +55,7 @@ class IssueRepositoryImpl @Inject constructor(
     @Deprecated("Don't use except for remote test")
     private suspend fun issueFromApi(path: String): List<Issue> {
         return withContext(dispatcher) {
-            dagashiApi.issues(path).issues.nodes.map(IssueMapper::toModel)
+            toModel(dagashiApi.issues(path))
         }
     }
 }

@@ -71,8 +71,7 @@ class PathIssuesViewModel @AssistedInject constructor(
     private fun bindOutput() {
         issues
             .drop(1)
-            // TODO: 2021/01/31
-            .zip(issues) { new, old -> new != old }
+            .zip(issues) { new, old -> new.map { it.copy(isStashed = false) } != old.map { it.copy(isStashed = false) } }
             .filter { it }
             .flowOn(defaultDispatcher)
             .onEach {
@@ -89,6 +88,16 @@ class PathIssuesViewModel @AssistedInject constructor(
     override fun inputUrl(url: String) {
         viewModelDefaultScope.launch {
             openUrl.emit(url)
+        }
+    }
+
+    override fun toggleStash(issue: Issue) {
+        viewModelDefaultScope.launch {
+            if (issue.isStashed) {
+                issueRepository.unStashIssue(issue.singleUniqueId)
+            } else {
+                issueRepository.stashIssue(issue.singleUniqueId)
+            }
         }
     }
 
