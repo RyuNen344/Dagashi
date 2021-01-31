@@ -105,7 +105,7 @@ object Dep {
 
     object Groupie {
         const val groupie = "com.xwray:groupie:2.9.0"
-        const val viewbinding = "com.xwray:groupie-viewbinding:2.8.0"
+        const val viewbinding = "com.xwray:groupie-viewbinding:2.9.0"
     }
 
     object Coil {
