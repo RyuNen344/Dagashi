@@ -17,7 +17,6 @@ import com.ryunen344.dagashi.util.ext.setDebouncingOnClickListener
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
-import ru.ldralighieri.corbind.view.clicks
 
 class IssuesAdapter(
     private val onLabelClickListener: (label: Label) -> Unit,
@@ -107,7 +106,7 @@ class IssuesAdapter(
         }
 
         override fun bind(viewBinding: ItemIssueBinding, position: Int, payloads: MutableList<Any>) {
-            if(payloads.isEmpty()) {
+            if (payloads.isEmpty()) {
                 super.bind(viewBinding, position, payloads)
             } else {
                 payloads.distinct().forEach { payload ->
@@ -129,10 +128,8 @@ class IssuesAdapter(
                             }
                         }
                     }
-
                 }
             }
-
         }
 
         override fun getLayout(): Int = R.layout.item_issue
@@ -152,7 +149,7 @@ class IssuesAdapter(
     }
 
     private sealed class Payload {
-        data class IsStashed(val isStashed: Boolean): Payload()
-        data class IsLast(val isLast: Boolean): Payload()
+        data class IsStashed(val isStashed: Boolean) : Payload()
+        data class IsLast(val isLast: Boolean) : Payload()
     }
 }
