@@ -109,7 +109,7 @@ object Dep {
     }
 
     object Coil {
-        const val coil = "io.coil-kt:coil:1.0.0"
+        const val coil = "io.coil-kt:coil:1.1.1"
     }
 
     object Timber {
