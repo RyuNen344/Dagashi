@@ -11,6 +11,7 @@ import com.ryunen344.dagashi.data.db.entity.CommentEntity
 import com.ryunen344.dagashi.data.db.entity.IssueEntity
 import com.ryunen344.dagashi.data.db.entity.LabelEntity
 import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndComment
+import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndCommentOnStash
 import com.ryunen344.dagashi.model.Author
 import com.ryunen344.dagashi.model.Comment
 import com.ryunen344.dagashi.model.Issue
@@ -36,7 +37,7 @@ object IssueMapper {
     }
 
     @JvmStatic
-    private fun toEntity(response: LabelsResponse): List<LabelEntity> {
+    fun toEntity(response: LabelsResponse): List<LabelEntity> {
         return response.nodes.map {
             LabelEntity(
                 name = it.name,
@@ -47,7 +48,7 @@ object IssueMapper {
     }
 
     @JvmStatic
-    private fun toEntity(singleUniqueId: String, response: CommentsResponse): List<CommentEntity> {
+    fun toEntity(singleUniqueId: String, response: CommentsResponse): List<CommentEntity> {
         return response.nodes.mapIndexed { index, node ->
             CommentEntity(
                 id = index,
@@ -64,13 +65,14 @@ object IssueMapper {
     }
 
     @JvmStatic
-    fun toModel(entity: IssueWithLabelAndComment): Issue {
+    fun toModel(entity: IssueWithLabelAndCommentOnStash): Issue {
         return Issue(
-            url = entity.issueEntity.url,
-            title = entity.issueEntity.title,
-            body = entity.issueEntity.body,
-            labels = entity.labels.map(::toModel),
-            comments = entity.comments.map(::toModel)
+            url = entity.issueWithLabelAndComment.issueEntity.url,
+            title = entity.issueWithLabelAndComment.issueEntity.title,
+            body = entity.issueWithLabelAndComment.issueEntity.body,
+            labels = entity.issueWithLabelAndComment.labels.map(::toModel),
+            comments = entity.issueWithLabelAndComment.comments.map(::toModel),
+            isStashed = entity.isStashed
         )
     }
 
@@ -103,7 +105,8 @@ object IssueMapper {
             title = node.title,
             body = node.body,
             labels = node.labels.nodes.map(::toModel),
-            comments = node.comments.nodes.map(::toModel)
+            comments = node.comments.nodes.map(::toModel),
+            isStashed = false
         )
     }
 

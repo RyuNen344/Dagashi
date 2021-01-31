@@ -2,6 +2,7 @@ package com.ryunen344.dagashi.data.db
 
 import androidx.room.withTransaction
 import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndComment
+import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndCommentOnStash
 import com.ryunen344.dagashi.data.db.entity.combined.MileStoneWithSummaryIssue
 import com.ryunen344.dagashi.data.db.entity.relation.IssueLabelCrossRef
 import com.ryunen344.dagashi.data.db.interfaces.IssueDatabase
@@ -24,11 +25,11 @@ class DagashiDatabase @Inject constructor(
         }
     }
 
-    override fun issueEntity(number: Int): Flow<List<IssueWithLabelAndComment>> {
+    override fun issueEntity(number: Int): Flow<List<IssueWithLabelAndCommentOnStash>> {
         return cacheDatabase.issueDao.select(number)
     }
 
-    override fun issueEntityByKeyword(keyword: String): Flow<List<IssueWithLabelAndComment>> {
+    override fun issueEntityByKeyword(keyword: String): Flow<List<IssueWithLabelAndCommentOnStash>> {
         return cacheDatabase.issueDao.search(keyword)
     }
 

@@ -47,7 +47,7 @@ class IssueRepositoryImplTest {
     @Test
     fun issue() {
         mainCoroutineTestRule.runBlockingTest {
-            val db = EntityGenerator.createIssueWithLabelAndComments()
+            val db = EntityGenerator.createIssueWithLabelAndCommentOnStashes()
 
             coEvery { mockIssueDatabase.issueEntity(0) } answers { flowOf(db) }
 
@@ -62,7 +62,7 @@ class IssueRepositoryImplTest {
     @Test
     fun issueByKeyword() {
         mainCoroutineTestRule.runBlockingTest {
-            val db = EntityGenerator.createIssueWithLabelAndComments()
+            val db = EntityGenerator.createIssueWithLabelAndCommentOnStashes()
 
             coEvery { mockIssueDatabase.issueEntityByKeyword("keyword") } answers { flowOf(db) }
 

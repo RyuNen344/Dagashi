@@ -71,6 +71,7 @@ class PathIssuesViewModel @AssistedInject constructor(
     private fun bindOutput() {
         issues
             .drop(1)
+            // TODO: 2021/01/31
             .zip(issues) { new, old -> new != old }
             .filter { it }
             .flowOn(defaultDispatcher)
