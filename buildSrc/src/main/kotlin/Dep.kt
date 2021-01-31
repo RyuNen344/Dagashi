@@ -24,7 +24,7 @@ object Dep {
         const val browser = "androidx.browser:browser:1.3.0"
 
         object LifeCycle {
-            private const val version = "2.3.0-beta01"
+            private const val version = "2.3.0-rc01"
             const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
             const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
             const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:$version"
