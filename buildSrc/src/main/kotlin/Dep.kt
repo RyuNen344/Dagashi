@@ -1,7 +1,7 @@
 object Dep {
 
     object GradlePlugin {
-        const val android = "com.android.tools.build:gradle:4.1.1"
+        const val android = "com.android.tools.build:gradle:4.1.2"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Android.Navigation.version}"
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Dagger.version}"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.version}"
