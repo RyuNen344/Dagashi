@@ -6,7 +6,6 @@ import androidx.room.Relation
 import com.ryunen344.dagashi.data.db.entity.CommentEntity
 import com.ryunen344.dagashi.data.db.entity.IssueEntity
 import com.ryunen344.dagashi.data.db.entity.LabelEntity
-import com.ryunen344.dagashi.data.db.entity.StashedIssueEntity
 import com.ryunen344.dagashi.data.db.entity.relation.IssueLabelCrossRef
 
 data class IssueWithLabelAndComment(
