@@ -88,7 +88,7 @@ object Dep {
         const val core = "ru.ldralighieri.corbind:corbind:1.4.0"
         const val appcompat = "ru.ldralighieri.corbind:corbind-appcompat:1.4.0"
         const val navigation = "ru.ldralighieri.corbind:corbind-navigation:1.4.0"
-        const val recycler = "ru.ldralighieri.corbind:corbind-recyclerview:$version"
+        const val recycler = "ru.ldralighieri.corbind:corbind-recyclerview:1.4.0"
         const val material = "ru.ldralighieri.corbind:corbind-material:1.4.0"
     }
 
