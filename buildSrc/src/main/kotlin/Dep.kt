@@ -142,7 +142,7 @@ object Dep {
         }
 
         object Mockk {
-            const val mock = "io.mockk:mockk:1.10.5"
+            const val mock = "io.mockk:mockk:1.10.6"
         }
     }
 }
