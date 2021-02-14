@@ -122,7 +122,7 @@ object Dep {
     }
 
     object Test {
-        const val junit = "junit:junit:4.13.1"
+        const val junit = "junit:junit:4.13.2"
 
         object Android {
             const val core = "androidx.test:core-ktx:1.3.0"
