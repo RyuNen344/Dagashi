@@ -9,7 +9,7 @@ object Dep {
         const val releaseHubVersion = "1.6.1"
         const val releaseHub = "com.releaseshub:releases-hub-gradle-plugin:$releaseHubVersion"
         const val ktlintVersion = "9.4.1"
-        const val ktlint = "org.jlleitschuh.gradle:ktlint-gradle:9.4.1"
+        const val ktlint = "org.jlleitschuh.gradle:ktlint-gradle:10.0.0"
     }
 
     object Android {
