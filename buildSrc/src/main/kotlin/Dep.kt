@@ -26,7 +26,7 @@ object Dep {
         object LifeCycle {
             private const val version = "2.3.0-rc01"
             const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
-            const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+            const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0"
             const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:2.3.0"
         }
 
