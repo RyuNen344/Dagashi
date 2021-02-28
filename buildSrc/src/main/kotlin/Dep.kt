@@ -55,7 +55,7 @@ object Dep {
 
         object Coroutines {
             const val version = "1.4.2"
-            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2"
+            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
         }
 
         object Serialization {
