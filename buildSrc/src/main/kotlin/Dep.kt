@@ -18,7 +18,7 @@ object Dep {
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
         const val emoji = "androidx.emoji:emoji-appcompat:1.2.0-alpha01"
         const val material = "com.google.android.material:material:1.3.0-alpha03"
-        const val activity = "androidx.activity:activity-ktx:1.2.0-beta01"
+        const val activity = "androidx.activity:activity-ktx:1.2.0"
         const val fragment = "androidx.fragment:fragment-ktx:1.3.0"
         const val recycler = "androidx.recyclerview:recyclerview:1.2.0-alpha06"
         const val browser = "androidx.browser:browser:1.3.0"
@@ -122,7 +122,7 @@ object Dep {
     }
 
     object Test {
-        const val junit = "junit:junit:4.13.1"
+        const val junit = "junit:junit:4.13.2"
 
         object Android {
             const val core = "androidx.test:core-ktx:1.3.0"
@@ -142,7 +142,7 @@ object Dep {
         }
 
         object Mockk {
-            const val mock = "io.mockk:mockk:1.10.5"
+            const val mock = "io.mockk:mockk:1.10.6"
         }
     }
 }
