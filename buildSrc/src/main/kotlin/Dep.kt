@@ -84,7 +84,7 @@ object Dep {
     }
 
     object Corbind {
-        private const val version = "1.4.0"
+        private const val version = "1.5.0"
         const val core = "ru.ldralighieri.corbind:corbind:$version"
         const val appcompat = "ru.ldralighieri.corbind:corbind-appcompat:$version"
         const val navigation = "ru.ldralighieri.corbind:corbind-navigation:$version"
