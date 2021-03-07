@@ -60,7 +60,7 @@ object Dep {
 
         object Serialization {
             private const val version = "1.0.1"
-            const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:$version"
+            const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.1"
             const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
         }
     }
