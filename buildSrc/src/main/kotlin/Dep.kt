@@ -94,7 +94,7 @@ object Dep {
 
     object Ktor {
         private const val version = "1.4.2"
-        const val client = "io.ktor:ktor-client-okhttp:$version"
+        const val client = "io.ktor:ktor-client-okhttp:1.4.1"
         const val serialization = "io.ktor:ktor-client-serialization-jvm:$version"
     }
 
