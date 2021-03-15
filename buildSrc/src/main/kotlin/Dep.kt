@@ -18,7 +18,7 @@ object Dep {
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
         const val emoji = "androidx.emoji:emoji-appcompat:1.2.0-alpha01"
         const val material = "com.google.android.material:material:1.3.0"
-        const val activity = "androidx.activity:activity-ktx:1.2.0"
+        const val activity = "androidx.activity:activity-ktx:1.2.1"
         const val fragment = "androidx.fragment:fragment-ktx:1.3.1"
         const val recycler = "androidx.recyclerview:recyclerview:1.2.0-alpha06"
         const val browser = "androidx.browser:browser:1.3.0"
