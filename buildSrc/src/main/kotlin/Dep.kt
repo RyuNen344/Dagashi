@@ -6,9 +6,9 @@ object Dep {
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Dagger.version}"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31"
         const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.4.31"
-        const val releaseHubVersion = "1.6.1"
+        const val releaseHubVersion = "1.7.0"
         const val releaseHub = "com.releaseshub:releases-hub-gradle-plugin:$releaseHubVersion"
-        const val ktlintVersion = "9.4.1"
+        const val ktlintVersion = "10.0.0"
         const val ktlint = "org.jlleitschuh.gradle:ktlint-gradle:$ktlintVersion"
     }
 
@@ -18,8 +18,8 @@ object Dep {
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
         const val emoji = "androidx.emoji:emoji-appcompat:1.2.0-alpha01"
         const val material = "com.google.android.material:material:1.3.0"
-        const val activity = "androidx.activity:activity-ktx:1.2.0"
-        const val fragment = "androidx.fragment:fragment-ktx:1.3.0"
+        const val activity = "androidx.activity:activity-ktx:1.2.1"
+        const val fragment = "androidx.fragment:fragment-ktx:1.3.1"
         const val recycler = "androidx.recyclerview:recyclerview:1.2.0-alpha06"
         const val browser = "androidx.browser:browser:1.3.0"
 
@@ -53,14 +53,12 @@ object Dep {
         const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.31"
 
         object Coroutines {
-            const val version = "1.4.2"
-            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
+            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
         }
 
         object Serialization {
-            private const val version = "1.0.1"
-            const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:$version"
-            const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
+            const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.1"
+            const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
         }
     }
 
@@ -76,30 +74,26 @@ object Dep {
         }
 
         object Assisted {
-            private const val version = "0.6.0"
-            const val common = "com.squareup.inject:assisted-inject-annotations-dagger2:$version"
-            const val compiler = "com.squareup.inject:assisted-inject-processor-dagger2:$version"
+            const val common = "com.squareup.inject:assisted-inject-annotations-dagger2:0.6.0"
+            const val compiler = "com.squareup.inject:assisted-inject-processor-dagger2:0.6.0"
         }
     }
 
     object Corbind {
-        private const val version = "1.5.0"
-        const val core = "ru.ldralighieri.corbind:corbind:$version"
-        const val appcompat = "ru.ldralighieri.corbind:corbind-appcompat:$version"
-        const val navigation = "ru.ldralighieri.corbind:corbind-navigation:$version"
-        const val recycler = "ru.ldralighieri.corbind:corbind-recyclerview:$version"
-        const val material = "ru.ldralighieri.corbind:corbind-material:$version"
+        const val core = "ru.ldralighieri.corbind:corbind:1.5.0"
+        const val appcompat = "ru.ldralighieri.corbind:corbind-appcompat:1.5.0"
+        const val navigation = "ru.ldralighieri.corbind:corbind-navigation:1.5.0"
+        const val recycler = "ru.ldralighieri.corbind:corbind-recyclerview:1.5.0"
+        const val material = "ru.ldralighieri.corbind:corbind-material:1.5.0"
     }
 
     object Ktor {
-        private const val version = "1.4.2"
-        const val client = "io.ktor:ktor-client-okhttp:$version"
-        const val serialization = "io.ktor:ktor-client-serialization-jvm:$version"
+        const val client = "io.ktor:ktor-client-okhttp:1.4.2"
+        const val serialization = "io.ktor:ktor-client-serialization-jvm:1.4.2"
     }
 
     object OkHttp {
-        private const val version = "4.9.1"
-        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
+        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.9.1"
     }
 
     object Groupie {
@@ -132,7 +126,7 @@ object Dep {
 
         object Kotlin {
             object Coroutines {
-                const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Dep.Kotlin.Coroutines.version}"
+                const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3"
             }
         }
 
