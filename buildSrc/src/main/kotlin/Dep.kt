@@ -99,7 +99,6 @@ object Dep {
     }
 
     object OkHttp {
-        private const val version = "4.9.1"
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.9.1"
     }
 
