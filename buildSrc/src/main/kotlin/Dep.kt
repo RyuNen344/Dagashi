@@ -8,7 +8,7 @@ object Dep {
         const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:${Kotlin.version}"
         const val releaseHubVersion = "1.7.0"
         const val releaseHub = "com.releaseshub:releases-hub-gradle-plugin:$releaseHubVersion"
-        const val ktlintVersion = "9.4.1"
+        const val ktlintVersion = "10.0.0"
         const val ktlint = "org.jlleitschuh.gradle:ktlint-gradle:$ktlintVersion"
     }
 
