@@ -82,12 +82,11 @@ object Dep {
     }
 
     object Corbind {
-        private const val version = "1.5.0"
-        const val core = "ru.ldralighieri.corbind:corbind:$version"
-        const val appcompat = "ru.ldralighieri.corbind:corbind-appcompat:$version"
-        const val navigation = "ru.ldralighieri.corbind:corbind-navigation:$version"
-        const val recycler = "ru.ldralighieri.corbind:corbind-recyclerview:$version"
-        const val material = "ru.ldralighieri.corbind:corbind-material:$version"
+        const val core = "ru.ldralighieri.corbind:corbind:1.5.0"
+        const val appcompat = "ru.ldralighieri.corbind:corbind-appcompat:1.5.0"
+        const val navigation = "ru.ldralighieri.corbind:corbind-navigation:1.5.0"
+        const val recycler = "ru.ldralighieri.corbind:corbind-recyclerview:1.5.0"
+        const val material = "ru.ldralighieri.corbind:corbind-material:1.5.0"
     }
 
     object Ktor {
