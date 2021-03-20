@@ -4,8 +4,8 @@ object Dep {
         const val android = "com.android.tools.build:gradle:4.1.2"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Android.Navigation.version}"
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Dagger.version}"
-        const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.version}"
-        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:${Kotlin.version}"
+        const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31"
+        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.4.31"
         const val releaseHubVersion = "1.7.0"
         const val releaseHub = "com.releaseshub:releases-hub-gradle-plugin:$releaseHubVersion"
         const val ktlintVersion = "10.0.0"
@@ -47,9 +47,8 @@ object Dep {
     }
 
     object Kotlin {
-        const val version = "1.4.31"
-        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib:$version"
-        const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
+        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib:1.4.31"
+        const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.31"
 
         object Coroutines {
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
