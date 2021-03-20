@@ -31,7 +31,6 @@ object Dep {
         }
 
         object Navigation {
-            const val version = "2.3.3"
             const val fragment = "androidx.navigation:navigation-fragment-ktx:2.3.4"
             const val ui = "androidx.navigation:navigation-ui-ktx:2.3.4"
         }
