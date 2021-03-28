@@ -5,7 +5,7 @@ object Dep {
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.4"
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Dagger.version}"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31"
-        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.4.31"
+        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.4.32"
         const val releaseHubVersion = "1.7.0"
         const val releaseHub = "com.releaseshub:releases-hub-gradle-plugin:$releaseHubVersion"
         const val ktlintVersion = "10.0.0"
