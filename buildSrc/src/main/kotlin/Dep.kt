@@ -72,7 +72,7 @@ object Dep {
 
         object Assisted {
             const val common = "com.squareup.inject:assisted-inject-annotations-dagger2:0.8.1"
-            const val compiler = "com.squareup.inject:assisted-inject-processor-dagger2:0.6.0"
+            const val compiler = "com.squareup.inject:assisted-inject-processor-dagger2:0.8.1"
         }
     }
 
