@@ -94,5 +94,6 @@ DEPENDENCIES
   danger-jacoco (= 0.1.6)
   danger-lgtm (= 1.1.1)
 
+
 BUNDLED WITH
    2.2.7
