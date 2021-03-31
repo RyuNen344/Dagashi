@@ -4,8 +4,8 @@ object Dep {
         const val android = "com.android.tools.build:gradle:4.1.3"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.4"
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Dagger.version}"
-        const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31"
-        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.4.31"
+        const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32"
+        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.4.32"
         const val releaseHubVersion = "1.7.0"
         const val releaseHub = "com.releaseshub:releases-hub-gradle-plugin:$releaseHubVersion"
         const val ktlintVersion = "10.0.0"
@@ -18,15 +18,15 @@ object Dep {
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
         const val emoji = "androidx.emoji:emoji-appcompat:1.2.0-alpha01"
         const val material = "com.google.android.material:material:1.3.0"
-        const val activity = "androidx.activity:activity-ktx:1.2.1"
+        const val activity = "androidx.activity:activity-ktx:1.2.2"
         const val fragment = "androidx.fragment:fragment-ktx:1.3.2"
         const val recycler = "androidx.recyclerview:recyclerview:1.2.0-alpha06"
         const val browser = "androidx.browser:browser:1.3.0"
 
         object LifeCycle {
-            const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0"
-            const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0"
-            const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:2.3.0"
+            const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+            const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+            const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:2.3.1"
         }
 
         object Navigation {
@@ -46,8 +46,8 @@ object Dep {
     }
 
     object Kotlin {
-        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib:1.4.31"
-        const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.31"
+        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib:1.4.32"
+        const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.32"
 
         object Coroutines {
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
