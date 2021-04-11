@@ -31,7 +31,7 @@ object Dep {
 
         object Navigation {
             const val fragment = "androidx.navigation:navigation-fragment-ktx:2.3.5"
-            const val ui = "androidx.navigation:navigation-ui-ktx:2.3.4"
+            const val ui = "androidx.navigation:navigation-ui-ktx:2.3.5"
         }
 
         object Room {
