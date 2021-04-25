@@ -61,7 +61,7 @@ object Dep {
 
     object Dagger {
         const val version = "2.30.1-alpha"
-        const val hilt = "com.google.dagger:hilt-android:$version"
+        const val hilt = "com.google.dagger:hilt-android:2.35"
         const val compiler = "com.google.dagger:hilt-android-compiler:2.35"
 
         object Android {
