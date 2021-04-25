@@ -35,7 +35,7 @@ object Dep {
         }
 
         object Room {
-            const val core = "androidx.room:room-ktx:2.3.0-beta03"
+            const val core = "androidx.room:room-ktx:2.3.0"
             const val compiler = "androidx.room:room-compiler:2.3.0"
         }
 
