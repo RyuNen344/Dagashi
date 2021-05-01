@@ -2,7 +2,7 @@ object Dep {
 
     object GradlePlugin {
         const val android = "com.android.tools.build:gradle:4.1.3"
-        const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.4"
+        const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Dagger.version}"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32"
         const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.4.32"
@@ -30,8 +30,8 @@ object Dep {
         }
 
         object Navigation {
-            const val fragment = "androidx.navigation:navigation-fragment-ktx:2.3.4"
-            const val ui = "androidx.navigation:navigation-ui-ktx:2.3.4"
+            const val fragment = "androidx.navigation:navigation-fragment-ktx:2.3.5"
+            const val ui = "androidx.navigation:navigation-ui-ktx:2.3.5"
         }
 
         object Room {
