@@ -19,7 +19,7 @@ object Dep {
         const val emoji = "androidx.emoji:emoji-appcompat:1.2.0-alpha01"
         const val material = "com.google.android.material:material:1.3.0"
         const val activity = "androidx.activity:activity-ktx:1.2.2"
-        const val fragment = "androidx.fragment:fragment-ktx:1.3.2"
+        const val fragment = "androidx.fragment:fragment-ktx:1.3.3"
         const val recycler = "androidx.recyclerview:recyclerview:1.2.0-alpha06"
         const val browser = "androidx.browser:browser:1.3.0"
 
@@ -108,7 +108,7 @@ object Dep {
 
     object ThreeTen {
         const val android = "com.jakewharton.threetenabp:threetenabp:1.3.1"
-        const val jvm = "org.threeten:threetenbp:1.5.0"
+        const val jvm = "org.threeten:threetenbp:1.5.1"
     }
 
     object Test {
