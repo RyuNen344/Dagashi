@@ -1,6 +1,6 @@
 plugins {
     id("jacoco")
-    id("com.releaseshub.gradle.plugin").version(Dep.GradlePlugin.releaseHubVersion)
+    id("com.dipien.releaseshub.gradle.plugin").version(Dep.GradlePlugin.releaseHubVersion)
     id("org.jlleitschuh.gradle.ktlint").version(Dep.GradlePlugin.ktlintVersion)
 }
 
