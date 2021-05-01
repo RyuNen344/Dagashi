@@ -1,6 +1,5 @@
 package com.ryunen344.dagashi.ui.milestones.viewmodel
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryunen344.dagashi.data.repository.MileStoneRepository
@@ -8,27 +7,20 @@ import com.ryunen344.dagashi.data.repository.SettingRepository
 import com.ryunen344.dagashi.di.DefaultDispatcher
 import com.ryunen344.dagashi.model.MileStone
 import com.ryunen344.dagashi.util.ext.isPassedDay
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.drop
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.zip
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import org.threeten.bp.OffsetDateTime
 import timber.log.Timber
+import javax.inject.Inject
 
-class MileStonesViewModel @ViewModelInject constructor(
+@HiltViewModel
+class MileStonesViewModel @Inject constructor(
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
     private val mileStoneRepository: MileStoneRepository,
     private val settingRepository: SettingRepository

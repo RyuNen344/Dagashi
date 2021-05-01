@@ -1,11 +1,11 @@
 package com.ryunen344.dagashi.ui.web.viewmodel
 
 import android.webkit.WebSettings
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryunen344.dagashi.di.DefaultDispatcher
 import com.ryunen344.dagashi.framework.NetworkManager
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
@@ -14,8 +14,10 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class WebViewModel @ViewModelInject constructor(
+@HiltViewModel
+class WebViewModel @Inject constructor(
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
     networkManger: NetworkManager
 ) : ViewModel(), WebViewModelInput, WebViewModelOutput {

@@ -25,13 +25,10 @@ class PathIssuesFragment : Fragment(R.layout.fragment_issues) {
     private val args: PathIssuesFragmentArgs by navArgs()
 
     @Inject
-    lateinit var issuesViewModelAssistedFactory: PathIssuesViewModel.AssistedFactory
+    lateinit var issuesViewModelAssistedFactory: PathIssuesViewModel.ViewModelFactory
 
     private val viewModel: PathIssuesViewModel by assistedViewModels {
-        issuesViewModelAssistedFactory.create(
-            args.number,
-            args.path
-        )
+        issuesViewModelAssistedFactory.create(args.number, args.path)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

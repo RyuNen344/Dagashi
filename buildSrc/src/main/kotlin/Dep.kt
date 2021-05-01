@@ -3,7 +3,7 @@ object Dep {
     object GradlePlugin {
         const val android = "com.android.tools.build:gradle:4.1.3"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
-        const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Dagger.version}"
+        const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:2.35"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32"
         const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.4.32"
         const val releaseHubVersion = "1.7.0"
@@ -60,19 +60,11 @@ object Dep {
     }
 
     object Dagger {
-        const val version = "2.30.1-alpha"
-        const val hilt = "com.google.dagger:hilt-android:$version"
-        const val compiler = "com.google.dagger:hilt-android-compiler:$version"
+        const val hilt = "com.google.dagger:hilt-android:2.35"
+        const val compiler = "com.google.dagger:hilt-android-compiler:2.35"
 
         object Android {
-            private const val version = "1.0.0-alpha02"
-            const val viewModel = "androidx.hilt:hilt-lifecycle-viewmodel:$version"
-            const val compiler = "androidx.hilt:hilt-compiler:$version"
-        }
-
-        object Assisted {
-            const val common = "com.squareup.inject:assisted-inject-annotations-dagger2:0.8.1"
-            const val compiler = "com.squareup.inject:assisted-inject-processor-dagger2:0.8.1"
+            const val compiler = "androidx.hilt:hilt-compiler:1.0.0-beta01"
         }
     }
 
