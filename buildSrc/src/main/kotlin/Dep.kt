@@ -1,11 +1,11 @@
 object Dep {
 
     object GradlePlugin {
-        const val android = "com.android.tools.build:gradle:4.1.2"
-        const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.4"
-        const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Dagger.version}"
-        const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31"
-        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.4.31"
+        const val android = "com.android.tools.build:gradle:4.1.3"
+        const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
+        const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:2.35"
+        const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32"
+        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.4.32"
         const val releaseHubVersion = "1.7.0"
         const val releaseHub = "com.releaseshub:releases-hub-gradle-plugin:1.7.0"
         const val ktlintVersion = "10.0.0"
@@ -18,25 +18,25 @@ object Dep {
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
         const val emoji = "androidx.emoji:emoji-appcompat:1.2.0-alpha01"
         const val material = "com.google.android.material:material:1.3.0"
-        const val activity = "androidx.activity:activity-ktx:1.2.1"
-        const val fragment = "androidx.fragment:fragment-ktx:1.3.1"
-        const val recycler = "androidx.recyclerview:recyclerview:1.2.0-alpha06"
+        const val activity = "androidx.activity:activity-ktx:1.2.2"
+        const val fragment = "androidx.fragment:fragment-ktx:1.3.3"
+        const val recycler = "androidx.recyclerview:recyclerview:1.2.0"
         const val browser = "androidx.browser:browser:1.3.0"
 
         object LifeCycle {
-            const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0"
-            const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0"
-            const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:2.3.0"
+            const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+            const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+            const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:2.3.1"
         }
 
         object Navigation {
-            const val fragment = "androidx.navigation:navigation-fragment-ktx:2.3.4"
-            const val ui = "androidx.navigation:navigation-ui-ktx:2.3.4"
+            const val fragment = "androidx.navigation:navigation-fragment-ktx:2.3.5"
+            const val ui = "androidx.navigation:navigation-ui-ktx:2.3.5"
         }
 
         object Room {
-            const val core = "androidx.room:room-ktx:2.3.0-beta03"
-            const val compiler = "androidx.room:room-compiler:2.3.0-beta03"
+            const val core = "androidx.room:room-ktx:2.3.0"
+            const val compiler = "androidx.room:room-compiler:2.3.0"
         }
 
         object DataStore {
@@ -46,8 +46,8 @@ object Dep {
     }
 
     object Kotlin {
-        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib:1.4.31"
-        const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.31"
+        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib:1.4.32"
+        const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.32"
 
         object Coroutines {
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
@@ -60,19 +60,11 @@ object Dep {
     }
 
     object Dagger {
-        const val version = "2.30.1-alpha"
-        const val hilt = "com.google.dagger:hilt-android:$version"
-        const val compiler = "com.google.dagger:hilt-android-compiler:$version"
+        const val hilt = "com.google.dagger:hilt-android:2.35"
+        const val compiler = "com.google.dagger:hilt-android-compiler:2.35"
 
         object Android {
-            private const val version = "1.0.0-alpha02"
-            const val viewModel = "androidx.hilt:hilt-lifecycle-viewmodel:$version"
-            const val compiler = "androidx.hilt:hilt-compiler:$version"
-        }
-
-        object Assisted {
-            const val common = "com.squareup.inject:assisted-inject-annotations-dagger2:0.6.0"
-            const val compiler = "com.squareup.inject:assisted-inject-processor-dagger2:0.6.0"
+            const val compiler = "androidx.hilt:hilt-compiler:1.0.0-beta01"
         }
     }
 
@@ -85,8 +77,8 @@ object Dep {
     }
 
     object Ktor {
-        const val client = "io.ktor:ktor-client-okhttp:1.4.2"
-        const val serialization = "io.ktor:ktor-client-serialization-jvm:1.4.2"
+        const val client = "io.ktor:ktor-client-okhttp:1.5.3"
+        const val serialization = "io.ktor:ktor-client-serialization-jvm:1.5.3"
     }
 
     object OkHttp {
@@ -99,7 +91,7 @@ object Dep {
     }
 
     object Coil {
-        const val coil = "io.coil-kt:coil:1.1.1"
+        const val coil = "io.coil-kt:coil:1.2.0"
     }
 
     object Timber {
@@ -107,8 +99,8 @@ object Dep {
     }
 
     object ThreeTen {
-        const val android = "com.jakewharton.threetenabp:threetenabp:1.3.0"
-        const val jvm = "org.threeten:threetenbp:1.5.0"
+        const val android = "com.jakewharton.threetenabp:threetenabp:1.3.1"
+        const val jvm = "org.threeten:threetenbp:1.5.1"
     }
 
     object Test {
@@ -117,7 +109,7 @@ object Dep {
         object Android {
             const val core = "androidx.test:core-ktx:1.3.0"
             const val junit = "androidx.test.ext:junit-ktx:1.1.2"
-            const val room = "androidx.room:room-testing:2.3.0-beta03"
+            const val room = "androidx.room:room-testing:2.3.0"
             const val espresso = "androidx.test.espresso:espresso-core:3.3.0"
         }
 
@@ -132,7 +124,7 @@ object Dep {
         }
 
         object Mockk {
-            const val mock = "io.mockk:mockk:1.10.6"
+            const val mock = "io.mockk:mockk:1.11.0"
         }
     }
 }

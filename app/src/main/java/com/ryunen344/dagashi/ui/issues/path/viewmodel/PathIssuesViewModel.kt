@@ -1,42 +1,33 @@
 package com.ryunen344.dagashi.ui.issues.path.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.ryunen344.dagashi.data.repository.IssueRepository
 import com.ryunen344.dagashi.data.repository.SettingRepository
 import com.ryunen344.dagashi.di.DefaultDispatcher
 import com.ryunen344.dagashi.model.Issue
-import com.squareup.inject.assisted.Assisted
-import com.squareup.inject.assisted.AssistedInject
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.drop
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.take
-import kotlinx.coroutines.flow.zip
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class PathIssuesViewModel @AssistedInject constructor(
-    @Assisted private val number: Int,
-    @Assisted private val path: String,
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
     private val issueRepository: IssueRepository,
-    private val settingRepository: SettingRepository
+    private val settingRepository: SettingRepository,
+    @Assisted private val number: Int,
+    @Assisted private val path: String,
 ) : ViewModel(), PathIssuesViewModelInput, PathIssuesViewModelOutput {
 
-    @AssistedInject.Factory
-    interface AssistedFactory {
+    @AssistedFactory
+    interface ViewModelFactory {
         fun create(number: Int, path: String): PathIssuesViewModel
     }
 
@@ -101,8 +92,16 @@ class PathIssuesViewModel @AssistedInject constructor(
         }
     }
 
-    override fun onCleared() {
-        viewModelDefaultScope.cancel()
-        super.onCleared()
+    companion object {
+        fun provideFactory(
+            assistedFactory: ViewModelFactory,
+            number: Int,
+            path: String
+        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+            @Suppress("UNCHECKED_CAST")
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                return assistedFactory.create(number, path) as T
+            }
+        }
     }
 }

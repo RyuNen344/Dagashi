@@ -33,7 +33,7 @@ jobs:
       - name: Setup ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: '2.7.2'
+          ruby-version: 2.7
       - name: Gradle Cache
         uses: actions/cache@v2
         with:
