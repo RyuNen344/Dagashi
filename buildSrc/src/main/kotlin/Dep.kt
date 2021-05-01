@@ -64,14 +64,7 @@ object Dep {
         const val compiler = "com.google.dagger:hilt-android-compiler:2.35"
 
         object Android {
-            private const val version = "1.0.0-alpha02"
-            const val viewModel = "androidx.hilt:hilt-lifecycle-viewmodel:$version"
-            const val compiler = "androidx.hilt:hilt-compiler:$version"
-        }
-
-        object Assisted {
-            const val common = "com.squareup.inject:assisted-inject-annotations-dagger2:0.8.1"
-            const val compiler = "com.squareup.inject:assisted-inject-processor-dagger2:0.8.1"
+            const val compiler = "androidx.hilt:hilt-compiler:1.0.0-beta01"
         }
     }
 

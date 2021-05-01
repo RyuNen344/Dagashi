@@ -7,7 +7,7 @@ plugins {
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven("https://plugins.gradle.org/m2/")
     }
     dependencies {
@@ -26,7 +26,7 @@ allprojects {
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven("https://dl.bintray.com/lisawray/maven")
     }
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
