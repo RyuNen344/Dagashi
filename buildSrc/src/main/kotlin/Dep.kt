@@ -107,7 +107,7 @@ object Dep {
     }
 
     object ThreeTen {
-        const val android = "com.jakewharton.threetenabp:threetenabp:1.3.0"
+        const val android = "com.jakewharton.threetenabp:threetenabp:1.3.1"
         const val jvm = "org.threeten:threetenbp:1.5.1"
     }
 
