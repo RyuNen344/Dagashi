@@ -2,7 +2,7 @@ object Dep {
 
     object GradlePlugin {
         const val android = "com.android.tools.build:gradle:4.1.3"
-        const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.4"
+        const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:${Dagger.version}"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32"
         const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.4.32"
@@ -19,7 +19,7 @@ object Dep {
         const val emoji = "androidx.emoji:emoji-appcompat:1.2.0-alpha01"
         const val material = "com.google.android.material:material:1.3.0"
         const val activity = "androidx.activity:activity-ktx:1.2.2"
-        const val fragment = "androidx.fragment:fragment-ktx:1.3.2"
+        const val fragment = "androidx.fragment:fragment-ktx:1.3.3"
         const val recycler = "androidx.recyclerview:recyclerview:1.2.0"
         const val browser = "androidx.browser:browser:1.3.0"
 
@@ -30,13 +30,13 @@ object Dep {
         }
 
         object Navigation {
-            const val fragment = "androidx.navigation:navigation-fragment-ktx:2.3.4"
-            const val ui = "androidx.navigation:navigation-ui-ktx:2.3.4"
+            const val fragment = "androidx.navigation:navigation-fragment-ktx:2.3.5"
+            const val ui = "androidx.navigation:navigation-ui-ktx:2.3.5"
         }
 
         object Room {
-            const val core = "androidx.room:room-ktx:2.3.0-beta03"
-            const val compiler = "androidx.room:room-compiler:2.3.0-beta03"
+            const val core = "androidx.room:room-ktx:2.3.0"
+            const val compiler = "androidx.room:room-compiler:2.3.0"
         }
 
         object DataStore {
@@ -108,7 +108,7 @@ object Dep {
 
     object ThreeTen {
         const val android = "com.jakewharton.threetenabp:threetenabp:1.3.0"
-        const val jvm = "org.threeten:threetenbp:1.5.0"
+        const val jvm = "org.threeten:threetenbp:1.5.1"
     }
 
     object Test {
@@ -117,7 +117,7 @@ object Dep {
         object Android {
             const val core = "androidx.test:core-ktx:1.3.0"
             const val junit = "androidx.test.ext:junit-ktx:1.1.2"
-            const val room = "androidx.room:room-testing:2.3.0-beta03"
+            const val room = "androidx.room:room-testing:2.3.0"
             const val espresso = "androidx.test.espresso:espresso-core:3.3.0"
         }
 
