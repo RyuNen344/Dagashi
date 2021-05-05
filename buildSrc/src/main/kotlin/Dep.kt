@@ -3,7 +3,7 @@ object Dep {
     object GradlePlugin {
         const val android = "com.android.tools.build:gradle:4.1.3"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
-        const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:2.35"
+        const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:2.35.1"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0"
         const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.5.0"
         const val releaseHubVersion = "2.0.2"
@@ -60,8 +60,8 @@ object Dep {
     }
 
     object Dagger {
-        const val hilt = "com.google.dagger:hilt-android:2.35"
-        const val compiler = "com.google.dagger:hilt-android-compiler:2.35"
+        const val hilt = "com.google.dagger:hilt-android:2.35.1"
+        const val compiler = "com.google.dagger:hilt-android-compiler:2.35.1"
 
         object Android {
             const val compiler = "androidx.hilt:hilt-compiler:1.0.0-beta01"
@@ -77,8 +77,8 @@ object Dep {
     }
 
     object Ktor {
-        const val client = "io.ktor:ktor-client-okhttp:1.5.3"
-        const val serialization = "io.ktor:ktor-client-serialization-jvm:1.5.3"
+        const val client = "io.ktor:ktor-client-okhttp:1.5.4"
+        const val serialization = "io.ktor:ktor-client-serialization-jvm:1.5.4"
     }
 
     object OkHttp {
@@ -91,7 +91,7 @@ object Dep {
     }
 
     object Coil {
-        const val coil = "io.coil-kt:coil:1.2.0"
+        const val coil = "io.coil-kt:coil:1.2.1"
     }
 
     object Timber {
