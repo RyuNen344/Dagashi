@@ -64,7 +64,7 @@ object Dep {
         const val compiler = "com.google.dagger:hilt-android-compiler:2.35.1"
 
         object Android {
-            const val compiler = "androidx.hilt:hilt-compiler:1.0.0-beta01"
+            const val compiler = "androidx.hilt:hilt-compiler:1.0.0"
         }
     }
 
