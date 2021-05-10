@@ -8,6 +8,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        jcenter()
         maven("https://plugins.gradle.org/m2/")
     }
     dependencies {
@@ -27,7 +28,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven("https://dl.bintray.com/lisawray/maven")
+        jcenter()
     }
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         kotlinOptions.suppressWarnings = false
