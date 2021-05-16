@@ -115,7 +115,7 @@ object Dep {
 
         object Kotlin {
             object Coroutines {
-                const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3"
+                const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0"
             }
         }
 
