@@ -73,7 +73,7 @@ object Dep {
         const val appcompat = "ru.ldralighieri.corbind:corbind-appcompat:1.5.1"
         const val navigation = "ru.ldralighieri.corbind:corbind-navigation:1.5.0"
         const val recycler = "ru.ldralighieri.corbind:corbind-recyclerview:1.5.0"
-        const val material = "ru.ldralighieri.corbind:corbind-material:1.5.0"
+        const val material = "ru.ldralighieri.corbind:corbind-material:1.5.1"
     }
 
     object Ktor {
