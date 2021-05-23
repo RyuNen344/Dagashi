@@ -14,7 +14,7 @@ object Dep {
 
     object Android {
         const val core = "androidx.core:core-ktx:1.5.0-alpha05"
-        const val compat = "androidx.appcompat:appcompat:1.3.0-alpha02"
+        const val compat = "androidx.appcompat:appcompat:1.3.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
         const val emoji = "androidx.emoji:emoji-appcompat:1.2.0-alpha01"
         const val material = "com.google.android.material:material:1.3.0"
