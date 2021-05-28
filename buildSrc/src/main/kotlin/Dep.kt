@@ -13,7 +13,7 @@ object Dep {
     }
 
     object Android {
-        const val core = "androidx.core:core-ktx:1.5.0-alpha05"
+        const val core = "androidx.core:core-ktx:1.5.0"
         const val compat = "androidx.appcompat:appcompat:1.3.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
         const val emoji = "androidx.emoji:emoji-appcompat:1.2.0-alpha01"
@@ -69,11 +69,11 @@ object Dep {
     }
 
     object Corbind {
-        const val core = "ru.ldralighieri.corbind:corbind:1.5.0"
-        const val appcompat = "ru.ldralighieri.corbind:corbind-appcompat:1.5.0"
-        const val navigation = "ru.ldralighieri.corbind:corbind-navigation:1.5.0"
-        const val recycler = "ru.ldralighieri.corbind:corbind-recyclerview:1.5.0"
-        const val material = "ru.ldralighieri.corbind:corbind-material:1.5.0"
+        const val core = "ru.ldralighieri.corbind:corbind:1.5.1"
+        const val appcompat = "ru.ldralighieri.corbind:corbind-appcompat:1.5.1"
+        const val navigation = "ru.ldralighieri.corbind:corbind-navigation:1.5.1"
+        const val recycler = "ru.ldralighieri.corbind:corbind-recyclerview:1.5.1"
+        const val material = "ru.ldralighieri.corbind:corbind-material:1.5.1"
     }
 
     object Ktor {
