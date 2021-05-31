@@ -1,11 +1,11 @@
 object Dep {
 
     object GradlePlugin {
-        const val android = "com.android.tools.build:gradle:4.2.0"
+        const val android = "com.android.tools.build:gradle:4.2.1"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:2.35.1"
-        const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0"
-        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.5.0"
+        const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10"
+        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.5.10"
         const val releaseHubVersion = "2.0.2"
         const val releaseHub = "com.dipien:releases-hub-gradle-plugin:2.0.2"
         const val ktlintVersion = "10.0.0"
@@ -13,13 +13,13 @@ object Dep {
     }
 
     object Android {
-        const val core = "androidx.core:core-ktx:1.5.0-alpha05"
-        const val compat = "androidx.appcompat:appcompat:1.3.0-alpha02"
+        const val core = "androidx.core:core-ktx:1.5.0"
+        const val compat = "androidx.appcompat:appcompat:1.3.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
         const val emoji = "androidx.emoji:emoji-appcompat:1.2.0-alpha01"
         const val material = "com.google.android.material:material:1.3.0"
         const val activity = "androidx.activity:activity-ktx:1.2.3"
-        const val fragment = "androidx.fragment:fragment-ktx:1.3.3"
+        const val fragment = "androidx.fragment:fragment-ktx:1.3.4"
         const val recycler = "androidx.recyclerview:recyclerview:1.2.0"
         const val browser = "androidx.browser:browser:1.3.0"
 
@@ -46,16 +46,16 @@ object Dep {
     }
 
     object Kotlin {
-        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib:1.5.0"
-        const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0"
+        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib:1.5.10"
+        const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.10"
 
         object Coroutines {
-            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
+            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0"
         }
 
         object Serialization {
-            const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:1.2.0"
-            const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0"
+            const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:1.2.1"
+            const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1"
         }
     }
 
@@ -69,11 +69,11 @@ object Dep {
     }
 
     object Corbind {
-        const val core = "ru.ldralighieri.corbind:corbind:1.5.0"
-        const val appcompat = "ru.ldralighieri.corbind:corbind-appcompat:1.5.0"
-        const val navigation = "ru.ldralighieri.corbind:corbind-navigation:1.5.0"
-        const val recycler = "ru.ldralighieri.corbind:corbind-recyclerview:1.5.0"
-        const val material = "ru.ldralighieri.corbind:corbind-material:1.5.0"
+        const val core = "ru.ldralighieri.corbind:corbind:1.5.1"
+        const val appcompat = "ru.ldralighieri.corbind:corbind-appcompat:1.5.1"
+        const val navigation = "ru.ldralighieri.corbind:corbind-navigation:1.5.1"
+        const val recycler = "ru.ldralighieri.corbind:corbind-recyclerview:1.5.1"
+        const val material = "ru.ldralighieri.corbind:corbind-material:1.5.1"
     }
 
     object Ktor {
@@ -115,7 +115,7 @@ object Dep {
 
         object Kotlin {
             object Coroutines {
-                const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3"
+                const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0"
             }
         }
 
