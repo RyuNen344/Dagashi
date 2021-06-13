@@ -60,7 +60,7 @@ object Dep {
     }
 
     object Dagger {
-        const val hilt = "com.google.dagger:hilt-android:2.36"
+        const val hilt = "com.google.dagger:hilt-android:2.37"
         const val compiler = "com.google.dagger:hilt-android-compiler:2.37"
 
         object Android {
