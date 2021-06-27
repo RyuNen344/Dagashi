@@ -36,19 +36,19 @@ class NetworkManagerImpl @Inject constructor(context: Context) : NetworkManager 
 
         val networkCallback = object : ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: Network) {
-                offer(innerIsConnected)
+                trySend(innerIsConnected)
             }
 
             override fun onLosing(network: Network, maxMsToLive: Int) {
-                offer(innerIsConnected)
+                trySend(innerIsConnected)
             }
 
             override fun onLost(network: Network) {
-                offer(innerIsConnected)
+                trySend(innerIsConnected)
             }
 
             override fun onUnavailable() {
-                offer(innerIsConnected)
+                trySend(innerIsConnected)
             }
         }
         connectivityManager.registerNetworkCallback(networkRequest, networkCallback)

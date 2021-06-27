@@ -3,13 +3,12 @@ package com.ryunen344.dagashi.util
 import android.view.View
 import androidx.annotation.CheckResult
 import androidx.appcompat.widget.SearchView
+import com.ryunen344.dagashi.util.ext.internalReceiveChannel
+import com.ryunen344.dagashi.util.ext.safeOffer
+import com.ryunen344.dagashi.util.ext.trySendResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.ReceiveChannel
-import kotlinx.coroutines.channels.SendChannel
-import kotlinx.coroutines.channels.actor
-import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.*
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
@@ -28,7 +27,7 @@ fun SearchView.queryTextFocusChangeEvents(
     val events = scope.actor<SearchViewQueryTextFocusEvent>(Dispatchers.Main.immediate, capacity) {
         for (event in channel) action(event)
     }
-    setOnQueryTextFocusChangeListener(listener(scope, events::offer))
+    setOnQueryTextFocusChangeListener(listener(scope, events::trySendResult))
     events.invokeOnClose { setOnQueryTextFocusChangeListener(null) }
 }
 
@@ -51,8 +50,8 @@ fun SearchView.queryTextFocusChangeEvents(
 
 @CheckResult
 fun SearchView.queryTextFocusChangeEvents(): Flow<SearchViewQueryTextFocusEvent> = channelFlow {
-    offer(SearchViewQueryTextFocusEvent(this@queryTextFocusChangeEvents, false))
-    setOnQueryTextFocusChangeListener(listener(this, ::offer))
+    trySend(SearchViewQueryTextFocusEvent(this@queryTextFocusChangeEvents, false))
+    setOnQueryTextFocusChangeListener(listener(this) { trySend(it).isSuccess })
     awaitClose { setOnQueryTextFocusChangeListener(null) }
 }
 
@@ -65,19 +64,3 @@ private fun listener(
         emitter(SearchViewQueryTextFocusEvent(v as SearchView, hasFocus))
     }
 }
-
-private inline fun <T> internalReceiveChannel(
-    capacity: Int = Channel.RENDEZVOUS,
-    block: Channel<T>.() -> Unit
-): ReceiveChannel<T> {
-    val channel = Channel<T>(capacity)
-    channel.block()
-    return channel
-}
-
-private fun <T> SendChannel<T>.safeOffer(element: T) =
-    !isClosedForSend && try {
-        offer(element)
-    } catch (t: Throwable) {
-        false
-    }
