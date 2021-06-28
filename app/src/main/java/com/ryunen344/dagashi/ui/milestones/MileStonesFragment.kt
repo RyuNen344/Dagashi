@@ -3,6 +3,7 @@ package com.ryunen344.dagashi.ui.milestones
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -24,9 +25,7 @@ class MileStonesFragment : Fragment(R.layout.fragment_mile_stones) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val binding = FragmentMileStonesBinding.bind(view)
-        val adapter = MileStonesAdapter {
-            findNavController().navigate(MileStonesFragmentDirections.actionMileStonesToIssues(it.number, it.path))
-        }
+        val adapter = MileStonesAdapter()
 
         binding.apply {
             viewRecycler.adapter = adapter
@@ -34,11 +33,24 @@ class MileStonesFragment : Fragment(R.layout.fragment_mile_stones) {
                 .onEach {
                     it.onNavDestinationSelected(findNavController())
                 }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+            adapter.clickedMileStone.onEach {
+                findNavController().navigate(MileStonesFragmentDirections.actionMileStonesToIssues(it.number, it.path))
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
         }
 
         viewModel.apply {
-            bind(mileStones) {
-                adapter.setData(it)
+            bind(uiModel) {
+                binding.progressBar.isVisible = it.isLoading
+                if (it.isEmpty) {
+                    // TODO add empty view
+                } else {
+                    it.mileStones?.let(adapter::setData)
+                }
+
+                if (it.hasError) {
+                    // TODO add error view
+                }
             }
 
             bind(isUpdated) {
