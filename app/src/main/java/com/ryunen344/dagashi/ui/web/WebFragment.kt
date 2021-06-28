@@ -118,6 +118,7 @@ class WebFragment : Fragment(R.layout.fragment_web) {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        _binding?.viewWeb?.destroy()
         _binding = null
     }
 
