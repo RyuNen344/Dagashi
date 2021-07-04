@@ -1,7 +1,7 @@
 object Dep {
 
     object GradlePlugin {
-        const val android = "com.android.tools.build:gradle:4.2.1"
+        const val android = "com.android.tools.build:gradle:4.2.2"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:2.37"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20"
@@ -17,7 +17,7 @@ object Dep {
         const val compat = "androidx.appcompat:appcompat:1.3.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
         const val emoji = "androidx.emoji:emoji-appcompat:1.2.0-alpha01"
-        const val material = "com.google.android.material:material:1.3.0"
+        const val material = "com.google.android.material:material:1.4.0"
         const val activity = "androidx.activity:activity-ktx:1.2.3"
         const val fragment = "androidx.fragment:fragment-ktx:1.3.5"
         const val recycler = "androidx.recyclerview:recyclerview:1.2.1"
@@ -69,16 +69,16 @@ object Dep {
     }
 
     object Corbind {
-        const val core = "ru.ldralighieri.corbind:corbind:1.5.1"
-        const val appcompat = "ru.ldralighieri.corbind:corbind-appcompat:1.5.1"
-        const val navigation = "ru.ldralighieri.corbind:corbind-navigation:1.5.1"
-        const val recycler = "ru.ldralighieri.corbind:corbind-recyclerview:1.5.1"
-        const val material = "ru.ldralighieri.corbind:corbind-material:1.5.1"
+        const val core = "ru.ldralighieri.corbind:corbind:1.5.2"
+        const val appcompat = "ru.ldralighieri.corbind:corbind-appcompat:1.5.2"
+        const val navigation = "ru.ldralighieri.corbind:corbind-navigation:1.5.2"
+        const val recycler = "ru.ldralighieri.corbind:corbind-recyclerview:1.5.2"
+        const val material = "ru.ldralighieri.corbind:corbind-material:1.5.2"
     }
 
     object Ktor {
-        const val client = "io.ktor:ktor-client-okhttp:1.6.0"
-        const val serialization = "io.ktor:ktor-client-serialization-jvm:1.6.0"
+        const val client = "io.ktor:ktor-client-okhttp:1.6.1"
+        const val serialization = "io.ktor:ktor-client-serialization-jvm:1.6.1"
     }
 
     object OkHttp {
@@ -107,7 +107,7 @@ object Dep {
         const val junit = "junit:junit:4.13.2"
 
         object Android {
-            const val core = "androidx.test:core-ktx:1.3.0"
+            const val core = "androidx.test:core-ktx:1.4.0"
             const val junit = "androidx.test.ext:junit-ktx:1.1.3"
             const val room = "androidx.room:room-testing:2.3.0"
             const val espresso = "androidx.test.espresso:espresso-core:3.3.0"
