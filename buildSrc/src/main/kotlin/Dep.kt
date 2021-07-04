@@ -110,7 +110,7 @@ object Dep {
             const val core = "androidx.test:core-ktx:1.3.0"
             const val junit = "androidx.test.ext:junit-ktx:1.1.2"
             const val room = "androidx.room:room-testing:2.3.0"
-            const val espresso = "androidx.test.espresso:espresso-core:3.3.0"
+            const val espresso = "androidx.test.espresso:espresso-core:3.4.0"
         }
 
         object Kotlin {
