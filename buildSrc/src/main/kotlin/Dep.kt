@@ -120,7 +120,7 @@ object Dep {
         }
 
         object Robolectric {
-            const val robolectric = "org.robolectric:robolectric:4.6"
+            const val robolectric = "org.robolectric:robolectric:4.6.1"
         }
 
         object Mockk {
