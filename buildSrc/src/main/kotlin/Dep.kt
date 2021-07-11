@@ -50,7 +50,7 @@ object Dep {
         const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.20"
 
         object Coroutines {
-            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0"
+            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1"
         }
 
         object Serialization {
