@@ -3,7 +3,7 @@ object Dep {
     object GradlePlugin {
         const val android = "com.android.tools.build:gradle:4.2.2"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
-        const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:2.37"
+        const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:2.38"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21"
         const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.5.21"
         const val releaseHubVersion = "2.0.2"
@@ -14,11 +14,11 @@ object Dep {
 
     object Android {
         const val core = "androidx.core:core-ktx:1.6.0"
-        const val compat = "androidx.appcompat:appcompat:1.3.0"
+        const val compat = "androidx.appcompat:appcompat:1.3.1"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
         const val emoji = "androidx.emoji:emoji-appcompat:1.2.0-alpha01"
         const val material = "com.google.android.material:material:1.4.0"
-        const val activity = "androidx.activity:activity-ktx:1.2.3"
+        const val activity = "androidx.activity:activity-ktx:1.2.4"
         const val fragment = "androidx.fragment:fragment-ktx:1.3.6"
         const val recycler = "androidx.recyclerview:recyclerview:1.2.1"
         const val browser = "androidx.browser:browser:1.3.0"
@@ -60,8 +60,8 @@ object Dep {
     }
 
     object Dagger {
-        const val hilt = "com.google.dagger:hilt-android:2.37"
-        const val compiler = "com.google.dagger:hilt-android-compiler:2.37"
+        const val hilt = "com.google.dagger:hilt-android:2.38"
+        const val compiler = "com.google.dagger:hilt-android-compiler:2.38"
 
         object Android {
             const val compiler = "androidx.hilt:hilt-compiler:1.0.0"
