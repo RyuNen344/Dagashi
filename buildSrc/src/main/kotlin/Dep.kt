@@ -3,7 +3,7 @@ object Dep {
     object GradlePlugin {
         const val android = "com.android.tools.build:gradle:4.2.2"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
-        const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:2.37"
+        const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:2.38"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21"
         const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.5.21"
         const val releaseHubVersion = "2.0.2"
