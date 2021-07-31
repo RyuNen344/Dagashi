@@ -112,5 +112,4 @@ releasesHub {
     pullRequestsMax = 20
     gitHubUserName = "RyuNen344"
     gitHubUserEmail = "s1100633@outlook.com"
-    gitHubWriteToken = "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"
 }
