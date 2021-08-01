@@ -9,13 +9,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.androidCompileSdkVersion)
-    buildToolsVersion(Versions.androidBuildToolsVersion)
+    compileSdk = Versions.androidCompileSdkVersion
+    buildToolsVersion = Versions.androidBuildToolsVersion
 
     defaultConfig {
         applicationId = Packages.name
-        minSdkVersion(Versions.androidMinSdkVersion)
-        targetSdkVersion(Versions.androidTargetSdkVersion)
+        minSdk = Versions.androidMinSdkVersion
+        targetSdk = Versions.androidTargetSdkVersion
         versionCode = Versions.androidVersionCode
         versionName = Versions.androidVersionName
         javaCompileOptions {
@@ -64,14 +64,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
     testOptions {
         unitTests.isIncludeAndroidResources = true
     }
     packagingOptions {
-        exclude("META-INF/*")
+        resources.excludes.add("META-INF/**")
     }
 }
 
@@ -121,6 +118,7 @@ dependencies {
 
     implementation(Dep.Dagger.hilt)
     kapt(Dep.Dagger.compiler)
+    implementation(Dep.Dagger.Android.navigation)
     kapt(Dep.Dagger.Android.compiler)
 
     implementation(Dep.ThreeTen.android)
@@ -138,14 +136,4 @@ dependencies {
     androidTestImplementation(Dep.Test.Kotlin.Coroutines.test)
     androidTestImplementation(Dep.Test.Android.junit)
     androidTestImplementation(Dep.Test.Android.espresso)
-}
-
-// workaround : https://github.com/google/dagger/issues/2684
-kapt {
-    javacOptions {
-        // These options are normally set automatically via the Hilt Gradle plugin, but we
-        // set them manually to workaround a bug in the Kotlin 1.5.20
-        option("-Adagger.fastInit=ENABLED")
-        option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
-    }
 }

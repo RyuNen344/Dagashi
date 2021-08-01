@@ -64,6 +64,7 @@ object Dep {
         const val compiler = "com.google.dagger:hilt-android-compiler:2.38.1"
 
         object Android {
+            const val navigation = "androidx.hilt:hilt-navigation-fragment:1.0.0"
             const val compiler = "androidx.hilt:hilt-compiler:1.0.0"
         }
     }
