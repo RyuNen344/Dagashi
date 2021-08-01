@@ -43,7 +43,7 @@ jobs:
       - name: Unit Test
         run: ./gradlew test --stacktrace
       - name: Instrumented Test
-        uses: reactivecircus/android-emulator-runner@v2.14.3
+        uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 30
           arch: x86_64
