@@ -43,7 +43,7 @@ jobs:
       - name: Unit Test
         run: ./gradlew test --stacktrace
       - name: Instrumented Test
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: reactivecircus/android-emulator-runner@v2.19.1
         with:
           api-level: 30
           script: ./gradlew connectedCheck --stacktrace --continue
