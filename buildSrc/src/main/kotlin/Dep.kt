@@ -40,7 +40,6 @@ object Dep {
         }
 
         object DataStore {
-            private const val version = "1.0.0-alpha04"
             const val preferences = "androidx.datastore:datastore-preferences:1.0.0"
         }
     }
