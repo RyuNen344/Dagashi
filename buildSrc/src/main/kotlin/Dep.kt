@@ -1,7 +1,7 @@
 object Dep {
 
     object GradlePlugin {
-        const val android = "com.android.tools.build:gradle:7.0.0"
+        const val android = "com.android.tools.build:gradle:7.0.1"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
         const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:2.38.1"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21"
@@ -91,11 +91,11 @@ object Dep {
     }
 
     object Coil {
-        const val coil = "io.coil-kt:coil:1.3.1"
+        const val coil = "io.coil-kt:coil:1.3.2"
     }
 
     object Timber {
-        const val timber = "com.jakewharton.timber:timber:4.7.1"
+        const val timber = "com.jakewharton.timber:timber:5.0.1"
     }
 
     object ThreeTen {
