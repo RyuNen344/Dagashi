@@ -26,7 +26,7 @@ jobs:
 
   update-cov:
     needs: setup
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -43,7 +43,7 @@ jobs:
       - name: Unit Test
         run: ./gradlew test --stacktrace
       - name: Instrumented Test
-        uses: reactivecircus/android-emulator-runner@v2.19.1
+        uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 30
           script: ./gradlew connectedCheck --stacktrace --continue
