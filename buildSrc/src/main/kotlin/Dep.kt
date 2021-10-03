@@ -8,8 +8,8 @@ object Dep {
         const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.5.31"
         const val releaseHubVersion = "2.1.0"
         const val releaseHub = "com.dipien:releases-hub-gradle-plugin:2.1.0"
-        const val ktlintVersion = "10.1.0"
-        const val ktlint = "org.jlleitschuh.gradle:ktlint-gradle:10.1.0"
+        const val ktlintVersion = "10.2.0"
+        const val ktlint = "org.jlleitschuh.gradle:ktlint-gradle:10.2.0"
     }
 
     object Android {
