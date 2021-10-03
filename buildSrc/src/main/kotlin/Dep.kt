@@ -3,7 +3,7 @@ object Dep {
     object GradlePlugin {
         const val android = "com.android.tools.build:gradle:7.0.2"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
-        const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:2.38.1"
+        const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:2.39.1"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
         const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.5.31"
         const val releaseHubVersion = "2.0.2"
@@ -60,8 +60,8 @@ object Dep {
     }
 
     object Dagger {
-        const val hilt = "com.google.dagger:hilt-android:2.38.1"
-        const val compiler = "com.google.dagger:hilt-android-compiler:2.38.1"
+        const val hilt = "com.google.dagger:hilt-android:2.39.1"
+        const val compiler = "com.google.dagger:hilt-android-compiler:2.39.1"
 
         object Android {
             const val navigation = "androidx.hilt:hilt-navigation-fragment:1.0.0"
