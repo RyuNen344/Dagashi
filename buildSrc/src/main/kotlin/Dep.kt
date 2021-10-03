@@ -54,8 +54,8 @@ object Dep {
         }
 
         object Serialization {
-            const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:1.2.2"
-            const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2"
+            const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.0"
+            const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0"
         }
     }
 
