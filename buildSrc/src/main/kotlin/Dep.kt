@@ -3,11 +3,11 @@ object Dep {
     object GradlePlugin {
         const val android = "com.android.tools.build:gradle:7.0.2"
         const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
-        const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:2.38.1"
-        const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30"
-        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.5.30"
-        const val releaseHubVersion = "2.0.2"
-        const val releaseHub = "com.dipien:releases-hub-gradle-plugin:2.0.2"
+        const val daggerHilt = "com.google.dagger:hilt-android-gradle-plugin:2.39.1"
+        const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
+        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.5.31"
+        const val releaseHubVersion = "2.1.0"
+        const val releaseHub = "com.dipien:releases-hub-gradle-plugin:2.1.0"
         const val ktlintVersion = "10.2.0"
         const val ktlint = "org.jlleitschuh.gradle:ktlint-gradle:10.2.0"
     }
@@ -15,7 +15,7 @@ object Dep {
     object Android {
         const val core = "androidx.core:core-ktx:1.6.0"
         const val compat = "androidx.appcompat:appcompat:1.3.1"
-        const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.0"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.1"
         const val emoji = "androidx.emoji:emoji-appcompat:1.2.0-alpha01"
         const val material = "com.google.android.material:material:1.4.0"
         const val activity = "androidx.activity:activity-ktx:1.3.1"
@@ -46,8 +46,8 @@ object Dep {
     }
 
     object Kotlin {
-        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib:1.5.30"
-        const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.30"
+        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib:1.5.31"
+        const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31"
 
         object Coroutines {
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
@@ -60,8 +60,8 @@ object Dep {
     }
 
     object Dagger {
-        const val hilt = "com.google.dagger:hilt-android:2.38.1"
-        const val compiler = "com.google.dagger:hilt-android-compiler:2.38.1"
+        const val hilt = "com.google.dagger:hilt-android:2.39.1"
+        const val compiler = "com.google.dagger:hilt-android-compiler:2.39.1"
 
         object Android {
             const val navigation = "androidx.hilt:hilt-navigation-fragment:1.0.0"
@@ -78,12 +78,12 @@ object Dep {
     }
 
     object Ktor {
-        const val client = "io.ktor:ktor-client-okhttp:1.6.3"
-        const val serialization = "io.ktor:ktor-client-serialization-jvm:1.6.3"
+        const val client = "io.ktor:ktor-client-okhttp:1.6.4"
+        const val serialization = "io.ktor:ktor-client-serialization-jvm:1.6.4"
     }
 
     object OkHttp {
-        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.9.1"
+        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.9.2"
     }
 
     object Groupie {
