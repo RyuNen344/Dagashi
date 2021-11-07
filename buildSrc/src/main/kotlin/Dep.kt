@@ -21,7 +21,7 @@ object Dep {
         const val activity = "androidx.activity:activity-ktx:1.3.1"
         const val fragment = "androidx.fragment:fragment-ktx:1.3.6"
         const val recycler = "androidx.recyclerview:recyclerview:1.2.1"
-        const val browser = "androidx.browser:browser:1.3.0"
+        const val browser = "androidx.browser:browser:1.4.0"
 
         object LifeCycle {
             const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
