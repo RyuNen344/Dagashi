@@ -82,7 +82,7 @@ object Dep {
     }
 
     object OkHttp {
-        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.9.2"
+        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.9.3"
     }
 
     object Groupie {
