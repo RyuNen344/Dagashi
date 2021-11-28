@@ -77,7 +77,7 @@ object Dep {
     }
 
     object Ktor {
-        const val client = "io.ktor:ktor-client-okhttp:1.6.5"
+        const val client = "io.ktor:ktor-client-okhttp:1.6.6"
         const val serialization = "io.ktor:ktor-client-serialization-jvm:1.6.5"
     }
 
