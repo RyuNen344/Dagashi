@@ -45,7 +45,7 @@ object Dep {
     }
 
     object Kotlin {
-        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib:1.6.0"
+        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib:1.6.10"
         const val stdlibJDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0"
 
         object Coroutines {
