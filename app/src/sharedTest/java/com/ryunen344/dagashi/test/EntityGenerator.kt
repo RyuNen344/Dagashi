@@ -9,8 +9,8 @@ import com.ryunen344.dagashi.data.db.entity.SummaryIssueEntity
 import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndComment
 import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndCommentOnStash
 import com.ryunen344.dagashi.data.db.entity.combined.MileStoneWithSummaryIssue
-import org.threeten.bp.OffsetDateTime
-import org.threeten.bp.ZoneOffset
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
 
 object EntityGenerator {
 

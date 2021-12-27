@@ -3,7 +3,7 @@ package com.ryunen344.dagashi.data.repository.impl
 import com.ryunen344.dagashi.data.preferences.SettingPreferences
 import com.ryunen344.dagashi.data.repository.SettingRepository
 import kotlinx.coroutines.flow.Flow
-import org.threeten.bp.OffsetDateTime
+import java.time.OffsetDateTime
 import javax.inject.Inject
 
 class SettingRepositoryImpl @Inject constructor(private val settingPreferences: SettingPreferences) : SettingRepository {

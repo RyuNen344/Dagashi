@@ -3,7 +3,7 @@ package com.ryunen344.dagashi.data.db.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import org.threeten.bp.OffsetDateTime
+import java.time.OffsetDateTime
 
 @Entity(tableName = "mile_stone")
 data class MileStoneEntity(

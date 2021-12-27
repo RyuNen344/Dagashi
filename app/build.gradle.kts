@@ -61,6 +61,7 @@ android {
     }
 
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -73,55 +74,28 @@ android {
 }
 
 dependencies {
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.kotlin.stdlib.jdk8)
-    implementation(libs.kotlin.coroutine)
-    implementation(libs.kotlin.serialization)
-
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.core)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.emoji)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.fragment)
-    implementation(libs.androidx.recyclerview)
-    implementation(libs.androidx.browser)
-
-    implementation(libs.androidx.lifecycle.viewmodel)
-    implementation(libs.androidx.lifecycle.livedata)
-    implementation(libs.androidx.lifecycle.common.java8)
-
-    implementation(libs.androidx.navigation.fragment)
-    implementation(libs.androidx.navigation.ui)
+    implementation(libs.bundles.kotlin)
+    coreLibraryDesugaring(libs.desugar)
+    implementation(libs.bundles.androidx.ui)
+    implementation(libs.bundles.androidx.lifecycle)
+    implementation(libs.bundles.androidx.navigation)
 
     implementation(libs.androidx.room)
     kapt(libs.androidx.room.compiler)
 
     implementation(libs.androidx.datastore)
 
-    implementation(libs.groupie.core)
-    implementation(libs.groupie.viewbinding)
+    implementation(libs.bundles.groupie)
 
     implementation(libs.coil)
 
-    implementation(libs.corbind.core)
-    implementation(libs.corbind.appcompat)
-    implementation(libs.corbind.navigation)
-    implementation(libs.corbind.recycler)
-    implementation(libs.corbind.material)
-
-    implementation(libs.ktor.client)
-    implementation(libs.ktor.serialization)
-    implementation(libs.okhttp.logging)
+    implementation(libs.bundles.corbind)
+    implementation(libs.bundles.ktor)
 
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
     implementation(libs.dagger.android.navigation)
     kapt(libs.dagger.android.compiler)
-
-    implementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
-    testImplementation("org.threeten:threetenbp:1.5.2")
 
     implementation(libs.timber)
 

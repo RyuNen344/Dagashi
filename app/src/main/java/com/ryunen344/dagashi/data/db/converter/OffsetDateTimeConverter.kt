@@ -1,8 +1,8 @@
 package com.ryunen344.dagashi.data.db.converter
 
 import androidx.room.TypeConverter
-import org.threeten.bp.OffsetDateTime
-import org.threeten.bp.format.DateTimeFormatter
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
 
 object OffsetDateTimeConverter {
     @TypeConverter
