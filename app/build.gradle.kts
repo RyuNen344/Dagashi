@@ -9,15 +9,15 @@ plugins {
 }
 
 android {
-    compileSdk = Versions.androidCompileSdkVersion
-    buildToolsVersion = Versions.androidBuildToolsVersion
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    buildToolsVersion = libs.versions.android.buildTools.get()
 
     defaultConfig {
-        applicationId = Packages.name
-        minSdk = Versions.androidMinSdkVersion
-        targetSdk = Versions.androidTargetSdkVersion
-        versionCode = Versions.androidVersionCode
-        versionName = Versions.androidVersionName
+        applicationId = "com.ryunen344.dagashi"
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        versionCode = libs.versions.android.version.code.get().toInt()
+        versionName = with(libs.versions.android.version) { "$major.$minor.$patch" }
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments.putAll(
@@ -40,8 +40,8 @@ android {
     buildTypes {
         getByName("debug") {
             isTestCoverageEnabled = true
-            applicationIdSuffix = Packages.debugNameSuffix
-            buildConfigField("String", "API_ENDPOINT", "\"https://androiddagashi.github.io\"")
+            applicationIdSuffix = ".debug"
+            buildConfigApiEndpoint("\"https://androiddagashi.github.io\"")
         }
         getByName("release") {
             isTestCoverageEnabled = false
@@ -50,7 +50,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "API_ENDPOINT", "\"https://androiddagashi.github.io\"")
+            buildConfigApiEndpoint("\"https://androiddagashi.github.io\"")
         }
     }
 
@@ -73,67 +73,70 @@ android {
 }
 
 dependencies {
-    implementation(Dep.Kotlin.stdlibCommon)
-    implementation(Dep.Kotlin.stdlibJDK8)
-    implementation(Dep.Kotlin.Coroutines.android)
-    implementation(Dep.Kotlin.Serialization.core)
-    implementation(Dep.Kotlin.Serialization.json)
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.kotlin.stdlib.jdk8)
+    implementation(libs.kotlin.coroutine)
+    implementation(libs.kotlin.serialization)
 
-    implementation(Dep.Android.compat)
-    implementation(Dep.Android.core)
-    implementation(Dep.Android.constraintLayout)
-    implementation(Dep.Android.emoji)
-    implementation(Dep.Android.material)
-    implementation(Dep.Android.activity)
-    implementation(Dep.Android.fragment)
-    implementation(Dep.Android.recycler)
-    implementation(Dep.Android.browser)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.emoji)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.fragment)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.browser)
 
-    implementation(Dep.Android.LifeCycle.viewModel)
-    implementation(Dep.Android.LifeCycle.liveData)
-    implementation(Dep.Android.LifeCycle.commonJava8)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.lifecycle.livedata)
+    implementation(libs.androidx.lifecycle.common.java8)
 
-    implementation(Dep.Android.Navigation.fragment)
-    implementation(Dep.Android.Navigation.ui)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
 
-    implementation(Dep.Groupie.groupie)
-    implementation(Dep.Groupie.viewbinding)
+    implementation(libs.androidx.room)
+    kapt(libs.androidx.room.compiler)
 
-    implementation(Dep.Coil.coil)
+    implementation(libs.androidx.datastore)
 
-    implementation(Dep.Corbind.core)
-    implementation(Dep.Corbind.appcompat)
-    implementation(Dep.Corbind.navigation)
-    implementation(Dep.Corbind.recycler)
-    implementation(Dep.Corbind.material)
+    implementation(libs.groupie.core)
+    implementation(libs.groupie.viewbinding)
 
-    implementation(Dep.Android.Room.core)
-    kapt(Dep.Android.Room.compiler)
+    implementation(libs.coil)
 
-    implementation(Dep.Android.DataStore.preferences)
+    implementation(libs.corbind.core)
+    implementation(libs.corbind.appcompat)
+    implementation(libs.corbind.navigation)
+    implementation(libs.corbind.recycler)
+    implementation(libs.corbind.material)
 
-    implementation(Dep.Ktor.client)
-    implementation(Dep.Ktor.serialization)
-    implementation(Dep.OkHttp.loggingInterceptor)
+    implementation(libs.ktor.client)
+    implementation(libs.ktor.serialization)
+    implementation(libs.okhttp.logging)
 
-    implementation(Dep.Dagger.hilt)
-    kapt(Dep.Dagger.compiler)
-    implementation(Dep.Dagger.Android.navigation)
-    kapt(Dep.Dagger.Android.compiler)
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
+    implementation(libs.dagger.android.navigation)
+    kapt(libs.dagger.android.compiler)
 
-    implementation(Dep.ThreeTen.android)
+    implementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
+    testImplementation("org.threeten:threetenbp:1.5.2")
 
-    implementation(Dep.Timber.timber)
+    implementation(libs.timber)
 
-    testImplementation(Dep.Test.junit)
-    testImplementation(Dep.Test.Kotlin.Coroutines.test)
-    testImplementation(Dep.Test.Android.core)
-    testImplementation(Dep.Test.Android.junit)
-    testImplementation(Dep.Test.Android.room)
-    testImplementation(Dep.Test.Robolectric.robolectric)
-    testImplementation(Dep.Test.Mockk.mock)
-    testImplementation(Dep.ThreeTen.jvm)
-    androidTestImplementation(Dep.Test.Kotlin.Coroutines.test)
-    androidTestImplementation(Dep.Test.Android.junit)
-    androidTestImplementation(Dep.Test.Android.espresso)
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlin.test.coroutine)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.androidx.test.junit)
+    testImplementation(libs.androidx.test.room)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.mockk)
+    androidTestImplementation(libs.kotlin.test.coroutine)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.espresso)
+}
+
+fun com.android.build.api.dsl.ApplicationBuildType.buildConfigApiEndpoint(endpoint: String) {
+    buildConfigField("String", "API_ENDPOINT", endpoint)
 }
