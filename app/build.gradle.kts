@@ -39,12 +39,10 @@ android {
 
     buildTypes {
         getByName("debug") {
-            isTestCoverageEnabled = true
             applicationIdSuffix = ".debug"
             buildConfigApiEndpoint("\"https://androiddagashi.github.io\"")
         }
         getByName("release") {
-            isTestCoverageEnabled = false
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
