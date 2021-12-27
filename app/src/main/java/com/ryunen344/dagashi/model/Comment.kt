@@ -1,6 +1,6 @@
 package com.ryunen344.dagashi.model
 
-import org.threeten.bp.OffsetDateTime
+import java.time.OffsetDateTime
 
 data class Comment(
     val body: String,

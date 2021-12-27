@@ -3,9 +3,9 @@ package com.ryunen344.dagashi.data.db.converter
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert
 import org.junit.Test
-import org.threeten.bp.OffsetDateTime
-import org.threeten.bp.ZoneOffset
-import org.threeten.bp.format.DateTimeParseException
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeParseException
 
 class OffsetDateTimeConverterTest {
 

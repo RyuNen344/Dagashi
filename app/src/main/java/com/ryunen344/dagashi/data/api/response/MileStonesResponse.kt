@@ -3,7 +3,7 @@ package com.ryunen344.dagashi.data.api.response
 import com.ryunen344.dagashi.data.api.serializer.OffsetDateTimeSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.threeten.bp.OffsetDateTime
+import java.time.OffsetDateTime
 
 @Serializable
 data class MileStonesRootResponse(

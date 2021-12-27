@@ -1,7 +1,7 @@
 package com.ryunen344.dagashi.data.repository
 
 import kotlinx.coroutines.flow.Flow
-import org.threeten.bp.OffsetDateTime
+import java.time.OffsetDateTime
 
 interface SettingRepository {
     fun mileStoneLastUpdateAt(): Flow<OffsetDateTime?>

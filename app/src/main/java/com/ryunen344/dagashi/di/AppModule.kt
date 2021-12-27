@@ -1,6 +1,5 @@
 package com.ryunen344.dagashi.di
 
-import com.ryunen344.dagashi.initializer.AndroidThreeTenInitializer
 import com.ryunen344.dagashi.initializer.CoilInitializer
 import com.ryunen344.dagashi.initializer.EmojiInitializer
 import com.ryunen344.dagashi.initializer.StrictModeInitializer
@@ -27,11 +26,6 @@ object AppModule {
     @Module
     @InstallIn(SingletonComponent::class)
     abstract class AppModuleBinds {
-
-        @Binds
-        @IntoSet
-        abstract fun bindAndroidThreeTenInitializer(impl: AndroidThreeTenInitializer): AppInitializer
-
         @Binds
         @IntoSet
         abstract fun bindCoilInitializer(impl: CoilInitializer): AppInitializer

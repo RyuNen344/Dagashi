@@ -1,7 +1,7 @@
 package com.ryunen344.dagashi.data.preferences
 
 import kotlinx.coroutines.flow.Flow
-import org.threeten.bp.OffsetDateTime
+import java.time.OffsetDateTime
 
 interface SettingPreferences {
     val mileStoneLastUpdateAt: Flow<OffsetDateTime?>

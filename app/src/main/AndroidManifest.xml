@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dagashi">
 
-        <activity android:name="com.ryunen344.dagashi.ui.MainActivity">
+        <activity
+            android:name="com.ryunen344.dagashi.ui.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

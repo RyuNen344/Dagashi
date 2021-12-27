@@ -14,8 +14,8 @@ import com.ryunen344.dagashi.data.api.response.MileStoneNodeResponse
 import com.ryunen344.dagashi.data.api.response.MileStonesResponse
 import com.ryunen344.dagashi.data.api.response.MileStonesRootResponse
 import com.ryunen344.dagashi.data.api.response.PageInfo
-import org.threeten.bp.OffsetDateTime
-import org.threeten.bp.ZoneOffset
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
 
 object ResponseGenerator {
 
