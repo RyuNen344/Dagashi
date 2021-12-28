@@ -24,20 +24,17 @@ jobs:
         run: ./gradlew detekt
       - name: run unit test
         run: ./gradlew testDebugUnitTest
-      - name: run connected test
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          script: ./gradlew connectedDebugAndroidTest
-      - name: Jacoco
+#      - name: run connected test
+#        uses: reactivecircus/android-emulator-runner@v2
+#        with:
+#          api-level: 29
+#          script: ./gradlew connectedDebugAndroidTest
+      - name: create jacoco report
         run: ./gradlew jacocoMergedReport
       - name: Danger
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gem install bundler
-          bundle update
-          bundle install
           bundle exec danger
 #      - name: Upload Coverage
 #        uses: codecov/codecov-action@v1
