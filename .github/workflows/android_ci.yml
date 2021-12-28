@@ -18,6 +18,15 @@ jobs:
         with:
           ruby-version: 3.0.3
           bundler-cache: true
+      - name: setup gradle cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.android/build-cache
+            ~/.android/cache
+          key: v1-${{ runner.os }}-gradle-${{ hashFiles('gradle-wrapper.properties')-${{ hashFiles('*.toml') }}
       - name: run lint
         run: ./gradlew lint
       - name: run detekt
