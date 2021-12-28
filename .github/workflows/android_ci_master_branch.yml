@@ -26,7 +26,7 @@ jobs:
             ~/.android/cache
           key: ${{ runner.os }}-v1-gradle-${{ hashFiles('**/gradle-wrapper.properties', '**/*.toml') }}
           restore-keys: |
-            ${{ runner.os }}-gradle-
+            ${{ runner.os }}-v1-gradle-
       - name: run unit test
         run: ./gradlew testDebugUnitTest
       - name: run connected test
