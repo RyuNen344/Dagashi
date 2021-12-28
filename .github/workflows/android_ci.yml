@@ -26,7 +26,7 @@ jobs:
             ~/.gradle/wrapper
             ~/.android/build-cache
             ~/.android/cache
-          key: v1-${{ runner.os }}-gradle-${{ hashFiles('gradle-wrapper.properties')-${{ hashFiles('*.toml') }}
+          key: ${{ runner.os }}-v1-gradle-${{ hashFiles('gradle-wrapper.properties')-${{ hashFiles('*.toml') }}
       - name: run lint
         run: ./gradlew lint
       - name: run detekt
@@ -40,13 +40,13 @@ jobs:
           script: ./gradlew connectedDebugAndroidTest
       - name: create jacoco report
         run: ./gradlew jacocoMergedReport
-      - name: Danger
+      - name: run danger
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           bundle exec danger
-#      - name: Upload Coverage
-#        uses: codecov/codecov-action@v1
-#        with:
-#          token: ${{ secrets.CODECOV_TOKEN }}
-#          files: ./build/reports/jacoco/jacocoMergedReport/jacocoMergedReport.xml
+      - name: upload coverage
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./build/reports/jacoco/jacocoMergedReport/jacocoMergedReport.xml
