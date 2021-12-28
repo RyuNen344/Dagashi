@@ -26,7 +26,7 @@ jobs:
             ~/.gradle/wrapper
             ~/.android/build-cache
             ~/.android/cache
-          key: ${{ runner.os }}-v1-gradle-${{ hashFiles('gradle-wrapper.properties')-${{ hashFiles('*.toml') }}
+          key: ${{ runner.os }}-v1-gradle-${{ hashFiles('gradle-wrapper.properties') }}-${{ hashFiles('*.toml') }}
       - name: run lint
         run: ./gradlew lintDebug
       - name: run detekt
