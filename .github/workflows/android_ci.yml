@@ -11,6 +11,7 @@ jobs:
       - name: setup jdk
         uses: actions/setup-java@v2
         with:
+          distribution: 'liberica'
           java-version: 11
       - name: setup ruby
         uses: ruby/setup-ruby@v1
