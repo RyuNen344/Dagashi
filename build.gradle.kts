@@ -1,6 +1,7 @@
 import io.gitlab.arturbosch.detekt.Detekt
 
 plugins {
+    id("jacoco")
     alias(libs.plugins.kotlin.kover)
     alias(libs.plugins.releaseHub)
     alias(libs.plugins.detekt)
@@ -23,6 +24,7 @@ buildscript {
 }
 
 allprojects {
+    apply(plugin = "jacoco")
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         kotlinOptions.suppressWarnings = false
         kotlinOptions.freeCompilerArgs = listOf(
@@ -38,6 +40,110 @@ allprojects {
 tasks.register("clean", Delete::class) {
     group = "cleanup"
     delete(rootProject.buildDir)
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+task("jacocoMergedReport", JacocoReport::class) {
+    group = "verification"
+    description = "create jacoco merged repot"
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+        csv.required.set(false)
+    }
+    gradle.afterProject {
+        if (rootProject != this && plugins.hasPlugin("jacoco")) {
+            sourceDirectories.from += "$projectDir/src/main/java"
+            val current = classDirectories.files.toMutableSet()
+            current.addAll(fileTree("$buildDir/tmp/kotlin-classes/debug").files)
+            current.addAll(fileTree("$buildDir/intermediates/javac/debug/classes").files)
+            classDirectories.setFrom(current.map { it.absolutePath })
+        }
+    }
+
+    val testVariant = "debug"
+
+    // Exclude the class files corresponding to the auto-generated source files.
+    val classDirectoriesTreeExcludes = setOf(
+        // e.g. class   : androidx/databinding/library/baseAdapters/BR.class
+        //      element : BR
+        "androidx/**/*.class",
+
+        // e.g. class   : <AndroidManifestPackage>/DataBinderMapperImpl.class
+        //      element : DataBinderMapperImpl
+        "**/DataBinderMapperImpl.class",
+
+        // e.g. class   : <AndroidManifestPackage>/DataBinderMapperImpl$InnerBrLookup.class
+        //      element : DataBinderMapperImpl.InnerBrLookup
+        "**/DataBinderMapperImpl\$*.class",
+
+        // e.g. class   : <AndroidManifestPackage>/BuildConfig.class
+        //      element : BuildConfig
+        "**/BuildConfig.class",
+
+        // e.g. class   : <AndroidManifestPackage>/BR.class
+        //      element : BR
+        "**/BR.class",
+
+        // e.g. class   : <AndroidManifestPackage>/DataBindingInfo.class
+        //      element : DataBindingInfo
+        "**/DataBindingInfo.class"
+
+        //     "**/R.class",
+        //     "**/R$*.class",
+        //     "**/Manifest*.*",
+        //     "android/**/*.*",
+        //     "**/Lambda$*.class",
+        //     "**/*\$Lambda$*.*",
+        //     "**/Lambda.class",
+        //     "**/*Lambda.class",
+        //     "**/*Lambda*.class",
+        //     "**/*Lambda*.*",
+        //     "**/*Builder.*"
+    )
+
+    val javaClassDirectoriesTree = fileTree(
+        mapOf(
+            "dir" to "${buildDir}/intermediates/javac/$testVariant/classes/",
+            "excludes" to classDirectoriesTreeExcludes
+        )
+    )
+
+    val kotlinClassDirectoriesTree = fileTree(
+        mapOf(
+            "dir" to "${buildDir}/tmp/kotlin-classes/$testVariant",
+            "excludes" to classDirectoriesTreeExcludes
+        )
+    )
+    classDirectories.setFrom(files(javaClassDirectoriesTree, kotlinClassDirectoriesTree))
+
+    val mainSourceDirectoryRelativePath = "src/main/java"
+    val variantSourceDirectoryRelativePath = "src/$testVariant/java"
+    sourceDirectories.setFrom(
+        mainSourceDirectoryRelativePath,
+        variantSourceDirectoryRelativePath
+    )
+
+    executionData.setFrom(
+        fileTree(
+            mapOf(
+                "dir" to project.projectDir,
+                "includes" to listOf(
+                    "**/*.exec",
+                    "**/*.ec"
+                )
+            )
+        )
+    )
+}
+
+kover {
+    isDisabled = true
+    generateReportOnCheck.set(true)
+    instrumentAndroidPackage = false
 }
 
 releasesHub {
@@ -59,7 +165,7 @@ detekt {
 tasks.withType<Detekt>().configureEach {
     jvmTarget = "1.8"
     reports {
-        html.required.set(true) // observe findings in your browser with structure and code snippets
-        xml.required.set(true) // checkstyle like format mainly for integrations like Jenkins
+        html.required.set(true)
+        xml.required.set(true)
     }
 }
