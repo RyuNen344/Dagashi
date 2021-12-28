@@ -24,11 +24,11 @@ jobs:
         run: ./gradlew detekt
       - name: run unit test
         run: ./gradlew testDebugUnitTest
-#      - name: run connected test
-#        uses: reactivecircus/android-emulator-runner@v2
-#        with:
-#          api-level: 29
-#          script: ./gradlew connectedDebugAndroidTest
+      - name: run connected test
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew connectedDebugAndroidTest
       - name: create jacoco report
         run: ./gradlew jacocoMergedReport
       - name: Danger
