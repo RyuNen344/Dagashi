@@ -1,15 +1,4 @@
 [versions]
-kotlin = "1.6.10"
-kotlin_coroutine = "1.6.0"
-androidx_lifecycle = "2.3.1"
-androidx_navigation = "2.3.5"
-androidx_room = "2.4.0"
-dagger = "2.39.1"
-dagger_android = "1.0.0"
-corbind = "1.5.2"
-groupie = "2.9.0"
-ktor = "1.6.7"
-
 android_minSdk = "24"
 android_targetSdk = "31"
 android_compileSdk = "31"
