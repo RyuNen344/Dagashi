@@ -95,9 +95,9 @@ class PathIssuesViewModel @AssistedInject constructor(
     override fun toggleStash(issue: Issue) {
         viewModelDefaultScope.launch {
             if (issue.isStashed) {
-                issueRepository.unStashIssue(issue.singleUniqueId)
+                issueRepository.unStashIssue(issue)
             } else {
-                issueRepository.stashIssue(issue.singleUniqueId)
+                issueRepository.stashIssue(issue)
             }
         }
     }
