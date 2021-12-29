@@ -25,11 +25,6 @@ buildscript {
 
 allprojects {
     apply(plugin = "jacoco")
-    afterEvaluate {
-        jacoco {
-            toolVersion = "0.8.7"
-        }
-    }
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         kotlinOptions.suppressWarnings = false
         kotlinOptions.freeCompilerArgs = listOf(
