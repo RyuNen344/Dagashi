@@ -49,11 +49,11 @@ class IssueRepositoryImplTest {
         mainCoroutineTestRule.runBlockingTest {
             val db = EntityGenerator.createIssueWithLabelAndCommentOnStashes()
 
-            coEvery { mockIssueDatabase.issueEntity(0) } answers { flowOf(db) }
+            coEvery { mockIssueDatabase.issues(0) } answers { flowOf(db) }
 
-            val mappedList = issueRepositoryImpl.issue(0).single()
+            val mappedList = issueRepositoryImpl.issues(0).single()
 
-            coVerify { mockIssueDatabase.issueEntity(0) }
+            coVerify { mockIssueDatabase.issues(0) }
 
             MatcherAssert.assertThat(mappedList, CoreMatchers.equalTo(db.map(IssueMapper::toModel)))
         }
@@ -64,11 +64,11 @@ class IssueRepositoryImplTest {
         mainCoroutineTestRule.runBlockingTest {
             val db = EntityGenerator.createIssueWithLabelAndCommentOnStashes()
 
-            coEvery { mockIssueDatabase.issueEntityByKeyword("keyword") } answers { flowOf(db) }
+            coEvery { mockIssueDatabase.issuesByKeyword("keyword") } answers { flowOf(db) }
 
-            val mappedList = issueRepositoryImpl.issueByKeyword("keyword").single()
+            val mappedList = issueRepositoryImpl.issuesByKeyword("keyword").single()
 
-            coVerify { mockIssueDatabase.issueEntityByKeyword("keyword") }
+            coVerify { mockIssueDatabase.issuesByKeyword("keyword") }
 
             MatcherAssert.assertThat(mappedList, CoreMatchers.equalTo(db.map(IssueMapper::toModel)))
         }

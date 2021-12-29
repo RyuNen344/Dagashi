@@ -35,12 +35,12 @@ class MileStoneRepositoryImplTest {
         mainCoroutineTestRule.runBlockingTest {
             val response = ResponseGenerator.createSinglePageMileStonesRootResponse()
             coEvery { mockDagashiApi.milestones() } answers { response }
-            coEvery { mockMileStoneDatabase.saveMileStone(response.milestones.nodes.map(MileStoneMapper::toEntity)) } answers {}
+            coEvery { mockMileStoneDatabase.saveMileStones(response.milestones.nodes.map(MileStoneMapper::toEntity)) } answers {}
 
             mileStoneRepositoryImpl.refresh()
 
             coVerify(exactly = 1) { mockDagashiApi.milestones() }
-            coVerify { mockMileStoneDatabase.saveMileStone(response.milestones.nodes.map(MileStoneMapper::toEntity)) }
+            coVerify { mockMileStoneDatabase.saveMileStones(response.milestones.nodes.map(MileStoneMapper::toEntity)) }
             confirmVerified(mockDagashiApi, mockMileStoneDatabase)
         }
     }
@@ -57,13 +57,13 @@ class MileStoneRepositoryImplTest {
 
             coEvery { mockDagashiApi.milestones() } answers { multiplePageResponse }
             coEvery { mockDagashiApi.milestones(multiplePageResponse.milestones.pageInfo.endCursor!!) } answers { singlePageResponse }
-            coEvery { mockMileStoneDatabase.saveMileStone(result) } answers {}
+            coEvery { mockMileStoneDatabase.saveMileStones(result) } answers {}
 
             mileStoneRepositoryImpl.refresh()
 
             coVerify(exactly = 1) { mockDagashiApi.milestones() }
             coVerify(exactly = 1) { mockDagashiApi.milestones(multiplePageResponse.milestones.pageInfo.endCursor!!) }
-            coVerify { mockMileStoneDatabase.saveMileStone(result) }
+            coVerify { mockMileStoneDatabase.saveMileStones(result) }
             confirmVerified(mockDagashiApi, mockMileStoneDatabase)
         }
     }
@@ -73,11 +73,11 @@ class MileStoneRepositoryImplTest {
         mainCoroutineTestRule.runBlockingTest {
             val db = EntityGenerator.createMileStoneWithSummaryIssues()
 
-            coEvery { mockMileStoneDatabase.mileStoneEntity() } answers { flowOf(db) }
+            coEvery { mockMileStoneDatabase.mileStones() } answers { flowOf(db) }
 
             val mappedList = mileStoneRepositoryImpl.mileStones().single()
 
-            coVerify { mockMileStoneDatabase.mileStoneEntity() }
+            coVerify { mockMileStoneDatabase.mileStones() }
 
             MatcherAssert.assertThat(mappedList, CoreMatchers.equalTo(db.map(::toModel)))
         }

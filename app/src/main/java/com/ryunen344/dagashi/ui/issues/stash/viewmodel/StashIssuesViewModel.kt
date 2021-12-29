@@ -11,7 +11,12 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -41,7 +46,7 @@ class StashIssuesViewModel @Inject constructor(
 
     private fun bindOutput() {
         issueRepository
-            .issueOnStashed()
+            .stashedIssues()
             .onEach {
                 _issues.emit(it)
             }.launchIn(viewModelDefaultScope)
