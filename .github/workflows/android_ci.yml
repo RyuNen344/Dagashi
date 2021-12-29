@@ -52,3 +52,24 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./build/reports/jacoco/jacocoMergedReport/jacocoMergedReport.xml
+
+  qodana:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup gradle cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.android/build-cache
+            ~/.android/cache
+          key: ${{ runner.os }}-v1-gradle-${{ hashFiles('**/gradle-wrapper.properties', '**/*.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-v1-gradle-
+      - name: run qodana
+        uses: JetBrains/qodana-action@v4.2.0
+        with:
+          linter: jetbrains/qodana-jvm-android:latest
