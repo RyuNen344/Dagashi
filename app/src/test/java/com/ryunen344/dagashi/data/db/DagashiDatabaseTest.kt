@@ -30,7 +30,7 @@ class DagashiDatabaseTest {
             mockCacheDatabase.mileStoneDao.select()
         } returns flowOf(emptyList())
 
-        dagashiDatabase.mileStoneEntity()
+        dagashiDatabase.mileStones()
 
         coVerify {
             mockCacheDatabase.mileStoneDao.select()
@@ -53,7 +53,7 @@ class DagashiDatabaseTest {
                 mockCacheDatabase.summaryIssueDao.insertOrUpdate(mileStoneWithSummaryIssues.flatMap { it.issues })
             } returns mockk()
 
-            dagashiDatabase.saveMileStone(mileStoneWithSummaryIssues)
+            dagashiDatabase.saveMileStones(mileStoneWithSummaryIssues)
 
             coVerify {
                 mockCacheDatabase.mileStoneDao.insertOrUpdate(mileStoneWithSummaryIssues.map { it.mileStoneEntity })
@@ -71,7 +71,7 @@ class DagashiDatabaseTest {
             mockCacheDatabase.issueDao.select(0)
         } returns flowOf(emptyList())
 
-        dagashiDatabase.issueEntity(0)
+        dagashiDatabase.issues(0)
 
         coVerify {
             mockCacheDatabase.issueDao.select(0)
@@ -85,7 +85,7 @@ class DagashiDatabaseTest {
             mockCacheDatabase.issueDao.search("keyword")
         } returns flowOf(emptyList())
 
-        dagashiDatabase.issueEntityByKeyword("keyword")
+        dagashiDatabase.issuesByKeyword("keyword")
 
         coVerify {
             mockCacheDatabase.issueDao.search("keyword")

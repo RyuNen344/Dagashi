@@ -1,66 +1,73 @@
 package com.ryunen344.dagashi.data.db
 
 import androidx.room.withTransaction
-import com.ryunen344.dagashi.data.db.entity.StashedIssueEntity
-import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndComment
-import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndCommentOnStash
-import com.ryunen344.dagashi.data.db.entity.combined.MileStoneWithSummaryIssue
 import com.ryunen344.dagashi.data.db.entity.relation.IssueLabelCrossRef
 import com.ryunen344.dagashi.data.db.interfaces.IssueDatabase
 import com.ryunen344.dagashi.data.db.interfaces.MileStoneDatabase
+import com.ryunen344.dagashi.data.db.mapper.toEntity
+import com.ryunen344.dagashi.data.db.mapper.toModel
+import com.ryunen344.dagashi.data.db.mapper.toStashedEntity
+import com.ryunen344.dagashi.model.Issue
+import com.ryunen344.dagashi.model.MileStone
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class DagashiDatabase @Inject constructor(
     private val cacheDatabase: CacheDatabase
 ) : MileStoneDatabase, IssueDatabase {
 
-    override fun mileStoneEntity(): Flow<List<MileStoneWithSummaryIssue>> {
-        return cacheDatabase.mileStoneDao.select()
+    override fun mileStones(): Flow<List<MileStone>> {
+        return cacheDatabase.mileStoneDao.select().map { list -> list.map { it.toModel() } }
     }
 
-    override suspend fun saveMileStone(entity: List<MileStoneWithSummaryIssue>) {
+    override suspend fun saveMileStones(mileStones: List<MileStone>) {
         cacheDatabase.withTransaction {
-            cacheDatabase.mileStoneDao.insertOrUpdate(entity.map { it.mileStoneEntity })
-            cacheDatabase.summaryIssueDao.insertOrUpdate(entity.flatMap { it.issues })
+            cacheDatabase.mileStoneDao.insertOrUpdate(mileStones.map { it.toEntity() })
+            cacheDatabase.summaryIssueDao.insertOrUpdate(mileStones.flatMap { it.issues }.map { it.toEntity() })
         }
     }
 
-    override fun issueEntity(number: Int): Flow<List<IssueWithLabelAndCommentOnStash>> {
-        return cacheDatabase.issueDao.select(number)
+    override fun issues(number: Int): Flow<List<Issue>> {
+        return cacheDatabase.issueDao.select(number).map { list -> list.map { it.toModel() } }
     }
 
-    override fun issueOnStashed(): Flow<List<IssueWithLabelAndCommentOnStash>> {
-        return cacheDatabase.issueDao.stashed()
+    override fun stashedIssues(): Flow<List<Issue>> {
+        return cacheDatabase.issueDao.stashed().map { list -> list.map { it.toModel() } }
     }
 
-    override fun issueEntityByKeyword(keyword: String): Flow<List<IssueWithLabelAndCommentOnStash>> {
-        return cacheDatabase.issueDao.search(keyword)
+    override fun issuesByKeyword(keyword: String): Flow<List<Issue>> {
+        return cacheDatabase.issueDao.search(keyword).map { list -> list.map { it.toModel() } }
     }
 
-    override suspend fun saveIssue(entity: List<IssueWithLabelAndComment>) {
+    override suspend fun saveIssue(issues: List<Issue>) {
         cacheDatabase.withTransaction {
-            cacheDatabase.issueDao.insertOrUpdate(entity.map { it.issueEntity })
-            cacheDatabase.labelDao.insertOrUpdate(entity.flatMap { it.labels }.distinct())
+            cacheDatabase.issueDao.insertOrUpdate(issues.map { it.toEntity() })
+            cacheDatabase.labelDao.insertOrUpdate(
+                issues
+                    .flatMap { it.labels }
+                    .distinct()
+                    .map { it.toEntity() }
+            )
             cacheDatabase.issueLabelCrossRefDao.insertOrUpdate(
-                entity.flatMap { combined ->
+                issues.flatMap { combined ->
                     combined.labels.map { label ->
                         IssueLabelCrossRef(
-                            singleUniqueId = combined.issueEntity.singleUniqueId,
+                            singleUniqueId = combined.singleUniqueId,
                             labelName = label.name
                         )
                     }
                 }
             )
-            cacheDatabase.commentDao.insertOrUpdate(entity.flatMap { it.comments })
+            cacheDatabase.commentDao.insertOrUpdate(issues.flatMap { it.comments }.map { it.toEntity() })
         }
     }
 
-    override suspend fun stashIssue(stashedIssueEntity: StashedIssueEntity) {
-        cacheDatabase.stashedIssueDao.insertOrUpdate(stashedIssueEntity)
+    override suspend fun stashIssue(issue: Issue) {
+        cacheDatabase.stashedIssueDao.insertOrUpdate(issue.toStashedEntity())
     }
 
-    override suspend fun unStashIssue(stashedIssueEntity: StashedIssueEntity) {
-        cacheDatabase.stashedIssueDao.delete(stashedIssueEntity)
+    override suspend fun unStashIssue(issue: Issue) {
+        cacheDatabase.stashedIssueDao.delete(issue.toStashedEntity())
     }
 }

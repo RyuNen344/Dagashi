@@ -1,20 +1,18 @@
 package com.ryunen344.dagashi.data.db.interfaces
 
-import com.ryunen344.dagashi.data.db.entity.StashedIssueEntity
-import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndComment
-import com.ryunen344.dagashi.data.db.entity.combined.IssueWithLabelAndCommentOnStash
+import com.ryunen344.dagashi.model.Issue
 import kotlinx.coroutines.flow.Flow
 
 interface IssueDatabase {
-    fun issueEntity(number: Int): Flow<List<IssueWithLabelAndCommentOnStash>>
+    fun issues(number: Int): Flow<List<Issue>>
 
-    fun issueOnStashed(): Flow<List<IssueWithLabelAndCommentOnStash>>
+    fun stashedIssues(): Flow<List<Issue>>
 
-    fun issueEntityByKeyword(keyword: String): Flow<List<IssueWithLabelAndCommentOnStash>>
+    fun issuesByKeyword(keyword: String): Flow<List<Issue>>
 
-    suspend fun saveIssue(entity: List<IssueWithLabelAndComment>)
+    suspend fun saveIssue(issues: List<Issue>)
 
-    suspend fun stashIssue(stashedIssueEntity: StashedIssueEntity)
+    suspend fun stashIssue(issue: Issue)
 
-    suspend fun unStashIssue(stashedIssueEntity: StashedIssueEntity)
+    suspend fun unStashIssue(issue: Issue)
 }
