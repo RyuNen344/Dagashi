@@ -24,7 +24,15 @@ Dir.glob(detekt_dir_pattern) do |file|
   checkstyle_format.report file
 end
 
-# # reference: https://github.com/Malinskiy/danger-jacoco
-# jacoco.report(Dir.glob("**/jacocoMergedReport.xml").first)
+# reference: https://github.com/Malinskiy/danger-jacoco
+jacoco_dir_pattern = "**/jacocoMergedReport.xml"
+Dir.glob(jacoco_dir_pattern) do |file|
+  jacoco.report file
+end
+
+kover_dir_pattern = "**kover/report*.xml"
+Dir.glob(kover_dir_pattern) do |file|
+  jacoco.report file
+end
 
 lgtm.check_lgtm https_image_only: true
