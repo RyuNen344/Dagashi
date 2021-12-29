@@ -23,3 +23,6 @@
 local.properties
 build/
 .bundle/caches
+*.exec
+*.ec
+*.ic

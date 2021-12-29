@@ -2,6 +2,7 @@ package com.ryunen344.dagashi.data.db
 
 import androidx.room.withTransaction
 import com.ryunen344.dagashi.data.db.entity.relation.IssueLabelCrossRef
+import com.ryunen344.dagashi.data.db.mapper.toModel
 import com.ryunen344.dagashi.test.EntityGenerator
 import com.ryunen344.dagashi.test.MainCoroutineTestRule
 import com.ryunen344.dagashi.test.runBlockingTest
@@ -53,7 +54,7 @@ class DagashiDatabaseTest {
                 mockCacheDatabase.summaryIssueDao.insertOrUpdate(mileStoneWithSummaryIssues.flatMap { it.issues })
             } returns mockk()
 
-            dagashiDatabase.saveMileStones(mileStoneWithSummaryIssues)
+            dagashiDatabase.saveMileStones(mileStoneWithSummaryIssues.map { it.toModel() })
 
             coVerify {
                 mockCacheDatabase.mileStoneDao.insertOrUpdate(mileStoneWithSummaryIssues.map { it.mileStoneEntity })
@@ -100,19 +101,19 @@ class DagashiDatabaseTest {
             val transactionLambda = slot<suspend () -> Any>()
             coEvery { mockCacheDatabase.withTransaction(capture(transactionLambda)) } coAnswers { transactionLambda.captured.invoke() }
 
-            val issueWithLabelAndComments = EntityGenerator.createIssueWithLabelAndComments()
+            val issueWithLabelAndComments = EntityGenerator.createIssueWithLabelAndCommentOnStashes()
             coEvery {
-                mockCacheDatabase.issueDao.insertOrUpdate(issueWithLabelAndComments.map { it.issueEntity })
+                mockCacheDatabase.issueDao.insertOrUpdate(issueWithLabelAndComments.map { it.issueWithLabelAndComment.issueEntity })
             } returns mockk()
             coEvery {
-                mockCacheDatabase.labelDao.insertOrUpdate(issueWithLabelAndComments.flatMap { it.labels }.distinct())
+                mockCacheDatabase.labelDao.insertOrUpdate(issueWithLabelAndComments.flatMap { it.issueWithLabelAndComment.labels }.distinct())
             } returns mockk()
             coEvery {
                 mockCacheDatabase.issueLabelCrossRefDao.insertOrUpdate(
                     issueWithLabelAndComments.flatMap { combined ->
-                        combined.labels.map { label ->
+                        combined.issueWithLabelAndComment.labels.map { label ->
                             IssueLabelCrossRef(
-                                singleUniqueId = combined.issueEntity.singleUniqueId,
+                                singleUniqueId = combined.issueWithLabelAndComment.issueEntity.singleUniqueId,
                                 labelName = label.name
                             )
                         }
@@ -120,23 +121,23 @@ class DagashiDatabaseTest {
                 )
             } returns mockk()
             coEvery {
-                mockCacheDatabase.commentDao.insertOrUpdate(issueWithLabelAndComments.flatMap { it.comments })
+                mockCacheDatabase.commentDao.insertOrUpdate(issueWithLabelAndComments.flatMap { it.issueWithLabelAndComment.comments })
             } returns mockk()
 
-            dagashiDatabase.saveIssue(issueWithLabelAndComments)
+            dagashiDatabase.saveIssue(issueWithLabelAndComments.map { it.toModel() })
 
             coVerify {
-                mockCacheDatabase.issueDao.insertOrUpdate(issueWithLabelAndComments.map { it.issueEntity })
+                mockCacheDatabase.issueDao.insertOrUpdate(issueWithLabelAndComments.map { it.issueWithLabelAndComment.issueEntity })
             }
             coVerify {
-                mockCacheDatabase.labelDao.insertOrUpdate(issueWithLabelAndComments.flatMap { it.labels }.distinct())
+                mockCacheDatabase.labelDao.insertOrUpdate(issueWithLabelAndComments.flatMap { it.issueWithLabelAndComment.labels }.distinct())
             }
             coVerify {
                 mockCacheDatabase.issueLabelCrossRefDao.insertOrUpdate(
                     issueWithLabelAndComments.flatMap { combined ->
-                        combined.labels.map { label ->
+                        combined.issueWithLabelAndComment.labels.map { label ->
                             IssueLabelCrossRef(
-                                singleUniqueId = combined.issueEntity.singleUniqueId,
+                                singleUniqueId = combined.issueWithLabelAndComment.issueEntity.singleUniqueId,
                                 labelName = label.name
                             )
                         }
@@ -144,7 +145,7 @@ class DagashiDatabaseTest {
                 )
             }
             coVerify {
-                mockCacheDatabase.commentDao.insertOrUpdate(issueWithLabelAndComments.flatMap { it.comments })
+                mockCacheDatabase.commentDao.insertOrUpdate(issueWithLabelAndComments.flatMap { it.issueWithLabelAndComment.comments })
             }
             confirmVerified(mockCacheDatabase)
         }

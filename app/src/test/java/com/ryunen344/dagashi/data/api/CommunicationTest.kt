@@ -4,8 +4,6 @@ import com.ryunen344.dagashi.di.ApiModule
 import com.ryunen344.dagashi.test.MainCoroutineTestRule
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
 import org.junit.Rule
 import org.junit.Test
 
@@ -20,19 +18,6 @@ class CommunicationTest {
     fun testMilestones() {
         runBlocking(Dispatchers.Default) {
             api.milestones()
-        }
-    }
-
-    @Test
-    fun testMilestonesCursor() {
-        runBlocking(Dispatchers.Default) {
-            val milestones = api.milestones()
-            MatcherAssert.assertThat(
-                milestones.milestones.pageInfo.endCursor?.let {
-                    api.milestones(it)
-                },
-                CoreMatchers.notNullValue()
-            )
         }
     }
 
