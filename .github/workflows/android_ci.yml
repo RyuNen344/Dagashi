@@ -52,3 +52,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./build/reports/jacoco/jacocoMergedReport/jacocoMergedReport.xml
+      - name: run qodana
+        uses: JetBrains/qodana-action@v4.2.0
+        with:
+          linter: jetbrains/qodana-jvm-android:latest
