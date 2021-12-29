@@ -27,12 +27,12 @@ end
 # reference: https://github.com/Malinskiy/danger-jacoco
 jacoco_dir_pattern = "**/jacocoMergedReport.xml"
 Dir.glob(jacoco_dir_pattern) do |file|
-  jacoco.report file
+  jacoco.report(file, fail_no_coverage_data_found: false)
 end
 
 kover_dir_pattern = "**kover/report*.xml"
 Dir.glob(kover_dir_pattern) do |file|
-  jacoco.report file
+  jacoco.report(file, fail_no_coverage_data_found: false)
 end
 
 lgtm.check_lgtm https_image_only: true

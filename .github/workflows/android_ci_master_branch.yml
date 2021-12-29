@@ -25,8 +25,6 @@ jobs:
             ~/.android/build-cache
             ~/.android/cache
           key: ${{ runner.os }}-v1-gradle-${{ hashFiles('**/gradle-wrapper.properties', '**/*.toml') }}
-          restore-keys: |
-            ${{ runner.os }}-v1-gradle-
       - name: run unit test
         run: ./gradlew testDebugUnitTest
       - name: run connected test
@@ -56,8 +54,6 @@ jobs:
             ~/.android/build-cache
             ~/.android/cache
           key: ${{ runner.os }}-v1-gradle-${{ hashFiles('**/gradle-wrapper.properties', '**/*.toml') }}
-          restore-keys: |
-            ${{ runner.os }}-v1-gradle-
       - name: run qodana
         uses: JetBrains/qodana-action@v4.2.0
         with:

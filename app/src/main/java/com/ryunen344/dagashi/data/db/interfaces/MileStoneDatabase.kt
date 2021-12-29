@@ -1,10 +1,10 @@
 package com.ryunen344.dagashi.data.db.interfaces
 
-import com.ryunen344.dagashi.data.db.entity.combined.MileStoneWithSummaryIssue
+import com.ryunen344.dagashi.model.MileStone
 import kotlinx.coroutines.flow.Flow
 
 interface MileStoneDatabase {
-    fun mileStoneEntity(): Flow<List<MileStoneWithSummaryIssue>>
+    fun mileStones(): Flow<List<MileStone>>
 
-    suspend fun saveMileStone(entity: List<MileStoneWithSummaryIssue>)
+    suspend fun saveMileStones(mileStones: List<MileStone>)
 }

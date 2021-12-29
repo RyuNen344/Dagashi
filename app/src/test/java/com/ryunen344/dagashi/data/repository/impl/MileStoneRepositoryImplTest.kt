@@ -1,9 +1,9 @@
 package com.ryunen344.dagashi.data.repository.impl
 
 import com.ryunen344.dagashi.data.api.DagashiApi
+import com.ryunen344.dagashi.data.api.mapper.toModel
 import com.ryunen344.dagashi.data.db.interfaces.MileStoneDatabase
-import com.ryunen344.dagashi.data.repository.mapper.MileStoneMapper
-import com.ryunen344.dagashi.data.repository.mapper.MileStoneMapper.toModel
+import com.ryunen344.dagashi.data.db.mapper.toModel
 import com.ryunen344.dagashi.test.EntityGenerator
 import com.ryunen344.dagashi.test.MainCoroutineTestRule
 import com.ryunen344.dagashi.test.ResponseGenerator
@@ -33,14 +33,14 @@ class MileStoneRepositoryImplTest {
     @Test
     fun refreshSinglePage() {
         mainCoroutineTestRule.runBlockingTest {
-            val response = ResponseGenerator.createSinglePageMileStonesRootResponse()
+            val response = ResponseGenerator.createSinglePageMileStonesRootResponse().toModel()
             coEvery { mockDagashiApi.milestones() } answers { response }
-            coEvery { mockMileStoneDatabase.saveMileStone(response.milestones.nodes.map(MileStoneMapper::toEntity)) } answers {}
+            coEvery { mockMileStoneDatabase.saveMileStones(response) } answers {}
 
             mileStoneRepositoryImpl.refresh()
 
             coVerify(exactly = 1) { mockDagashiApi.milestones() }
-            coVerify { mockMileStoneDatabase.saveMileStone(response.milestones.nodes.map(MileStoneMapper::toEntity)) }
+            coVerify { mockMileStoneDatabase.saveMileStones(response) }
             confirmVerified(mockDagashiApi, mockMileStoneDatabase)
         }
     }
@@ -50,20 +50,15 @@ class MileStoneRepositoryImplTest {
         mainCoroutineTestRule.runBlockingTest {
             val multiplePageResponse = ResponseGenerator.createMultiplePageMileStonesRootResponse()
             val singlePageResponse = ResponseGenerator.createSinglePageMileStonesRootResponse()
-            val result = listOf(
-                multiplePageResponse.milestones.nodes.map(MileStoneMapper::toEntity),
-                singlePageResponse.milestones.nodes.map(MileStoneMapper::toEntity)
-            ).flatten()
+            val result = multiplePageResponse.toModel() + singlePageResponse.toModel()
 
-            coEvery { mockDagashiApi.milestones() } answers { multiplePageResponse }
-            coEvery { mockDagashiApi.milestones(multiplePageResponse.milestones.pageInfo.endCursor!!) } answers { singlePageResponse }
-            coEvery { mockMileStoneDatabase.saveMileStone(result) } answers {}
+            coEvery { mockDagashiApi.milestones() } answers { result }
+            coEvery { mockMileStoneDatabase.saveMileStones(result) } answers {}
 
             mileStoneRepositoryImpl.refresh()
 
             coVerify(exactly = 1) { mockDagashiApi.milestones() }
-            coVerify(exactly = 1) { mockDagashiApi.milestones(multiplePageResponse.milestones.pageInfo.endCursor!!) }
-            coVerify { mockMileStoneDatabase.saveMileStone(result) }
+            coVerify { mockMileStoneDatabase.saveMileStones(result) }
             confirmVerified(mockDagashiApi, mockMileStoneDatabase)
         }
     }
@@ -71,15 +66,15 @@ class MileStoneRepositoryImplTest {
     @Test
     fun mileStones() {
         mainCoroutineTestRule.runBlockingTest {
-            val db = EntityGenerator.createMileStoneWithSummaryIssues()
+            val db = EntityGenerator.createMileStoneWithSummaryIssues().map { it.toModel() }
 
-            coEvery { mockMileStoneDatabase.mileStoneEntity() } answers { flowOf(db) }
+            coEvery { mockMileStoneDatabase.mileStones() } answers { flowOf(db) }
 
             val mappedList = mileStoneRepositoryImpl.mileStones().single()
 
-            coVerify { mockMileStoneDatabase.mileStoneEntity() }
+            coVerify { mockMileStoneDatabase.mileStones() }
 
-            MatcherAssert.assertThat(mappedList, CoreMatchers.equalTo(db.map(::toModel)))
+            MatcherAssert.assertThat(mappedList, CoreMatchers.equalTo(db))
         }
     }
 }

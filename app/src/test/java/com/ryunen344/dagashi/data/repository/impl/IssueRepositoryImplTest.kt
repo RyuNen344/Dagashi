@@ -1,8 +1,9 @@
 package com.ryunen344.dagashi.data.repository.impl
 
 import com.ryunen344.dagashi.data.api.DagashiApi
+import com.ryunen344.dagashi.data.api.mapper.toModel
 import com.ryunen344.dagashi.data.db.interfaces.IssueDatabase
-import com.ryunen344.dagashi.data.repository.mapper.IssueMapper
+import com.ryunen344.dagashi.data.db.mapper.toModel
 import com.ryunen344.dagashi.test.EntityGenerator
 import com.ryunen344.dagashi.test.MainCoroutineTestRule
 import com.ryunen344.dagashi.test.ResponseGenerator
@@ -32,14 +33,14 @@ class IssueRepositoryImplTest {
     @Test
     fun refresh() {
         mainCoroutineTestRule.runBlockingTest {
-            val response = ResponseGenerator.createIssueRootResponse()
-            coEvery { mockDagashiApi.issues("path") } answers { response }
-            coEvery { mockIssueDatabase.saveIssue(IssueMapper.toEntity(response)) } answers {}
+            val issues = ResponseGenerator.createIssueRootResponse().toModel()
+            coEvery { mockDagashiApi.issues("path") } answers { issues }
+            coEvery { mockIssueDatabase.saveIssue(issues) } answers {}
 
             issueRepositoryImpl.refresh("path")
 
             coVerify { mockDagashiApi.issues("path") }
-            coVerify { mockIssueDatabase.saveIssue(IssueMapper.toEntity(response)) }
+            coVerify { mockIssueDatabase.saveIssue(issues) }
             confirmVerified(mockDagashiApi, mockIssueDatabase)
         }
     }
@@ -47,30 +48,30 @@ class IssueRepositoryImplTest {
     @Test
     fun issue() {
         mainCoroutineTestRule.runBlockingTest {
-            val db = EntityGenerator.createIssueWithLabelAndCommentOnStashes()
+            val db = EntityGenerator.createIssueWithLabelAndCommentOnStashes().map { it.toModel() }
 
-            coEvery { mockIssueDatabase.issueEntity(0) } answers { flowOf(db) }
+            coEvery { mockIssueDatabase.issues(0) } answers { flowOf(db) }
 
-            val mappedList = issueRepositoryImpl.issue(0).single()
+            val mappedList = issueRepositoryImpl.issues(0).single()
 
-            coVerify { mockIssueDatabase.issueEntity(0) }
+            coVerify { mockIssueDatabase.issues(0) }
 
-            MatcherAssert.assertThat(mappedList, CoreMatchers.equalTo(db.map(IssueMapper::toModel)))
+            MatcherAssert.assertThat(mappedList, CoreMatchers.equalTo(db))
         }
     }
 
     @Test
     fun issueByKeyword() {
         mainCoroutineTestRule.runBlockingTest {
-            val db = EntityGenerator.createIssueWithLabelAndCommentOnStashes()
+            val db = EntityGenerator.createIssueWithLabelAndCommentOnStashes().map { it.toModel() }
 
-            coEvery { mockIssueDatabase.issueEntityByKeyword("keyword") } answers { flowOf(db) }
+            coEvery { mockIssueDatabase.issuesByKeyword("keyword") } answers { flowOf(db) }
 
-            val mappedList = issueRepositoryImpl.issueByKeyword("keyword").single()
+            val mappedList = issueRepositoryImpl.issuesByKeyword("keyword").single()
 
-            coVerify { mockIssueDatabase.issueEntityByKeyword("keyword") }
+            coVerify { mockIssueDatabase.issuesByKeyword("keyword") }
 
-            MatcherAssert.assertThat(mappedList, CoreMatchers.equalTo(db.map(IssueMapper::toModel)))
+            MatcherAssert.assertThat(mappedList, CoreMatchers.equalTo(db))
         }
     }
 }
