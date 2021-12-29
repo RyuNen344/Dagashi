@@ -98,8 +98,8 @@ class PathIssuesViewModel @AssistedInject constructor(
             number: Int,
             path: String
         ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                @Suppress("UNCHECKED_CAST")
                 return assistedFactory.create(number, path) as T
             }
         }
