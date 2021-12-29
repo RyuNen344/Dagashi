@@ -32,7 +32,7 @@ material = "com.google.android.material:material:1.4.0"
 desugar = "com.android.tools:desugar_jdk_libs:1.1.5"
 
 androidx_lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
-androidx_lifecycle_livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+androidx_lifecycle_livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
 androidx_lifecycle_common_java8 = "androidx.lifecycle:lifecycle-common-java8:2.4.0"
 
 androidx_navigation_fragment = "androidx.navigation:navigation-fragment-ktx:2.3.5"
