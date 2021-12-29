@@ -20,72 +20,72 @@ android_version_patch = "1"
 android_version_code = "1"
 
 [libraries]
-android_gradle = { group = "com.android.tools.build", name = "gradle", version = "7.0.4" }
-androidx_navigation_gradle = { group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "androidx_navigation" }
-dagger_gradle = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "dagger" }
-kotlin_gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlin_serialization_gradle = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
+android_gradle = "com.android.tools.build:gradle:7.0.4"
+androidx_navigation_gradle = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
+dagger_gradle = "com.google.dagger:hilt-android-gradle-plugin:2.39.1"
+kotlin_gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
+kotlin_serialization_gradle = "org.jetbrains.kotlin:kotlin-serialization:1.6.10"
 
-kotlin_stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
-kotlin_stdlib_jdk8 = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
-kotlin_coroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlin_coroutine" }
-kotlin_serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version = "1.3.1" }
+kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:1.6.10"
+kotlin_stdlib_jdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10"
+kotlin_coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
+kotlin_serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1"
 
-androidx_core = { group = "androidx.core", name = "core-ktx", version = "1.6.0" }
-androidx_appcompat = { group = "androidx.appcompat", name = "appcompat", version = "1.3.1" }
-androidx_constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version = "2.1.1" }
-androidx_emoji = { group = "androidx.emoji", name = "emoji-appcompat", version = "1.2.0-alpha01" }
-androidx_activity = { group = "androidx.activity", name = "activity-ktx", version = "1.3.1" }
-androidx_fragment = { group = "androidx.fragment", name = "fragment-ktx", version = "1.3.6" }
-androidx_recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version = "1.2.1" }
-androidx_browser = { group = "androidx.browser", name = "browser", version = "1.3.0" }
-material = { group = "com.google.android.material", name = "material", version = "1.4.0" }
-desugar = { group = "com.android.tools", name = "desugar_jdk_libs", version = "1.1.5" }
+androidx_core = "androidx.core:core-ktx:1.6.0"
+androidx_appcompat = "androidx.appcompat:appcompat:1.3.1"
+androidx_constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.1"
+androidx_emoji = "androidx.emoji:emoji-appcompat:1.2.0-alpha01"
+androidx_activity = "androidx.activity:activity-ktx:1.3.1"
+androidx_fragment = "androidx.fragment:fragment-ktx:1.3.6"
+androidx_recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
+androidx_browser = "androidx.browser:browser:1.3.0"
+material = "com.google.android.material:material:1.4.0"
+desugar = "com.android.tools:desugar_jdk_libs:1.1.5"
 
-androidx_lifecycle_viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidx_lifecycle" }
-androidx_lifecycle_livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "androidx_lifecycle" }
-androidx_lifecycle_common_java8 = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "androidx_lifecycle" }
+androidx_lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+androidx_lifecycle_livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+androidx_lifecycle_common_java8 = "androidx.lifecycle:lifecycle-common-java8:2.3.1"
 
-androidx_navigation_fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "androidx_navigation" }
-androidx_navigation_ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "androidx_navigation" }
+androidx_navigation_fragment = "androidx.navigation:navigation-fragment-ktx:2.3.5"
+androidx_navigation_ui = "androidx.navigation:navigation-ui-ktx:2.3.5"
 
-androidx_room = { group = "androidx.room", name = "room-ktx", version.ref = "androidx_room" }
-androidx_room_compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx_room" }
+androidx_room = "androidx.room:room-ktx:2.4.0"
+androidx_room_compiler = "androidx.room:room-compiler:2.4.0"
 
-androidx_datastore = { group = "androidx.datastore", name = "datastore-preferences", version = "1.0.0" }
+androidx_datastore = "androidx.datastore:datastore-preferences:1.0.0"
 
-corbind_core = { group = "ru.ldralighieri.corbind", name = "corbind", version.ref = "corbind" }
-corbind_appcompat = { group = "ru.ldralighieri.corbind", name = "corbind-appcompat", version.ref = "corbind" }
-corbind_navigation = { group = "ru.ldralighieri.corbind", name = "corbind-navigation", version.ref = "corbind" }
-corbind_recyclerview = { group = "ru.ldralighieri.corbind", name = "corbind-recyclerview", version.ref = "corbind" }
-corbind_material = { group = "ru.ldralighieri.corbind", name = "corbind-material", version.ref = "corbind" }
+corbind_core = "ru.ldralighieri.corbind:corbind:1.5.2"
+corbind_appcompat = "ru.ldralighieri.corbind:corbind-appcompat:1.5.2"
+corbind_navigation = "ru.ldralighieri.corbind:corbind-navigation:1.5.2"
+corbind_recyclerview = "ru.ldralighieri.corbind:corbind-recyclerview:1.5.2"
+corbind_material = "ru.ldralighieri.corbind:corbind-material:1.5.2"
 
-groupie_core = { group = "com.xwray", name = "groupie", version.ref = "groupie" }
-groupie_viewbinding = { group = "com.xwray", name = "groupie-viewbinding", version.ref = "groupie" }
+groupie_core = "com.xwray:groupie:2.9.0"
+groupie_viewbinding = "com.xwray:groupie-viewbinding:2.9.0"
 
-coil = { group = "io.coil-kt", name = "coil", version = "1.3.2" }
+coil = "io.coil-kt:coil:1.3.2"
 
-ktor_client = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
-ktor_serialization = { group = "io.ktor", name = "ktor-client-serialization", version.ref = "ktor" }
-okhttp_logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version = "4.9.3" }
+ktor_client = "io.ktor:ktor-client-okhttp:1.6.7"
+ktor_serialization = "io.ktor:ktor-client-serialization:1.6.7"
+okhttp_logging = "com.squareup.okhttp3:logging-interceptor:4.9.3"
 
-dagger = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger" }
-dagger_compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "dagger" }
-dagger_android_navigation = { group = "androidx.hilt", name = "hilt-navigation-fragment", version.ref = "dagger_android" }
-dagger_android_compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "dagger_android" }
+dagger = "com.google.dagger:hilt-android:2.39.1"
+dagger_compiler = "com.google.dagger:hilt-android-compiler:2.39.1"
+dagger_android_navigation = "androidx.hilt:hilt-navigation-fragment:1.0.0"
+dagger_android_compiler = "androidx.hilt:hilt-compiler:1.0.0"
 
-timber = { group = "com.jakewharton.timber", name = "timber", version = "5.0.1" }
+timber = "com.jakewharton.timber:timber:5.0.1"
 
-junit = { group = "junit", name = "junit", version = "4.13.2" }
-androidx_test_core = { group = "androidx.test", name = "core-ktx", version = "1.4.0" }
-androidx_test_junit = { group = "androidx.test.ext", name = "junit-ktx", version = "1.1.3" }
-androidx_test_room = { group = "androidx.room", name = "room-testing", version.ref = "androidx_room" }
-androidx_test_espresso = { group = "androidx.test.espresso", name = "espresso-core", version = "3.4.0" }
+junit = "junit:junit:4.13.2"
+androidx_test_core = "androidx.test:core-ktx:1.4.0"
+androidx_test_junit = "androidx.test.ext:junit-ktx:1.1.3"
+androidx_test_room = "androidx.room:room-testing:2.4.0"
+androidx_test_espresso = "androidx.test.espresso:espresso-core:3.4.0"
 
-kotlin_test_coroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlin_coroutine" }
+kotlin_test_coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0"
 
-robolectric = { group = "org.robolectric", name = "robolectric", version = "4.6.1" }
-mockk = { group = "io.mockk", name = "mockk", version = "1.12.0" }
+robolectric = "org.robolectric:robolectric:4.6.1"
+mockk = "io.mockk:mockk:1.12.0"
 
 [bundles]
 kotlin = [
@@ -132,6 +132,6 @@ ktor = [
 ]
 
 [plugins]
-kotlin_kover = { id = "org.jetbrains.kotlinx.kover", version = "0.5.0-RC" }
-releaseHub = { id = "com.dipien.releaseshub.gradle.plugin", version = "3.1.0" }
-detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.19.0" }
+kotlin_kover = "org.jetbrains.kotlinx.kover:0.5.0-RC"
+releaseHub = "com.dipien.releaseshub.gradle.plugin:3.1.0"
+detekt = "io.gitlab.arturbosch.detekt:1.19.0"
