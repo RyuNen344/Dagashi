@@ -25,7 +25,7 @@ inline fun <reified T> Fragment.bind(
 inline fun <reified T : ViewModel> Fragment.assistedViewModels(crossinline body: () -> T): Lazy<T> {
     return viewModels {
         object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return body() as T
             }
@@ -36,7 +36,7 @@ inline fun <reified T : ViewModel> Fragment.assistedViewModels(crossinline body:
 inline fun <reified T : ViewModel> Fragment.assistedActivityViewModels(crossinline body: () -> T): Lazy<T> {
     return activityViewModels {
         object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return body() as T
             }
@@ -47,7 +47,7 @@ inline fun <reified T : ViewModel> Fragment.assistedActivityViewModels(crossinli
 inline fun <reified T : ViewModel> Fragment.assistedNavGraphViewModels(@IdRes navGraphId: Int, crossinline body: () -> T): Lazy<T> {
     return navGraphViewModels(navGraphId) {
         object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return body() as T
             }
