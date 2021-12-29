@@ -1,35 +1,7 @@
 package com.ryunen344.dagashi.data.repository.mapper
 
 object MileStoneMapper {
-//    @JvmStatic
-//    fun toEntity(response: MileStoneNodeResponse): MileStoneWithSummaryIssue {
-//        return MileStoneWithSummaryIssue(
-//            mileStoneEntity = MileStoneEntity(
-//                id = response.id,
-//                number = response.number,
-//                url = response.url,
-//                title = response.title,
-//                description = response.description,
-//                closedAt = response.closedAt,
-//                path = response.path
-//            ),
-//            issues = toEntity(
-//                mileStoneId = response.id,
-//                responses = response.issues
-//            )
-//        )
-//    }
-//
-//    @JvmStatic
-//    private fun toEntity(mileStoneId: String, responses: MileStoneIssuesResponse): List<SummaryIssueEntity> {
-//        return responses.nodes.mapIndexed { index, response ->
-//            SummaryIssueEntity(
-//                id = index,
-//                mileStoneId = mileStoneId,
-//                title = response.title
-//            )
-//        }
-//    }
+
 //
 //    @JvmStatic
 //    fun toModel(entity: MileStoneWithSummaryIssue): MileStone {

@@ -1,51 +1,22 @@
 package com.ryunen344.dagashi.data.repository.mapper
 
 object IssueMapper {
-//    @JvmStatic
-//    fun toEntity(response: IssueRootResponse): List<IssueWithLabelAndComment> {
-//        return response.issues.nodes.mapIndexed { index, issueNodeResponse ->
-//            IssueWithLabelAndComment(
-//                issueEntity = IssueEntity(
-//                    singleUniqueId = "${response.number}_$index",
-//                    id = index,
-//                    number = response.number,
-//                    url = issueNodeResponse.url,
-//                    title = issueNodeResponse.title,
-//                    body = issueNodeResponse.body
-//                ),
-//                labels = toEntity(issueNodeResponse.labels),
-//                comments = toEntity("${response.number}_$index", issueNodeResponse.comments)
-//            )
-//        }
-//    }
-//
-//    @JvmStatic
-//    fun toEntity(response: LabelsResponse): List<LabelEntity> {
-//        return response.nodes.map {
-//            LabelEntity(
-//                name = it.name,
-//                description = it.description,
-//                color = it.color
-//            )
-//        }
-//    }
-//
-//    @JvmStatic
-//    fun toEntity(singleUniqueId: String, response: CommentsResponse): List<CommentEntity> {
-//        return response.nodes.mapIndexed { index, node ->
-//            CommentEntity(
+//fun toEntity(response: IssueRootResponse): List<IssueWithLabelAndComment> {
+//    return response.issues.nodes.mapIndexed { index, issueNodeResponse ->
+//        IssueWithLabelAndComment(
+//            issueEntity = IssueEntity(
+//                singleUniqueId = "${response.number}_$index",
 //                id = index,
-//                singleUniqueId = singleUniqueId,
-//                body = node.body,
-//                publishedAt = node.publishedAt,
-//                author = AuthorEntity(
-//                    login = node.author.login,
-//                    url = node.author.url,
-//                    avatarUrl = node.author.avatarUrl
-//                )
-//            )
-//        }
+//                number = response.number,
+//                url = issueNodeResponse.url,
+//                title = issueNodeResponse.title,
+//                body = issueNodeResponse.body
+//            ),
+//            labels = toEntity(issueNodeResponse.labels),
+//            comments = toEntity("${response.number}_$index", issueNodeResponse.comments)
+//        )
 //    }
+//}
 //
 //    @JvmStatic
 //    fun toEntity(singleUniqueId: String): StashedIssueEntity {
