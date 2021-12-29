@@ -148,9 +148,8 @@ kover {
 
 releasesHub {
     pullRequestEnabled = true
-    gitHubRepositoryOwner = "RyuNen344"
-    gitHubRepositoryName = "Dagashi"
     pullRequestsMax = 20
+    pullRequestReviewers = listOf("RyuNen344")
 }
 
 detekt {

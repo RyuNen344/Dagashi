@@ -27,6 +27,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-v1-gradle-
       - name: run auto update
-        run: ./gradlew clean upgradeDependencies
+        run: ./gradlew upgradeDependencies
         env:
           gitHubWriteToken: ${{ secrets.GITHUB_TOKEN }}
+          gitUserEmail: ${{ secrets.ACTIONS_USER_EMAIL }}
+          gitUserName: ${{ secrets.ACTIONS_USER_NAME }}
+          gitHubRepository: ${{ github.repository }}
