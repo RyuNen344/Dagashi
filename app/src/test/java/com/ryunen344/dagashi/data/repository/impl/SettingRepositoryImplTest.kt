@@ -2,7 +2,6 @@ package com.ryunen344.dagashi.data.repository.impl
 
 import com.ryunen344.dagashi.data.preferences.SettingPreferences
 import com.ryunen344.dagashi.test.MainCoroutineTestRule
-import com.ryunen344.dagashi.test.runBlockingTest
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
