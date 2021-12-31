@@ -13,33 +13,31 @@ class OffsetDateTimeSerializerTest {
 
     private val target = OffsetDateTime.of(2020, 11, 29, 6, 30, 0, 0, ZoneOffset.UTC)
 
-    private val targetString = "\"2020-11-29T06:30:00Z\""
+    private val decodedTarget = "\"2020-11-29T06:30:00Z\""
+
+    private val decodedNull = "null"
 
     private val json = ApiModule.provideJson()
 
     @Test
-    fun decodeCorrect() {
-        val decodeFromString = json.decodeFromString(OffsetDateTimeSerializer, getOffsetDateTimeJsonString(target))
-        MatcherAssert.assertThat(decodeFromString, CoreMatchers.equalTo(target))
-    }
-
-    @Test(expected = DateTimeParseException::class)
-    fun decodeInputIncorrect() {
-        json.decodeFromString(OffsetDateTimeSerializer, getOffsetDateTimeJsonString("hoge"))
+    fun decode_string_to_instance() {
+        val decoded = json.decodeFromString(OffsetDateTimeSerializer, decodedTarget)
+        MatcherAssert.assertThat(decoded, CoreMatchers.equalTo(target))
     }
 
     @Test(expected = SerializationException::class)
-    fun decodeInputNull() {
-        json.decodeFromString(OffsetDateTimeSerializer, getOffsetDateTimeJsonString(null))
+    fun decode_null_throws_exception() {
+        json.decodeFromString(OffsetDateTimeSerializer, decodedNull)
+    }
+
+    @Test(expected = DateTimeParseException::class)
+    fun decode_invalid_throws_exception() {
+        json.decodeFromString(OffsetDateTimeSerializer, "\"hoge\"")
     }
 
     @Test
-    fun encodeCorrect() {
+    fun encode_instance_to_string() {
         val encoded = json.encodeToString(OffsetDateTimeSerializer, target)
-        MatcherAssert.assertThat(encoded, CoreMatchers.equalTo(targetString))
-    }
-
-    private fun getOffsetDateTimeJsonString(target: Any?): String {
-        return if (target != null) "\"$target\"" else "null"
+        MatcherAssert.assertThat(encoded, CoreMatchers.equalTo(decodedTarget))
     }
 }
