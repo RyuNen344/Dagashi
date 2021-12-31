@@ -7,7 +7,6 @@ import com.ryunen344.dagashi.data.db.mapper.toModel
 import com.ryunen344.dagashi.test.EntityGenerator
 import com.ryunen344.dagashi.test.MainCoroutineTestRule
 import com.ryunen344.dagashi.test.ResponseGenerator
-import com.ryunen344.dagashi.test.runBlockingTest
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
