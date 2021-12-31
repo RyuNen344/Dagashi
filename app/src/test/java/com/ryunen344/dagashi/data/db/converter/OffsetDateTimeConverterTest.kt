@@ -11,33 +11,31 @@ class OffsetDateTimeConverterTest {
 
     private val target = OffsetDateTime.of(2020, 11, 29, 6, 30, 0, 0, ZoneOffset.UTC)
 
-    private val targetString = "2020-11-29T06:30:00Z"
-
     @Test
-    fun fromStringSuccess() {
-        val fromConverter = OffsetDateTimeConverter.fromString(targetString)
+    fun string_to_instance() {
+        val fromConverter = OffsetDateTimeConverter.fromString(target.toString())
         MatcherAssert.assertThat(fromConverter, CoreMatchers.equalTo(target))
     }
 
     @Test
-    fun fromStringInputNull() {
+    fun null_string_to_null() {
         val fromConverter = OffsetDateTimeConverter.fromString(null)
         MatcherAssert.assertThat(fromConverter, CoreMatchers.nullValue())
     }
 
     @Test(expected = DateTimeParseException::class)
-    fun fromStringInputIncorrect() {
+    fun invalid_string_throws_exception() {
         OffsetDateTimeConverter.fromString("hoge")
     }
 
     @Test
-    fun toStringSuccess() {
+    fun instance_to_string() {
         val fromConverter = OffsetDateTimeConverter.toString(target)
-        MatcherAssert.assertThat(fromConverter, CoreMatchers.equalTo(targetString))
+        MatcherAssert.assertThat(fromConverter, CoreMatchers.equalTo(target.toString()))
     }
 
     @Test
-    fun toStringInputNull() {
+    fun null_instance_to_null() {
         val fromConverter = OffsetDateTimeConverter.toString(null)
         MatcherAssert.assertThat(fromConverter, CoreMatchers.nullValue())
     }
