@@ -65,6 +65,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     testOptions {
         unitTests {
             isIncludeAndroidResources = true
@@ -74,14 +75,18 @@ android {
                     isIncludeNoLocationClasses = true
                     excludes = listOf("jdk.internal.*")
                 }
-                it.logging.captureStandardOutput(LogLevel.DEBUG)
-                it.logging.captureStandardError(LogLevel.DEBUG)
+                it.testLogging {
+                    showStackTraces = true
+                    showStandardStreams = true
+                }
             }
         }
     }
+
     testCoverage {
         jacocoVersion = "0.8.7"
     }
+
     packagingOptions {
         resources.excludes.add("META-INF/**")
     }
