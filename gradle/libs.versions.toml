@@ -2,7 +2,7 @@
 android_minSdk = "24"
 android_targetSdk = "31"
 android_compileSdk = "31"
-android_buildTools = "30.0.3"
+android_buildTools = "31.0.0"
 android_version_major = "0"
 android_version_minor = "0"
 android_version_patch = "1"
