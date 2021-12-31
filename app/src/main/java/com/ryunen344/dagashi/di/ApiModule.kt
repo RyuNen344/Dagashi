@@ -30,6 +30,7 @@ object ApiModule {
     @Singleton
     fun provideJson(): Json {
         return Json {
+            isLenient = true
             ignoreUnknownKeys = true
         }
     }
