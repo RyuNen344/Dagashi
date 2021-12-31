@@ -66,7 +66,21 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     testOptions {
-        unitTests.isIncludeAndroidResources = true
+        unitTests {
+            isIncludeAndroidResources = true
+            isReturnDefaultValues = true
+            all {
+                it.extensions.configure(JacocoTaskExtension::class.java) {
+                    isIncludeNoLocationClasses = true
+                    excludes = listOf("jdk.internal.*")
+                }
+                it.logging.captureStandardOutput(LogLevel.DEBUG)
+                it.logging.captureStandardError(LogLevel.DEBUG)
+            }
+        }
+    }
+    testCoverage {
+        jacocoVersion = "0.8.7"
     }
     packagingOptions {
         resources.excludes.add("META-INF/**")
