@@ -17,7 +17,7 @@ android {
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = libs.versions.android.version.code.get().toInt()
-        versionName = with(libs.versions.android.version) { "$major.$minor.$patch" }
+        versionName = with(libs.versions.android.version) { "${major.get()}.${minor.get()}.${patch.get()}" }
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments.putAll(
