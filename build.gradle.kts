@@ -55,89 +55,83 @@ task("jacocoMergedReport", JacocoReport::class) {
         csv.required.set(false)
     }
     gradle.afterProject {
-        if (rootProject != this && plugins.hasPlugin("jacoco")) {
-            sourceDirectories.from += "$projectDir/src/main/java"
-            val current = classDirectories.files.toMutableSet()
-            current.addAll(fileTree("$buildDir/tmp/kotlin-classes/debug").files)
-            current.addAll(fileTree("$buildDir/intermediates/javac/debug/classes").files)
-            classDirectories.setFrom(current.map { it.absolutePath })
-        }
-    }
 
-    val testVariant = "debug"
+        val testVariant = "debug"
 
-    // Exclude the class files corresponding to the auto-generated source files.
-    val classDirectoriesTreeExcludes = setOf(
-        // e.g. class   : androidx/databinding/library/baseAdapters/BR.class
-        //      element : BR
-        "androidx/**/*.class",
+        // Exclude the class files corresponding to the auto-generated source files.
+        val classDirectoriesTreeExcludes = setOf(
+            // e.g. class   : androidx/databinding/library/baseAdapters/BR.class
+            //      element : BR
+            "androidx/**/*.class",
 
-        // e.g. class   : <AndroidManifestPackage>/DataBinderMapperImpl.class
-        //      element : DataBinderMapperImpl
-        "**/DataBinderMapperImpl.class",
+            // e.g. class   : <AndroidManifestPackage>/DataBinderMapperImpl.class
+            //      element : DataBinderMapperImpl
+            "**/DataBinderMapperImpl.class",
 
-        // e.g. class   : <AndroidManifestPackage>/DataBinderMapperImpl$InnerBrLookup.class
-        //      element : DataBinderMapperImpl.InnerBrLookup
-        "**/DataBinderMapperImpl\$*.class",
+            // e.g. class   : <AndroidManifestPackage>/DataBinderMapperImpl$InnerBrLookup.class
+            //      element : DataBinderMapperImpl.InnerBrLookup
+            "**/DataBinderMapperImpl\$*.class",
 
-        // e.g. class   : <AndroidManifestPackage>/BuildConfig.class
-        //      element : BuildConfig
-        "**/BuildConfig.class",
+            // e.g. class   : <AndroidManifestPackage>/BuildConfig.class
+            //      element : BuildConfig
+            "**/BuildConfig.class",
 
-        // e.g. class   : <AndroidManifestPackage>/BR.class
-        //      element : BR
-        "**/BR.class",
+            // e.g. class   : <AndroidManifestPackage>/BR.class
+            //      element : BR
+            "**/BR.class",
 
-        // e.g. class   : <AndroidManifestPackage>/DataBindingInfo.class
-        //      element : DataBindingInfo
-        "**/DataBindingInfo.class"
+            // e.g. class   : <AndroidManifestPackage>/DataBindingInfo.class
+            //      element : DataBindingInfo
+            "**/DataBindingInfo.class"
 
-        //     "**/R.class",
-        //     "**/R$*.class",
-        //     "**/Manifest*.*",
-        //     "android/**/*.*",
-        //     "**/Lambda$*.class",
-        //     "**/*\$Lambda$*.*",
-        //     "**/Lambda.class",
-        //     "**/*Lambda.class",
-        //     "**/*Lambda*.class",
-        //     "**/*Lambda*.*",
-        //     "**/*Builder.*"
-    )
-
-    val javaClassDirectoriesTree = fileTree(
-        mapOf(
-            "dir" to "${buildDir}/intermediates/javac/$testVariant/classes/",
-            "excludes" to classDirectoriesTreeExcludes
+            //     "**/R.class",
+            //     "**/R$*.class",
+            //     "**/Manifest*.*",
+            //     "android/**/*.*",
+            //     "**/Lambda$*.class",
+            //     "**/*\$Lambda$*.*",
+            //     "**/Lambda.class",
+            //     "**/*Lambda.class",
+            //     "**/*Lambda*.class",
+            //     "**/*Lambda*.*",
+            //     "**/*Builder.*"
         )
-    )
 
-    val kotlinClassDirectoriesTree = fileTree(
-        mapOf(
-            "dir" to "${buildDir}/tmp/kotlin-classes/$testVariant",
-            "excludes" to classDirectoriesTreeExcludes
-        )
-    )
-    classDirectories.setFrom(files(javaClassDirectoriesTree, kotlinClassDirectoriesTree))
-
-    val mainSourceDirectoryRelativePath = "src/main/java"
-    val variantSourceDirectoryRelativePath = "src/$testVariant/java"
-    sourceDirectories.setFrom(
-        mainSourceDirectoryRelativePath,
-        variantSourceDirectoryRelativePath
-    )
-
-    executionData.setFrom(
-        fileTree(
+        val javaClassDirectoriesTree = fileTree(
             mapOf(
-                "dir" to project.projectDir,
-                "includes" to listOf(
-                    "**/*.exec",
-                    "**/*.ec"
+                "dir" to "${buildDir}/intermediates/javac/$testVariant/classes/",
+                "excludes" to classDirectoriesTreeExcludes
+            )
+        )
+
+        val kotlinClassDirectoriesTree = fileTree(
+            mapOf(
+                "dir" to "${buildDir}/tmp/kotlin-classes/$testVariant",
+                "excludes" to classDirectoriesTreeExcludes
+            )
+        )
+        classDirectories.setFrom(files(javaClassDirectoriesTree, kotlinClassDirectoriesTree))
+
+        val mainSourceDirectoryRelativePath = "src/main/java"
+        val variantSourceDirectoryRelativePath = "src/$testVariant/java"
+        sourceDirectories.setFrom(
+            mainSourceDirectoryRelativePath,
+            variantSourceDirectoryRelativePath
+        )
+
+        executionData.setFrom(
+            fileTree(
+                mapOf(
+                    "dir" to project.projectDir,
+                    "includes" to listOf(
+                        "**/*.exec",
+                        "**/*.ec"
+                    )
                 )
             )
         )
-    )
+    }
+
 }
 
 kover {
