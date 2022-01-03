@@ -1,13 +1,5 @@
 package com.ryunen344.dagashi.test
 
-import com.ryunen344.dagashi.data.api.response.AuthorResponse
-import com.ryunen344.dagashi.data.api.response.CommentNodeResponse
-import com.ryunen344.dagashi.data.api.response.CommentsResponse
-import com.ryunen344.dagashi.data.api.response.IssueNodeResponse
-import com.ryunen344.dagashi.data.api.response.IssueRootResponse
-import com.ryunen344.dagashi.data.api.response.IssuesResponse
-import com.ryunen344.dagashi.data.api.response.LabelNodeResponse
-import com.ryunen344.dagashi.data.api.response.LabelsResponse
 import com.ryunen344.dagashi.data.api.response.MileStoneIssueResponse
 import com.ryunen344.dagashi.data.api.response.MileStoneIssuesResponse
 import com.ryunen344.dagashi.data.api.response.MileStoneNodeResponse
@@ -15,165 +7,159 @@ import com.ryunen344.dagashi.data.api.response.MileStonesResponse
 import com.ryunen344.dagashi.data.api.response.MileStonesRootResponse
 import com.ryunen344.dagashi.data.api.response.PageInfo
 import java.time.OffsetDateTime
-import java.time.ZoneOffset
 
 object ResponseGenerator {
-
-    // region issue
-    @JvmStatic
-    fun createIssueRootResponse(): IssueRootResponse {
-        return IssueRootResponse(
-            id = "id",
-            number = 0,
-            url = "https://github.com/RyuNen344",
-            title = "title",
-            description = "description",
-            closedAt = OffsetDateTime.of(2020, 12, 20, 6, 30, 0, 0, ZoneOffset.UTC),
-            issues = createIssueResponse()
-        )
-    }
-
-    @JvmStatic
-    fun createIssueResponse(): IssuesResponse {
-        return IssuesResponse(
-            totalCount = 1,
-            pageInfo = createSinglePageInfo(),
-            nodes = listOf(createIssueNodeResponse())
-        )
-    }
-
-    @JvmStatic
-    fun createIssueNodeResponse(): IssueNodeResponse {
-        return IssueNodeResponse(
-            url = "https://github.com/RyuNen344",
-            title = "title",
-            body = "body",
-            labels = createLabelsResponse(),
-            comments = createCommentsResponse()
-        )
-    }
-
-    @JvmStatic
-    fun createLabelsResponse(): LabelsResponse {
-        return LabelsResponse(
-            nodes = listOf(createLabelNodeResponse())
-        )
-    }
-
-    @JvmStatic
-    fun createLabelNodeResponse(): LabelNodeResponse {
-        return LabelNodeResponse(
-            name = "name",
-            description = "description",
-            color = "FFFFFF"
-        )
-    }
-
-    @JvmStatic
-    fun createCommentsResponse(): CommentsResponse {
-        return CommentsResponse(
-            totalCount = 1,
-            pageInfo = createSinglePageInfo(),
-            nodes = listOf(createCommentNodeResponse())
-        )
-    }
-
-    @JvmStatic
-    fun createCommentNodeResponse(): CommentNodeResponse {
-        return CommentNodeResponse(
-            body = "body",
-            publishedAt = OffsetDateTime.of(2020, 12, 22, 6, 30, 0, 0, ZoneOffset.UTC),
-            author = createAuthorResponse()
-        )
-    }
-
-    @JvmStatic
-    fun createAuthorResponse(): AuthorResponse {
-        return AuthorResponse(
-            login = "RyuNen344",
-            url = "https://github.com/RyuNen344",
-            avatarUrl = "https://avatars2.githubusercontent.com/u/32740480?v=4"
-        )
-    }
-    // endregion
-
-    // region milestone
-    @JvmStatic
-    fun createSinglePageMileStonesRootResponse(): MileStonesRootResponse {
-        return MileStonesRootResponse(
-            name = "name",
-            url = "https://github.com/RyuNen344",
-            milestones = createSinglePageMileStonesResponse()
-        )
-    }
-
-    @JvmStatic
-    fun createSinglePageMileStonesResponse(): MileStonesResponse {
-        return MileStonesResponse(
-            totalCount = 1,
-            nodes = listOf(createSinglePageMileStoneNodeResponse()),
-            pageInfo = createSinglePageInfo()
-        )
-    }
-
-    @JvmStatic
-    fun createSinglePageMileStoneNodeResponse(): MileStoneNodeResponse {
-        return MileStoneNodeResponse(
-            id = "id_0",
-            number = 0,
-            url = "https://github.com/RyuNen344",
-            title = "title",
-            description = "description",
-            closedAt = OffsetDateTime.of(2020, 12, 20, 6, 30, 0, 0, ZoneOffset.UTC),
-            issues = createMileStoneIssuesResponse(),
-            path = "path"
-        )
-    }
-
+    // region multiple milestone
     @JvmStatic
     fun createMultiplePageMileStonesRootResponse(): MileStonesRootResponse {
         return MileStonesRootResponse(
-            name = "name",
-            url = "https://github.com/RyuNen344",
+            name = "AndroidDagashi",
+            url = "https://github.com/AndroidDagashi/AndroidDagashi",
             milestones = createMultiplePageMileStonesResponse()
         )
     }
 
     @JvmStatic
     fun createMultiplePageMileStonesResponse(): MileStonesResponse {
+        val nodes = createMultiplePageMileStoneNodeResponse()
         return MileStonesResponse(
-            totalCount = 1,
-            nodes = listOf(createMultiplePageMileStoneNodeResponse()),
+            totalCount = nodes.size,
+            nodes = nodes,
             pageInfo = createHasNextPageInfo()
         )
     }
 
     @JvmStatic
-    fun createMultiplePageMileStoneNodeResponse(): MileStoneNodeResponse {
-        return MileStoneNodeResponse(
-            id = "id_1",
-            number = 0,
-            url = "https://github.com/RyuNen344",
-            title = "title",
-            description = "description",
-            closedAt = OffsetDateTime.of(2020, 12, 20, 6, 30, 0, 0, ZoneOffset.UTC),
-            issues = createMileStoneIssuesResponse(),
-            path = "path"
+    fun createMultiplePageMileStoneNodeResponse(): List<MileStoneNodeResponse> {
+        return listOf(
+            MileStoneNodeResponse(
+                id = "MDk6TWlsZXN0b25lNjEwNzMyNw==",
+                number = 147,
+                url = "https://github.com/AndroidDagashi/AndroidDagashi/milestone/147",
+                title = "147 2020-11-22",
+                description = "ConstraintLayout 2.1.0 alpha 1, Coroutine FlowのAndroid公式ドキュメント, FlowMarbles, 2021年8月から新規アプリはAppBundleが必須に, Kotlin 1.4.20, など",
+                closedAt = OffsetDateTime.parse("2020-11-22T10:26:20Z"),
+                issues = createMultiplePageMileStoneIssuesResponse(),
+                path = "147-2020-11-22"
+            )
         )
     }
 
     @JvmStatic
-    fun createMileStoneIssuesResponse(): MileStoneIssuesResponse {
+    fun createMultiplePageMileStoneIssuesResponse(): MileStoneIssuesResponse {
+        val nodes = createMultiplePageMileStoneIssueResponses()
         return MileStoneIssuesResponse(
-            totalCount = 1,
-            nodes = listOf(createMileStoneIssueResponse())
+            totalCount = nodes.size,
+            nodes = nodes
         )
     }
 
     @JvmStatic
-    fun createMileStoneIssueResponse(): MileStoneIssueResponse {
-        return MileStoneIssueResponse(
-            title = "title"
+    fun createMultiplePageMileStoneIssueResponses(): List<MileStoneIssueResponse> {
+        return listOf(
+            MileStoneIssueResponse(
+                title = "ConstraintLayout 2.1.0 alpha 1"
+            ),
+            MileStoneIssueResponse(
+                title = "Coroutine FlowのAndroid公式ドキュメント"
+            ),
+            MileStoneIssueResponse(
+                title = "2021年8月より新規アプリはAppBundleが必須に"
+            ),
+            MileStoneIssueResponse(
+                title = "Dagger 2.30"
+            ),
+            MileStoneIssueResponse(
+                title = "Kotlin 1.4.20"
+            ),
+            MileStoneIssueResponse(
+                title = "Kotlin Coroutiensの各オペレータの処理を可視化するサイト"
+            ),
+            MileStoneIssueResponse(
+                title = "2020年のクックパッドAndroidアプリのアーキテクチャ事情"
+            ),
+            MileStoneIssueResponse(
+                title = "バックグラウンド位置情報にアクセスするアプリの審査を円滑に進めるためのヒント"
+            ),
+            MileStoneIssueResponse(
+                title = "Trello AndroidアプリのGitブランチ運用"
+            ),
+        )
+    }
+    // endregion
+
+    // region single milestone
+    @JvmStatic
+    fun createSinglePageMileStonesRootResponse(): MileStonesRootResponse {
+        return MileStonesRootResponse(
+            name = "AndroidDagashi",
+            url = "https://github.com/AndroidDagashi/AndroidDagashi",
+            milestones = createSinglePageMileStonesResponse()
+        )
+    }
+
+    @JvmStatic
+    fun createSinglePageMileStonesResponse(): MileStonesResponse {
+        val nodes = createSinglePageMileStoneNodeResponse()
+        return MileStonesResponse(
+            totalCount = nodes.size,
+            nodes = nodes,
+            pageInfo = createSinglePageInfo()
+        )
+    }
+
+    @JvmStatic
+    fun createSinglePageMileStoneNodeResponse(): List<MileStoneNodeResponse> {
+        return listOf(
+            MileStoneNodeResponse(
+                id = "MDk6TWlsZXN0b25lNjA5ODIzNQ==",
+                number = 146,
+                url = "https://github.com/AndroidDagashi/AndroidDagashi/milestone/146",
+                title = "146 2020-11-15",
+                description = "App Bundle Q&A、Now in Android エピソード29、App Bundleのテスト、Android Studio 4.1.1、実践的なDagger Hilt + Kotlin解説、など",
+                closedAt = OffsetDateTime.parse("2020-11-15T10:21:58Z"),
+                issues = createSinglePageMileStoneIssuesResponse(),
+                path = "146-2020-11-15"
+            )
+        )
+    }
+
+    @JvmStatic
+    fun createSinglePageMileStoneIssuesResponse(): MileStoneIssuesResponse {
+        val nodes = createSinglePageMileStoneIssueResponses()
+        return MileStoneIssuesResponse(
+            totalCount = nodes.size,
+            nodes = nodes
+        )
+    }
+
+    @JvmStatic
+    fun createSinglePageMileStoneIssueResponses(): List<MileStoneIssueResponse> {
+        return listOf(
+            MileStoneIssueResponse(
+                title = "App Bundle Q&A"
+            ),
+            MileStoneIssueResponse(
+                title = "Now in Android エピソード29"
+            ),
+            MileStoneIssueResponse(
+                title = "PyTorchがAndroidのNNAPIに対応"
+            ),
+            MileStoneIssueResponse(
+                title = "AOSPのビルドシステムがBazelに移行"
+            ),
+            MileStoneIssueResponse(
+                title = "App Bundleのテスト"
+            ),
+            MileStoneIssueResponse(
+                title = "Android Studio 4.1.1"
+            ),
+            MileStoneIssueResponse(
+                title = "実践的なDagger Hilt + Kotlin解説"
+            ),
+            MileStoneIssueResponse(
+                title = "Android Studioをリモートで実行する"
+            ),
         )
     }
     // endregion
@@ -196,16 +182,6 @@ object ResponseGenerator {
             endCursor = "endCursor",
             hasNextPage = true,
             hasPreviousPage = false
-        )
-    }
-
-    @JvmStatic
-    fun createHasPreviousPageInfo(): PageInfo {
-        return PageInfo(
-            startCursor = "startCursor",
-            endCursor = "endCursor",
-            hasNextPage = false,
-            hasPreviousPage = true
         )
     }
     // endregion

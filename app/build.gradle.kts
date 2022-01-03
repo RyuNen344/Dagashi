@@ -123,6 +123,7 @@ dependencies {
     testImplementation(libs.androidx.test.core)
     testImplementation(libs.androidx.test.junit)
     testImplementation(libs.androidx.test.room)
+    testImplementation(libs.ktor.mock)
     testImplementation(libs.robolectric)
     testImplementation(libs.mockk)
     androidTestImplementation(libs.kotlin.test.coroutine)
