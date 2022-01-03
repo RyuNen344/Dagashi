@@ -4,9 +4,46 @@ import com.ryunen344.dagashi.model.Author
 import com.ryunen344.dagashi.model.Comment
 import com.ryunen344.dagashi.model.Issue
 import com.ryunen344.dagashi.model.Label
+import com.ryunen344.dagashi.model.MileStone
+import com.ryunen344.dagashi.model.SummaryIssue
 import java.time.OffsetDateTime
 
 object ModelGenerator {
+
+    @JvmStatic
+    fun createMileStone(): MileStone {
+        return MileStone(
+            id = "MI_kwDOB4jhdM4Acryj",
+            number = 205,
+            url = "https://github.com/AndroidDagashi/AndroidDagashi/milestone/205",
+            title = "205 2022-01-02",
+            description = "公式のAndroidチャンネルで2021年に最も見られた動画、ViewModelイベントの扱い方、2022年1月におけるAndroid開発状況、など",
+            closedAt = OffsetDateTime.parse("2022-01-02T10:25:22Z"),
+            issues = listOf(
+                SummaryIssue(
+                    id = 0,
+                    mileStoneId = "MI_kwDOB4jhdM4Acryj",
+                    title = "公式のAndroidチャンネルで2021年に最も見られた動画21本",
+                ),
+                SummaryIssue(
+                    id = 1,
+                    mileStoneId = "MI_kwDOB4jhdM4Acryj",
+                    title = "ViewModelイベントの扱い方",
+                ),
+                SummaryIssue(
+                    id = 2,
+                    mileStoneId = "MI_kwDOB4jhdM4Acryj",
+                    title = "2022年1月におけるAndroid開発状況",
+                ),
+                SummaryIssue(
+                    id = 3,
+                    mileStoneId = "MI_kwDOB4jhdM4Acryj",
+                    title = "STORES 決済 Androidアプリの設計改善の歴史",
+                )
+            ),
+            path = "205-2022-01-02"
+        )
+    }
 
     @JvmStatic
     fun createIssue(): Issue {
