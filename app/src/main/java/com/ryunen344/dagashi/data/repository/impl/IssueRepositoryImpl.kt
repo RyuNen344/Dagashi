@@ -50,11 +50,4 @@ class IssueRepositoryImpl @Inject constructor(
         return issueDatabase.issuesByKeyword(keyword)
             .flowOn(dispatcher)
     }
-
-    @Deprecated("Don't use except for remote test")
-    private suspend fun issueFromApi(path: String): List<Issue> {
-        return withContext(dispatcher) {
-            dagashiApi.issues(path)
-        }
-    }
 }
