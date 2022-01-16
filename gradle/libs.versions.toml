@@ -43,11 +43,11 @@ androidx_room_compiler = "androidx.room:room-compiler:2.4.1"
 
 androidx_datastore = "androidx.datastore:datastore-preferences:1.0.0"
 
-corbind_core = "ru.ldralighieri.corbind:corbind:1.5.2"
-corbind_appcompat = "ru.ldralighieri.corbind:corbind-appcompat:1.5.2"
-corbind_navigation = "ru.ldralighieri.corbind:corbind-navigation:1.5.2"
-corbind_recyclerview = "ru.ldralighieri.corbind:corbind-recyclerview:1.5.2"
-corbind_material = "ru.ldralighieri.corbind:corbind-material:1.5.2"
+corbind_core = "ru.ldralighieri.corbind:corbind:1.5.3"
+corbind_appcompat = "ru.ldralighieri.corbind:corbind-appcompat:1.5.3"
+corbind_navigation = "ru.ldralighieri.corbind:corbind-navigation:1.5.3"
+corbind_recyclerview = "ru.ldralighieri.corbind:corbind-recyclerview:1.5.3"
+corbind_material = "ru.ldralighieri.corbind:corbind-material:1.5.3"
 
 groupie_core = "com.xwray:groupie:2.9.0"
 groupie_viewbinding = "com.xwray:groupie-viewbinding:2.9.0"
