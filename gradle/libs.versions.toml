@@ -38,7 +38,7 @@ androidx_lifecycle_common_java8 = "androidx.lifecycle:lifecycle-common-java8:2.4
 androidx_navigation_fragment = "androidx.navigation:navigation-fragment-ktx:2.3.5"
 androidx_navigation_ui = "androidx.navigation:navigation-ui-ktx:2.3.5"
 
-androidx_room = "androidx.room:room-ktx:2.4.0"
+androidx_room = "androidx.room:room-ktx:2.4.1"
 androidx_room_compiler = "androidx.room:room-compiler:2.4.1"
 
 androidx_datastore = "androidx.datastore:datastore-preferences:1.0.0"
