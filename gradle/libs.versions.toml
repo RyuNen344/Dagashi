@@ -9,7 +9,7 @@ android_version_patch = "1"
 android_version_code = "1"
 
 [libraries]
-android_gradle = "com.android.tools.build:gradle:7.1.0"
+android_gradle = "com.android.tools.build:gradle:7.1.1"
 androidx_navigation_gradle = "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
 dagger_gradle = "com.google.dagger:hilt-android-gradle-plugin:2.40.5"
 kotlin_gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
