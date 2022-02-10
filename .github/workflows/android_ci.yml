@@ -59,6 +59,6 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: run qodana
-        uses: JetBrains/qodana-action@v4.2.0
+        uses: JetBrains/qodana-action@v4.2.5
         with:
           linter: jetbrains/qodana-jvm-android:latest
