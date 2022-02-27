@@ -1,8 +1,11 @@
 name: Android CI
 
 on:
+  workflow_dispatch:
   pull_request:
     types: [opened, synchronize, reopened]
+
+concurrency: check-non-master-branch
 
 jobs:
   check:
@@ -13,7 +16,7 @@ jobs:
       - name: setup jdk
         uses: actions/setup-java@v2
         with:
-          distribution: 'liberica'
+          distribution: "liberica"
           java-version: 11
       - name: setup ruby
         uses: ruby/setup-ruby@v1
@@ -52,13 +55,3 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./build/reports/jacoco/jacocoMergedReport/jacocoMergedReport.xml
-
-  qodana:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: run qodana
-        uses: JetBrains/qodana-action@v4.2.5
-        with:
-          linter: jetbrains/qodana-jvm-android:latest
