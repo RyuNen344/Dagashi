@@ -45,7 +45,7 @@ androidx_datastore = "androidx.datastore:datastore-preferences:1.0.0"
 
 corbind_core = "ru.ldralighieri.corbind:corbind:1.5.4"
 corbind_appcompat = "ru.ldralighieri.corbind:corbind-appcompat:1.5.4"
-corbind_navigation = "ru.ldralighieri.corbind:corbind-navigation:1.5.3"
+corbind_navigation = "ru.ldralighieri.corbind:corbind-navigation:1.5.4"
 corbind_recyclerview = "ru.ldralighieri.corbind:corbind-recyclerview:1.5.3"
 corbind_material = "ru.ldralighieri.corbind:corbind-material:1.5.4"
 
