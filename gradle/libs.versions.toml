@@ -47,7 +47,7 @@ corbind_core = "ru.ldralighieri.corbind:corbind:1.5.4"
 corbind_appcompat = "ru.ldralighieri.corbind:corbind-appcompat:1.5.4"
 corbind_navigation = "ru.ldralighieri.corbind:corbind-navigation:1.5.3"
 corbind_recyclerview = "ru.ldralighieri.corbind:corbind-recyclerview:1.5.3"
-corbind_material = "ru.ldralighieri.corbind:corbind-material:1.5.3"
+corbind_material = "ru.ldralighieri.corbind:corbind-material:1.5.4"
 
 groupie_core = "com.xwray:groupie:2.9.0"
 groupie_viewbinding = "com.xwray:groupie-viewbinding:2.9.0"
