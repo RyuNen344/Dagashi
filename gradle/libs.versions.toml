@@ -54,7 +54,7 @@ groupie_viewbinding = "com.xwray:groupie-viewbinding:2.9.0"
 
 coil = "io.coil-kt:coil:1.4.0"
 
-ktor_client = "io.ktor:ktor-client-okhttp:2.0.2"
+ktor_client = "io.ktor:ktor-client-okhttp:2.0.3"
 ktor_serialization = "io.ktor:ktor-client-serialization:2.0.2"
 okhttp_logging = "com.squareup.okhttp3:logging-interceptor:4.9.3"
 
