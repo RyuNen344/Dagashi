@@ -13,7 +13,7 @@ android_gradle = "com.android.tools.build:gradle:7.2.0"
 androidx_navigation_gradle = "androidx.navigation:navigation-safe-args-gradle-plugin:2.4.2"
 dagger_gradle = "com.google.dagger:hilt-android-gradle-plugin:2.42"
 kotlin_gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.0"
-kotlin_serialization_gradle = "org.jetbrains.kotlin:kotlin-serialization:1.7.0"
+kotlin_serialization_gradle = "org.jetbrains.kotlin:kotlin-serialization:1.7.10"
 
 kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:1.7.10"
 kotlin_stdlib_jdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.0"
