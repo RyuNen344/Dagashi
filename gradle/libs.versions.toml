@@ -10,7 +10,7 @@ android_version_code = "1"
 
 [libraries]
 android_gradle = "com.android.tools.build:gradle:7.2.0"
-androidx_navigation_gradle = "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.0"
+androidx_navigation_gradle = "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.1"
 dagger_gradle = "com.google.dagger:hilt-android-gradle-plugin:2.42"
 kotlin_gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21"
 kotlin_serialization_gradle = "org.jetbrains.kotlin:kotlin-serialization:1.6.21"
