@@ -29,7 +29,7 @@ androidx_fragment = "androidx.fragment:fragment-ktx:1.4.1"
 androidx_recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
 androidx_browser = "androidx.browser:browser:1.4.0"
 material = "com.google.android.material:material:1.6.0"
-desugar = "com.android.tools:desugar_jdk_libs:1.1.5"
+desugar = "com.android.tools:desugar_jdk_libs:1.2.0"
 
 androidx_lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
 androidx_lifecycle_livedata = "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
