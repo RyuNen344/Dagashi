@@ -11,7 +11,7 @@ android_version_code = "1"
 [libraries]
 android_gradle = "com.android.tools.build:gradle:7.2.2"
 androidx_navigation_gradle = "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.1"
-dagger_gradle = "com.google.dagger:hilt-android-gradle-plugin:2.43.1"
+dagger_gradle = "com.google.dagger:hilt-android-gradle-plugin:2.43.2"
 kotlin_gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10"
 kotlin_serialization_gradle = "org.jetbrains.kotlin:kotlin-serialization:1.7.10"
 
@@ -58,8 +58,8 @@ ktor_client = "io.ktor:ktor-client-okhttp:2.0.3"
 ktor_serialization = "io.ktor:ktor-client-serialization:2.0.3"
 okhttp_logging = "com.squareup.okhttp3:logging-interceptor:4.10.0"
 
-dagger = "com.google.dagger:hilt-android:2.43.1"
-dagger_compiler = "com.google.dagger:hilt-android-compiler:2.43.1"
+dagger = "com.google.dagger:hilt-android:2.43.2"
+dagger_compiler = "com.google.dagger:hilt-android-compiler:2.43.2"
 dagger_android_navigation = "androidx.hilt:hilt-navigation-fragment:1.0.0"
 dagger_android_compiler = "androidx.hilt:hilt-compiler:1.0.0"
 
