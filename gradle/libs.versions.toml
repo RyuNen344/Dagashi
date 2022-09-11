@@ -52,7 +52,7 @@ corbind_material = "ru.ldralighieri.corbind:corbind-material:1.5.5"
 groupie_core = "com.xwray:groupie:2.9.0"
 groupie_viewbinding = "com.xwray:groupie-viewbinding:2.9.0"
 
-coil = "io.coil-kt:coil:2.2.0"
+coil = "io.coil-kt:coil:2.2.1"
 
 ktor_client = "io.ktor:ktor-client-okhttp:2.0.3"
 ktor_serialization = "io.ktor:ktor-client-serialization:2.0.3"
